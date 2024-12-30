@@ -600,7 +600,7 @@
                     </div>
                 </div>
             </div>
-            <div id="section3" class="section bg-white p-6 rounded-lg shadow-md mb-4 ">
+            <div id="section3" class="section bg-white p-6 rounded-lg shadow-md mb-4 hidden ">
                 <div class="mb-6">
                     <h2 class="text-3xl font-bold mb-6 text-black-600">Essential Supplies Checklist</h2>
                     <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
@@ -804,7 +804,7 @@
                             </select>
                             <p id="error-cotrimoxazoleTablets" class="text-red-500 text-sm"></p>
                         </div>
-                        
+
                         <!-- ORS -->
                         <div class="mb-6">
                             <label for="ors" class="block text-gray-700 text-lg font-semibold">
@@ -830,7 +830,7 @@
                             </select>
                             <p id="error-calciumTablets" class="text-red-500 text-sm"></p>
                         </div>
-                        
+
 
                         <!-- Zinc -->
                         <div class="mb-6">
@@ -872,6 +872,109 @@
                             Save & Next
                         </button>
                     </div>
+                </div>
+            </div>
+            <!-- Section 4: Interaction Summary -->
+            <div id="section4" class="section bg-white p-6 rounded-lg shadow-md mb-4">
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold mb-6 text-black-600">Interaction Summary</h2>
+                    <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
+
+                    <div class="mt-4 mb-4">
+                        <p class="text-sm bg-gray-200 p-3 rounded-md shadow-sm">
+                            <span>&#8505; </span> Summarise the interaction, write NA in case of no interaction or no result
+                        </p>
+                    </div>
+                    
+                    
+
+                    <!-- Pregnant Women -->
+                    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+                        <h2 class="text-xl font-bold mb-4 text-blue-600">Pregnant Women</h2>
+                        <div class="mb-6">
+                            <label for="pregnantWomen" class="block text-gray-700 text-lg font-semibold mb-2">
+                                ANC registration, Complete ANC check-up, Post-partum FP choices
+                                <span class="text-red-500">*</span>
+                            </label>
+                            <textarea id="pregnantWomen" name="pregnantWomen" minlength="2" maxlength="250"
+                                class="form-textarea mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                placeholder="Write Summary" required></textarea>
+                            <p id="error-pregnantWomen" class="text-red-500 text-sm"></p>
+                        </div>
+                    </div>
+
+                    <!-- Lactating Mothers -->
+                    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+                        <h2 class="text-xl font-bold mb-4 text-blue-600">Lactating Mothers</h2>
+                        <div class="mb-6">
+                            <label for="lactatingMothers" class="block text-gray-700 text-lg font-semibold mb-2">
+                                JSSK entitlements, initiation of breastfeeding, breastfeeding practices
+                                <span class="text-red-500">*</span>
+                            </label>
+                            <textarea id="lactatingMothers" name="lactatingMothers" minlength="2" maxlength="250"
+                                class="form-textarea mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                placeholder="Write Summary" required></textarea>
+                            <p id="error-lactatingMothers" class="text-red-500 text-sm"></p>
+                        </div>
+                    </div>
+
+                    <!-- New-born/ Children -->
+                    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+                        <h2 class="text-xl font-bold mb-4 text-blue-600">New-born/ Children</h2>
+                        <div class="mb-6">
+                            <label for="newbornChildren" class="block text-gray-700 text-lg font-semibold mb-2">
+                                Full immunisation, counselling on underweight/malnourished children,
+                                treatment of diarrhoea
+                                <span class="text-red-500">*</span>
+                            </label>
+                            <textarea id="newbornChildren" name="newbornChildren" minlength="2" maxlength="250"
+                                class="form-textarea mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                placeholder="Write Summary" required></textarea>
+                            <p id="error-newbornChildren" class="text-red-500 text-sm"></p>
+                        </div>
+                    </div>
+
+                    <!-- TB Patients -->
+                    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+                        <h2 class="text-xl font-bold mb-4 text-blue-600">TB Patients</h2>
+                        <div class="mb-6">
+                            <label for="tbPatients" class="block text-gray-700 text-lg font-semibold mb-2">
+                                Financial aid for nutritional support, sputum microscopy, ATT treatment
+                                initiated post diagnosis
+                                <span class="text-red-500">*</span>
+                            </label>
+                            <textarea id="tbPatients" name="tbPatients" minlength="2" maxlength="250"
+                                class="form-textarea mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                placeholder="Write Summary" required></textarea>
+                            <p id="error-tbPatients" class="text-red-500 text-sm"></p>
+                        </div>
+                    </div>
+
+                    <!-- Individuals Over 30 Years -->
+                    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+                        <h2 class="text-xl font-bold mb-4 text-blue-600">Individuals Over 30 Years</h2>
+                        <div class="mb-6">
+                            <label for="ncdIndividuals" class="block text-gray-700 text-lg font-semibold mb-2">
+                                Counselling on NCD, screening for NCDs,
+                                treatment received post screening
+                                <span class="text-red-500">*</span>
+                            </label>
+                            <textarea id="ncdIndividuals" name="ncdIndividuals" minlength="2" maxlength="250"
+                                class="form-textarea mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                placeholder="Write Summary" required></textarea>
+                            <p id="error-ncdIndividuals" class="text-red-500 text-sm"></p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Save & Submit Button -->
+                <div class="flex justify-end mt-6">
+                    <button type="button"
+                        class="save-next bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
+                        onclick="validateAndNext(4)">
+                        Save & Next
+                    </button>
                 </div>
             </div>
 

@@ -184,12 +184,70 @@ const validations = {
         }
 
         return isValid;
+    },
+    section4: () => {
+        let isValid = true;
+
+        // Fields to validate
+        const fieldsToValidate = [
+            { 
+                id: 'pregnantWomen', 
+                minLength: 2, 
+                maxLength: 250, 
+                errorMessage: 'Please provide a valid summary for Pregnant Women (2-250 characters).' 
+            },
+            { 
+                id: 'lactatingMothers', 
+                minLength: 2, 
+                maxLength: 250, 
+                errorMessage: 'Please provide a valid summary for Lactating Mothers (2-250 characters).' 
+            },
+            { 
+                id: 'newbornChildren', 
+                minLength: 2, 
+                maxLength: 250, 
+                errorMessage: 'Please provide a valid summary for New-born/children (2-250 characters).' 
+            },
+            { 
+                id: 'tbPatients', 
+                minLength: 2, 
+                maxLength: 250, 
+                errorMessage: 'Please provide a valid summary for TB patients (2-250 characters).' 
+            },
+            { 
+                id: 'ncdIndividuals', 
+                minLength: 2, 
+                maxLength: 250, 
+                errorMessage: 'Please provide a valid summary for Individuals over 30 years (2-250 characters).' 
+            }
+        ];
+
+        // Validate all fields at once
+        fieldsToValidate.forEach(field => {
+            const inputElement = document.getElementById(field.id);
+            const errorElement = document.getElementById(`error-${field.id}`);
+            const inputValue = inputElement?.value.trim();
+
+            if (!inputValue || inputValue.length < field.minLength || inputValue.length > field.maxLength) {
+                if (errorElement) errorElement.textContent = field.errorMessage;
+                inputElement?.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                inputElement?.classList.remove('border-gray-300', 'focus:ring-indigo-500', 'focus:border-indigo-500');
+                isValid = false;
+            } else {
+                if (errorElement) errorElement.textContent = '';
+                inputElement?.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                inputElement?.classList.add('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
+            }
+        });
+
+        if (!isValid) {
+            alert('Please fill out all required fields in Section 4 correctly before proceeding.');
+        }
+
+        return isValid;
     }
 
 };
-
-
-
 function validateAndNext(section) {
     if (validations[`section${section}`]()) {
         document.getElementById(`section${section}`).classList.add('hidden');
@@ -200,12 +258,12 @@ function validateAndNext(section) {
     }
 }
 
-document.querySelectorAll('select, input').forEach(element => {
-    // Listen for both `change` and `input` events
+document.querySelectorAll('select, input, textarea').forEach(element => {
+    // Listen for both `input` and `change` events
     element.addEventListener('input', event => {
         const errorElement = document.getElementById(`error-${event.target.id}`);
-        
-        // For number inputs, validate the range dynamically
+
+        // Handle number inputs dynamically
         if (event.target.type === 'number') {
             const inputConfig = {
                 highRiskPregnancies: { min: 0, max: 80 },
@@ -225,9 +283,34 @@ document.querySelectorAll('select, input').forEach(element => {
                 event.target.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
                 event.target.classList.add('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
             }
-        } else {
-            // For other inputs, remove error if valid
-            if (event.target.value.trim() !== "") {
+        } 
+        // Handle text and textarea inputs dynamically
+        else if (event.target.tagName === 'TEXTAREA' || event.target.type === 'text') {
+            const inputConfig = {
+                pregnantWomen: { minLength: 2, maxLength: 250 },
+                lactatingMothers: { minLength: 2, maxLength: 250 },
+                newbornChildren: { minLength: 2, maxLength: 250 },
+                tbPatients: { minLength: 2, maxLength: 250 },
+                ncdIndividuals: { minLength: 2, maxLength: 250 }
+            }[event.target.id];
+            const value = event.target.value.trim();
+            if (!value || value.length < inputConfig.minLength || value.length > inputConfig.maxLength) {
+                errorElement.textContent = `Please provide a valid summary (${inputConfig.minLength}-${inputConfig.maxLength} characters).`;
+                event.target.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                event.target.classList.remove('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
+            } else {
+                errorElement.textContent = "";
+                event.target.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                event.target.classList.add('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
+            }
+        } 
+        // Handle select inputs dynamically
+        else if (event.target.tagName === 'SELECT') {
+            if (!event.target.value.trim()) {
+                errorElement.textContent = "Selection is required.";
+                event.target.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                event.target.classList.remove('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
+            } else {
                 errorElement.textContent = "";
                 event.target.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
                 event.target.classList.add('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
@@ -237,19 +320,21 @@ document.querySelectorAll('select, input').forEach(element => {
 
     element.addEventListener('change', event => {
         const errorElement = document.getElementById(`error-${event.target.id}`);
-        
+
+        // Validate on change for all inputs
         if (event.target.value.trim() !== "") {
             errorElement.textContent = "";
             event.target.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
             event.target.classList.add('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
         }
-        
+
         // Toggle VHND Section for specific input
         if (event.target.id === 'vhndSession') {
             toggleVHNDSection(event.target.value);
         }
     });
 });
+
 
 // Toggle VHND Section Visibility
 function toggleVHNDSection(value) {
