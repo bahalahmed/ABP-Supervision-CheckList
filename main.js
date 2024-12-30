@@ -137,7 +137,55 @@ const validations = {
         }
 
         return isValid;
+    },
+    section3: () => {
+        let isValid = true;
+
+        // Validation for Section 3 Fields
+        const fieldsToValidate = [
+            { id: 'pregnancyKit', errorMessage: 'Pregnancy Testing Kit selection is required.' },
+            { id: 'condoms', errorMessage: 'Condoms selection is required.' },
+            { id: 'hbncKit', errorMessage: 'HBNC Kit selection is required.' },
+            { id: 'mbiKit', errorMessage: 'MBI Kit selection is required.' },
+            { id: 'cocs', errorMessage: 'COCs (Mala N) selection is required.' },
+            { id: 'emergencyPills', errorMessage: 'Emergency Contraceptive Pills selection is required.' },
+            { id: 'centchroman', errorMessage: 'Centchroman (Chhaya Pills) selection is required.' },
+            { id: 'amoxycillin', errorMessage: 'Syrup Amoxycillin selection is required.' },
+            { id: 'pinkIFA', errorMessage: 'Pink IFA Tablets selection is required.' },
+            { id: 'redIFATablets', errorMessage: 'Red IFA Tablets selection is required.' },
+            { id: 'blueIFATablets', errorMessage: 'Blue IFA Tablets selection is required.' },
+            { id: 'ifaSyrup', errorMessage: 'IFA Syrup selection is required.' },
+            { id: 'cotrimoxazoleSyrup', errorMessage: 'Cotrimoxazole Syrup selection is required.' },
+            { id: 'cotrimoxazoleTablets', errorMessage: 'Cotrimoxazole Tablets selection is required.' },
+            { id: 'calciumTablets', errorMessage: 'Calcium Tablets selection is required.' },
+            { id: 'ors', errorMessage: 'ORS selection is required.' },
+            { id: 'zinc', errorMessage: 'Zinc selection is required.' },
+            { id: 'paracetamol', errorMessage: 'Paracetamol selection is required.' }
+        ];
+
+        fieldsToValidate.forEach(field => {
+            const inputElement = document.getElementById(field.id);
+            const errorElement = document.getElementById(`error-${field.id}`);
+
+            if (!inputElement || !inputElement.value.trim()) {
+                if (errorElement) errorElement.textContent = field.errorMessage;
+                inputElement.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                inputElement.classList.remove('border-gray-300', 'focus:ring-indigo-500', 'focus:border-indigo-500');
+                isValid = false;
+            } else {
+                if (errorElement) errorElement.textContent = '';
+                inputElement.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                inputElement.classList.add('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
+            }
+        });
+
+        if (!isValid) {
+            alert('Please fill out all required fields correctly before proceeding.');
+        }
+
+        return isValid;
     }
+
 };
 
 

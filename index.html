@@ -512,42 +512,44 @@
                         </div>
 
 
-                            <!-- Indenting FP Commodities -->
-                            <div class="mb-6">
-                                <label for="fpIndenting" class="block text-gray-700 text-lg font-semibold">
-                                    Has the ASHA started indenting FP commodities through FP-LMIS? 
-                                    <span class="text-red-500">*</span>
-                                </label>
-                                <select id="fpIndenting" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" name="fpIndenting" required>
-                                    <option value="" disabled selected>Select an option</option>
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
-                                </select>
-                                <p id="error-fpIndenting" class="text-red-500 text-sm"></p>
-                            </div>
+                        <!-- Indenting FP Commodities -->
+                        <div class="mb-6">
+                            <label for="fpIndenting" class="block text-gray-700 text-lg font-semibold">
+                                Has the ASHA started indenting FP commodities through FP-LMIS?
+                                <span class="text-red-500">*</span>
+                            </label>
+                            <select id="fpIndenting"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                name="fpIndenting" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-fpIndenting" class="text-red-500 text-sm"></p>
+                        </div>
 
-                            <!-- Newborns Visited for HBNC -->
-                            <div class="mb-6">
-                                <label for="newbornsHBNC" class="block text-gray-700 text-lg font-semibold">
-                                    Newborns visited for HBNC in last three months 
-                                    <span class="text-red-500">*</span>
-                                </label>
-                                <input type="number" id="newbornsHBNC" name="newbornsHBNC" min="0" max="80"
-                                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                                    placeholder="Enter a number" required>
-                                <p id="error-newbornsHBNC" class="text-red-500 text-sm"></p>
-                            </div>
-                             <!-- Sick Newborn Referred -->
-                            <div class="mb-6">
-                                <label for="sickNewbornReferred" class="block text-gray-700 text-lg font-semibold">
-                                    Sick newborns with danger signs referred to higher facilities in last three months 
-                                    <span class="text-red-500">*</span>
-                                </label>
-                                <input type="number" id="sickNewbornReferred" name="sickNewbornReferred" min="0" max="80"
-                                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                                    placeholder="Enter a number" required>
-                                <p id="error-sickNewbornReferred" class="text-red-500 text-sm"></p>
-                            </div>
+                        <!-- Newborns Visited for HBNC -->
+                        <div class="mb-6">
+                            <label for="newbornsHBNC" class="block text-gray-700 text-lg font-semibold">
+                                Newborns visited for HBNC in last three months
+                                <span class="text-red-500">*</span>
+                            </label>
+                            <input type="number" id="newbornsHBNC" name="newbornsHBNC" min="0" max="80"
+                                class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                placeholder="Enter a number" required>
+                            <p id="error-newbornsHBNC" class="text-red-500 text-sm"></p>
+                        </div>
+                        <!-- Sick Newborn Referred -->
+                        <div class="mb-6">
+                            <label for="sickNewbornReferred" class="block text-gray-700 text-lg font-semibold">
+                                Sick newborns with danger signs referred to higher facilities in last three months
+                                <span class="text-red-500">*</span>
+                            </label>
+                            <input type="number" id="sickNewbornReferred" name="sickNewbornReferred" min="0" max="80"
+                                class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                placeholder="Enter a number" required>
+                            <p id="error-sickNewbornReferred" class="text-red-500 text-sm"></p>
+                        </div>
 
 
 
@@ -598,6 +600,281 @@
                     </div>
                 </div>
             </div>
+            <div id="section3" class="section bg-white p-6 rounded-lg shadow-md mb-4 ">
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold mb-6 text-black-600">Essential Supplies Checklist</h2>
+                    <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h2 class="text-2xl font-bold mb-6 text-blue-600">Supply Details</h2>
+
+                        <!-- Pregnancy Testing Kit -->
+                        <div class="mb-6">
+                            <label for="pregnancyKit" class="block text-gray-700 text-lg font-semibold">
+                                Pregnancy Testing Kit (Nischay Kit) <span class="text-red-500">*</span>
+                            </label>
+                            <select id="pregnancyKit" name="pregnancyKit"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-pregnancyKit" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- Condoms -->
+                        <div class="mb-6">
+                            <label for="condoms" class="block text-gray-700 text-lg font-semibold">
+                                Condoms (Nirodh) <span class="text-red-500">*</span>
+                            </label>
+                            <select id="condoms" name="condoms"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-condoms" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- HBNC Kit -->
+                        <div class="mb-6">
+                            <label for="hbncKit" class="block text-gray-700 text-lg font-semibold">
+                                HBNC Kit (Newborn weighing Scale, Digital Thermometer, Baby Blanket & Stopwatch) <span
+                                    class="text-red-500">*</span>
+                            </label>
+                            <select id="hbncKit" name="hbncKit"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-hbncKit" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- MBI Kit -->
+                        <div class="mb-6">
+                            <label for="mbiKit" class="block text-gray-700 text-lg font-semibold">
+                                MBI kit to test iodine level in salt <span class="text-red-500">*</span>
+                            </label>
+                            <select id="mbiKit" name="mbiKit"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-mbiKit" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- COCs (Mala N) -->
+                        <div class="mb-6">
+                            <label for="cocs" class="block text-gray-700 text-lg font-semibold">
+                                COCs (Mala N) <span class="text-red-500">*</span>
+                            </label>
+                            <select id="cocs" name="cocs"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-cocs" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- Emergency Contraceptive Pills -->
+                        <div class="mb-6">
+                            <label for="emergencyPills" class="block text-gray-700 text-lg font-semibold">
+                                Emergency Contraceptive Pills (EZY pills) <span class="text-red-500">*</span>
+                            </label>
+                            <select id="emergencyPills" name="emergencyPills"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-emergencyPills" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- Centchroman (Chhaya Pills) -->
+                        <div class="mb-6">
+                            <label for="centchroman" class="block text-gray-700 text-lg font-semibold">
+                                Centchroman (Chhaya Pills) <span class="text-red-500">*</span>
+                            </label>
+                            <select id="centchroman" name="centchroman"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-centchroman" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- Syrup Amoxycillin -->
+                        <div class="mb-6">
+                            <label for="amoxycillin" class="block text-gray-700 text-lg font-semibold">
+                                Syrup Amoxycillin <span class="text-red-500">*</span>
+                            </label>
+                            <select id="amoxycillin" name="amoxycillin"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-amoxycillin" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- Pink IFA Tablets -->
+                        <div class="mb-6">
+                            <label for="pinkIFA" class="block text-gray-700 text-lg font-semibold">
+                                Pink IFA Tablets (WIFS junior) <span class="text-red-500">*</span>
+                            </label>
+                            <select id="pinkIFA" name="pinkIFA"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-pinkIFA" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- Red IFA Tablets (pregnant women) -->
+                        <div class="mb-6">
+                            <label for="redIFATablets" class="block text-gray-700 text-lg font-semibold">
+                                Red IFA Tablets (pregnant women) <span class="text-red-500">*</span>
+                            </label>
+                            <select id="redIFATablets" name="redIFATablets"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-redIFATablets" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- Blue IFA Tablets (Adolescents) -->
+                        <div class="mb-6">
+                            <label for="blueIFATablets" class="block text-gray-700 text-lg font-semibold">
+                                Blue IFA Tablets (Adolescents) <span class="text-red-500">*</span>
+                            </label>
+                            <select id="blueIFATablets" name="blueIFATablets"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-blueIFATablets" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- IFA Syrup -->
+                        <div class="mb-6">
+                            <label for="ifaSyrup" class="block text-gray-700 text-lg font-semibold">
+                                IFA Syrup <span class="text-red-500">*</span>
+                            </label>
+                            <select id="ifaSyrup" name="ifaSyrup"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-ifaSyrup" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- Cotrimoxazole Syrup -->
+                        <div class="mb-6">
+                            <label for="cotrimoxazoleSyrup" class="block text-gray-700 text-lg font-semibold">
+                                Cotrimoxazole Syrup <span class="text-red-500">*</span>
+                            </label>
+                            <select id="cotrimoxazoleSyrup" name="cotrimoxazoleSyrup"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-cotrimoxazoleSyrup" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- Cotrimoxazole Tablets -->
+                        <div class="mb-6">
+                            <label for="cotrimoxazoleTablets" class="block text-gray-700 text-lg font-semibold">
+                                Cotrimoxazole Tablets <span class="text-red-500">*</span>
+                            </label>
+                            <select id="cotrimoxazoleTablets" name="cotrimoxazoleTablets"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-cotrimoxazoleTablets" class="text-red-500 text-sm"></p>
+                        </div>
+                        
+                        <!-- ORS -->
+                        <div class="mb-6">
+                            <label for="ors" class="block text-gray-700 text-lg font-semibold">
+                                ORS <span class="text-red-500">*</span>
+                            </label>
+                            <select id="ors" name="ors"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-ors" class="text-red-500 text-sm"></p>
+                        </div>
+                        <div class="mb-6">
+                            <label for="calciumTablets" class="block text-gray-700 text-lg font-semibold">
+                                Calcium Tablets <span class="text-red-500">*</span>
+                            </label>
+                            <select id="calciumTablets" name="calciumTablets"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-calciumTablets" class="text-red-500 text-sm"></p>
+                        </div>
+                        
+
+                        <!-- Zinc -->
+                        <div class="mb-6">
+                            <label for="zinc" class="block text-gray-700 text-lg font-semibold">
+                                Zinc <span class="text-red-500">*</span>
+                            </label>
+                            <select id="zinc" name="zinc"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-zinc" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- Paracetamol -->
+                        <div class="mb-6">
+                            <label for="paracetamol" class="block text-gray-700 text-lg font-semibold">
+                                Paracetamol <span class="text-red-500">*</span>
+                            </label>
+                            <select id="paracetamol" name="paracetamol"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-paracetamol" class="text-red-500 text-sm"></p>
+                        </div>
+
+
+
+                    </div>
+
+                    <!-- Save & Next Button -->
+                    <div class="flex justify-end mt-6">
+                        <button type="button"
+                            class="save-next bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
+                            onclick="validateAndNext(3)">
+                            Save & Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+
     </div>
 
     </div>
