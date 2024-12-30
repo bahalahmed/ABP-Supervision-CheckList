@@ -245,6 +245,62 @@ const validations = {
         }
 
         return isValid;
+    },
+    section5: () => {
+        let isValid = true;
+
+        // Validate that at least one checkbox is selected
+        const checkboxes = document.querySelectorAll('input[name="areasOfIssue"]');
+        const noneCheckbox = document.getElementById("none");
+        const errorMessages = [];
+
+        if (noneCheckbox.checked) {
+            // Ensure no other checkboxes are selected
+            checkboxes.forEach((checkbox) => {
+                if (checkbox !== noneCheckbox && checkbox.checked) {
+                    errorMessages.push("You cannot select 'None' and other options simultaneously.");
+                    isValid = false;
+                }
+            });
+        } else {
+            // Ensure at least one checkbox is selected
+            const atLeastOneSelected = Array.from(checkboxes).some((checkbox) => checkbox.checked);
+            if (!atLeastOneSelected) {
+                errorMessages.push("Please select at least one area of issue.");
+                isValid = false;
+            }
+
+            // Validate Issue and Action Plan fields for each selected checkbox
+            const fieldValidation = [
+                { id: "knowledge", issueId: "knowledgeIssue", actionId: "knowledgeAction", name: "Knowledge" },
+                { id: "attitude", issueId: "attitudeIssue", actionId: "attitudeAction", name: "Attitude" },
+                { id: "practice", issueId: "practiceIssue", actionId: "practiceAction", name: "Practice" },
+                { id: "other", issueId: "otherIssue", actionId: "otherAction", name: "Other (Specify)" }
+            ];
+
+            fieldValidation.forEach((field) => {
+                if (document.getElementById(field.id).checked) {
+                    const issueValue = document.getElementById(field.issueId).value.trim();
+                    const actionValue = document.getElementById(field.actionId).value.trim();
+
+                    if (!issueValue) {
+                        errorMessages.push(`Please provide an issue for ${field.name}.`);
+                        isValid = false;
+                    }
+                    if (!actionValue) {
+                        errorMessages.push(`Please provide an action plan for ${field.name}.`);
+                        isValid = false;
+                    }
+                }
+            });
+        }
+
+        // Display error messages
+        if (errorMessages.length > 0) {
+            alert(errorMessages.join("\n"));
+        }
+
+        return isValid;
     }
 
 };
@@ -287,11 +343,19 @@ document.querySelectorAll('select, input, textarea').forEach(element => {
         // Handle text and textarea inputs dynamically
         else if (event.target.tagName === 'TEXTAREA' || event.target.type === 'text') {
             const inputConfig = {
-                pregnantWomen: { minLength: 2, maxLength: 250 },
-                lactatingMothers: { minLength: 2, maxLength: 250 },
-                newbornChildren: { minLength: 2, maxLength: 250 },
-                tbPatients: { minLength: 2, maxLength: 250 },
-                ncdIndividuals: { minLength: 2, maxLength: 250 }
+                pregnantWomen: {minLength: 2, maxLength: 250 },
+                lactatingMothers: {minLength: 2, maxLength: 250 },
+                newbornChildren: {minLength: 2, maxLength: 250 },
+                tbPatients: {minLength: 2, maxLength: 250 },
+                ncdIndividuals: {minLength: 2, maxLength: 250 },
+                knowledgeIssue: {minLength: 2, maxLength: 200 },
+                knowledgeAction: {minLength: 2, maxLength: 200 },
+                attitudeIssue: {minLength: 2, maxLength: 200 },
+                attitudeAction: {minLength: 2, maxLength: 200 },
+                practiceIssue: {minLength: 2, maxLength: 200 },
+                practiceAction: {minLength: 2, maxLength: 200 },
+                otherIssue: {minLength: 2, maxLength: 200 },
+                otherAction: {minLength: 2, maxLength: 200 }
             }[event.target.id];
             const value = event.target.value.trim();
             if (!value || value.length < inputConfig.minLength || value.length > inputConfig.maxLength) {
@@ -347,6 +411,28 @@ function toggleVHNDSection(value) {
         }
     }
 }
+// Function to toggle None Checkbox Behavior
+function toggleNone(noneCheckbox) {
+    const checkboxes = document.querySelectorAll('input[name="areasOfIssue"]:not(#none)');
+    checkboxes.forEach((checkbox) => {
+        checkbox.checked = false;
+        const section = document.getElementById(`${checkbox.id}Fields`);
+        if (section) {
+            section.classList.add("hidden");
+        }
+    });
+}
+
+// Function to toggle fields for each checkbox
+function toggleFields(sectionId, checkbox) {
+    const section = document.getElementById(sectionId);
+    if (checkbox.checked) {
+        section.classList.remove("hidden");
+    } else {
+        section.classList.add("hidden");
+    }
+}
+
 
 
 

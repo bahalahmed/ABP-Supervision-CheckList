@@ -600,6 +600,8 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Section 3: Essential Supplies Checklist -->
             <div id="section3" class="section bg-white p-6 rounded-lg shadow-md mb-4 hidden ">
                 <div class="mb-6">
                     <h2 class="text-3xl font-bold mb-6 text-black-600">Essential Supplies Checklist</h2>
@@ -875,18 +877,19 @@
                 </div>
             </div>
             <!-- Section 4: Interaction Summary -->
-            <div id="section4" class="section bg-white p-6 rounded-lg shadow-md mb-4">
+            <div id="section4" class="section bg-white p-6 rounded-lg shadow-md mb-4 hidden">
                 <div class="mb-6">
                     <h2 class="text-3xl font-bold mb-6 text-black-600">Interaction Summary</h2>
                     <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
 
                     <div class="mt-4 mb-4">
                         <p class="text-sm bg-gray-200 p-3 rounded-md shadow-sm">
-                            <span>&#8505; </span> Summarise the interaction, write NA in case of no interaction or no result
+                            <span>&#8505; </span> Summarise the interaction, write NA in case of no interaction or no
+                            result
                         </p>
                     </div>
-                    
-                    
+
+
 
                     <!-- Pregnant Women -->
                     <div class="bg-white p-6 rounded-lg shadow-md mb-6">
@@ -978,10 +981,133 @@
                 </div>
             </div>
 
-    </div>
 
-    </div>
-    </form>
+            <!-- Section 5: Key Programmatic Issues -->
+            <div id="section5" class="section bg-white p-6 rounded-lg shadow-md mb-4 hidden">
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold mb-6 text-black-600">Key Programmatic Issues</h2>
+                    <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h2 class="text-xl font-bold mb-6 text-blue-600">Please select areas of issue</h2>
+                        <!-- Knowledge -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" id="knowledge" name="areasOfIssue" value="Knowledge"
+                                    class="form-checkbox" onclick="toggleFields('knowledgeFields', this)">
+                                <span class="ml-2 text-gray-700">Knowledge</span>
+                            </label>
+                            <div id="knowledgeFields" class="hidden mt-4 p-4 border rounded-md bg-gray-50">
+                                <h3 class="text-lg font-bold text-blue-600 mb-2">Knowledge</h3>
+                                <label for="knowledgeIssue"
+                                    class="block text-gray-700 text-sm font-semibold">Issue</label>
+                                <textarea id="knowledgeIssue" name="knowledgeIssue" minlength="2" maxlength="200"
+                                    class="form-textarea mt-1 block w-full p-2 border rounded-md"
+                                    placeholder="Describe the issue"></textarea>
+                                <p id="error-knowledgeIssue" class="text-red-500 text-sm mt-1"></p>
+
+                                <label for="knowledgeAction"
+                                    class="block text-gray-700 text-sm font-semibold mt-4">Action Plan</label>
+                                <textarea id="knowledgeAction" name="knowledgeAction" minlength="2" maxlength="200"
+                                    class="form-textarea mt-1 block w-full p-2 border rounded-md"
+                                    placeholder="Describe the action plan"></textarea>
+                                <p id="error-knowledgeAction" class="text-red-500 text-sm mt-1"></p>
+                            </div>
+                        </div>
+
+                        <!-- Attitude -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" id="attitude" name="areasOfIssue" value="Attitude"
+                                    class="form-checkbox" onclick="toggleFields('attitudeFields', this)">
+                                <span class="ml-2 text-gray-700">Attitude</span>
+                            </label>
+                            <div id="attitudeFields" class="hidden mt-4 p-4 border rounded-md bg-gray-50">
+                                <h3 class="text-lg font-bold text-blue-600 mb-2">Attitude</h3>
+                                <label for="attitudeIssue"
+                                    class="block text-gray-700 text-sm font-semibold">Issue</label>
+                                <textarea id="attitudeIssue" name="attitudeIssue" minlength="2" maxlength="200"
+                                    class="form-textarea mt-1 block w-full p-2 border rounded-md"
+                                    placeholder="Describe the issue"></textarea>
+                                <p id="error-attitudeIssue" class="text-red-500 text-sm mt-1"></p>
+
+                                <label for="attitudeAction"
+                                    class="block text-gray-700 text-sm font-semibold mt-4">Action Plan</label>
+                                <textarea id="attitudeAction" name="attitudeAction" minlength="2" maxlength="200"
+                                    class="form-textarea mt-1 block w-full p-2 border rounded-md"
+                                    placeholder="Describe the action plan"></textarea>
+                                <p id="error-attitudeAction" class="text-red-500 text-sm mt-1"></p>
+                            </div>
+                        </div>
+
+                        <!-- Practice -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" id="practice" name="areasOfIssue" value="Practice"
+                                    class="form-checkbox" onclick="toggleFields('practiceFields', this)">
+                                <span class="ml-2 text-gray-700">Practice</span>
+                            </label>
+                            <div id="practiceFields" class="hidden mt-4 p-4 border rounded-md bg-gray-50">
+                                <h3 class="text-lg font-bold text-blue-600 mb-2">Practice</h3>
+                                <label for="practiceIssue"
+                                    class="block text-gray-700 text-sm font-semibold">Issue</label>
+                                <textarea id="practiceIssue" name="practiceIssue" minlength="2" maxlength="200"
+                                    class="form-textarea mt-1 block w-full p-2 border rounded-md"
+                                    placeholder="Describe the issue"></textarea>
+                                <p id="error-practiceIssue" class="text-red-500 text-sm mt-1"></p>
+
+                                <label for="practiceAction"
+                                    class="block text-gray-700 text-sm font-semibold mt-4">Action Plan</label>
+                                <textarea id="practiceAction" name="practiceAction" minlength="2" maxlength="200"
+                                    class="form-textarea mt-1 block w-full p-2 border rounded-md"
+                                    placeholder="Describe the action plan"></textarea>
+                                <p id="error-practiceAction" class="text-red-500 text-sm mt-1"></p>
+                            </div>
+                        </div>
+
+                        <!-- Other (Specify) -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" id="other" name="areasOfIssue" value="Other"
+                                    class="form-checkbox" onclick="toggleFields('otherFields', this)">
+                                <span class="ml-2 text-gray-700">Other (Specify)</span>
+                            </label>
+                            <div id="otherFields" class="hidden mt-4 p-4 border rounded-md bg-gray-50">
+                                <h3 class="text-lg font-bold text-blue-600 mb-2">Other (Specify)</h3>
+                                <label for="otherIssue" class="block text-gray-700 text-sm font-semibold">Issue</label>
+                                <textarea id="otherIssue" name="otherIssue" minlength="2" maxlength="200"
+                                    class="form-textarea mt-1 block w-full p-2 border rounded-md"
+                                    placeholder="Describe the issue"></textarea>
+                                <p id="error-otherIssue" class="text-red-500 text-sm mt-1"></p>
+
+                                <label for="otherAction" class="block text-gray-700 text-sm font-semibold mt-4">Action
+                                    Plan</label>
+                                <textarea id="otherAction" name="otherAction" minlength="2" maxlength="200"
+                                    class="form-textarea mt-1 block w-full p-2 border rounded-md"
+                                    placeholder="Describe the action plan"></textarea>
+                                <p id="error-otherAction" class="text-red-500 text-sm mt-1"></p>
+                            </div>
+                        </div>
+
+
+                        <!-- None -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" id="none" name="areasOfIssue" value="None" class="form-checkbox"
+                                    onclick="toggleNone(this)">
+                                <span class="ml-2 text-gray-700">None</span>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- Submit Button -->
+                    <div class="flex justify-end mt-6">
+                        <button type="submit"
+                            class="submit bg-green-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-green-600 transition duration-300">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
     <script src="main.js"></script>
 </body>
