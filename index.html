@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health and Welness Checklist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="container mx-auto p-4">
+        <form id="checklistForm">
+
+            <!-- Section 1: General Information -->
+            <div id="section1" class="section bg-white p-6 rounded-lg shadow-md mb-4">
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold mb-6 text-black-600">General Information</h2>
+                    <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
+
+                    <!-- General Details -->
+                    <div id="generalDetails" class="bg-white p-6 rounded-lg shadow-md">
+                        <h2 class="text-2xl font-bold mb-6 text-blue-600">General Details</h2>
+
+                        <!-- Date of Visit -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label for="dateOfVisit" class="block text-gray-700 text-lg font-semibold">Date of Visit
+                                <span class="text-red-500">*</span></label>
+                            <input type="date" id="dateOfVisit"
+                                class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                name="dateOfVisit" required>
+                            <p id="error-dateOfVisit" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- State -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label for="state" class="block text-gray-700 text-lg font-semibold">State <span
+                                    class="text-red-500">*</span></label>
+                            <select id="state"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" name="state"
+                                required>
+                                <option value="" disabled selected>Select State</option>
+                                <option value="State 1">State 1</option>
+                                <option value="State 2">State 2</option>
+                                <option value="State 3">State 3</option>
+                            </select>
+                            <p id="error-state" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- District -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label for="district" class="block text-gray-700 text-lg font-semibold">District <span
+                                    class="text-red-500">*</span></label>
+                            <select id="district"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                name="district" required>
+                                <option value="" disabled selected>Select District</option>
+                                <option value="District 1">District 1</option>
+                                <option value="District 2">District 2</option>
+                                <option value="District 3">District 3</option>
+                            </select>
+                            <p id="error-district" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- Block -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label for="block" class="block text-gray-700 text-lg font-semibold">Block <span
+                                    class="text-red-500">*</span></label>
+                            <select id="block"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" name="block"
+                                required>
+                                <option value="" disabled selected>Select Block</option>
+                                <option value="Block 1">Block 1</option>
+                                <option value="Block 2">Block 2</option>
+                                <option value="Block 3">Block 3</option>
+                            </select>
+                            <p id="error-block" class="text-red-500 text-sm"></p>
+                        </div>
+                    </div>
+
+                    <!-- Facility Details -->
+                    <div id="facilityDetails" class="bg-white p-6 rounded-lg shadow-md">
+                        <h2 class="text-2xl font-bold mb-6 text-blue-600">Facility Details</h2>
+
+                        <!-- Facility Type -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label for="facilityType" class="block text-gray-700 text-lg font-semibold">Facility Type
+                                <span class="text-red-500">*</span></label>
+                            <select id="facilityType"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                name="facilityType" required>
+                                <option value="" disabled selected>Select Facility Type</option>
+                                <option value="SC-HWC">SC-HWC</option>
+                                <option value="PHC-HWC">PHC-HWC</option>
+                                <option value="UPHC-HWC">UPHC-HWC</option>
+                                <option value="PHC">PHC</option>
+                                <option value="Sub-centre">Sub-centre</option>
+                            </select>
+                            <p id="error-facilityType" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- Facility Name -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label for="facilityName" class="block text-gray-700 text-lg font-semibold">Facility Name
+                                <span class="text-red-500">*</span></label>
+                            <input type="text" id="facilityName"
+                                class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                name="facilityName" required>
+                            <p id="error-facilityName" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- Name of Facility In-Charge -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label for="facilityInCharge" class="block text-gray-700 text-lg font-semibold">Name of
+                                Facility In-Charge <span class="text-red-500">*</span></label>
+                            <input type="text" id="facilityInCharge"
+                                class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                name="facilityInCharge" minlength="2" maxlength="40" required>
+                            <p id="error-facilityInCharge" class="text-red-500 text-sm"></p>
+                        </div>
+                    <!-- Designation of Facility In-Charge -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="designation" class="block text-gray-700 text-lg font-semibold">Designation of Facility In-Charge <span class="text-red-500">*</span></label>
+                        <input type="text" id="designation"
+                            class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                            name="designation" minlength="2" maxlength="30" required>
+                        <p id="error-designation" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Number of Village/Wards Covered -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="villagesCovered" class="block text-gray-700 text-lg font-semibold">No. of Village/Wards Covered <span class="text-red-500">*</span></label>
+                        <input type="number" id="villagesCovered"
+                            class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                            name="villagesCovered" min="0" max="150" required>
+                        <p id="error-villagesCovered" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Population Covered -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="populationCovered" class="block text-gray-700 text-lg font-semibold">Population Covered <span class="text-red-500">*</span></label>
+                        <input type="number" id="populationCovered"
+                            class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                            name="populationCovered" min="4000" max="500000" required>
+                        <p id="error-populationCovered" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Quality Committee -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="qualityCommittee" class="block text-gray-700 text-lg font-semibold">Is a Quality Committee Constituted? <span class="text-red-500">*</span></label>
+                        <select id="qualityCommittee"
+                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                            name="qualityCommittee" required>
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-qualityCommittee" class="text-red-500 text-sm"></p>
+                    </div>
+                </div>
+
+                    <!-- Save & Next Button -->
+                    <div class="flex justify-end mt-6">
+                        <button type="button"
+                            class="save-next bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
+                            onclick="validateAndNext(1)">
+                            Save & Next
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
+
