@@ -360,6 +360,246 @@
 
                 </div>
             </div>
+            <!-- Section 2: ASHA Details -->
+            <div id="section2" class="section bg-white p-6 rounded-lg shadow-md mb-4 hidden ">
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold mb-6 text-black-600">ASHA Details</h2>
+                    <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h2 class="text-2xl font-bold mb-6 text-blue-600">ASHA Information</h2>
+
+                        <!-- ASHA's Name -->
+                        <div class="mb-6">
+                            <label for="ashaName" class="block text-gray-700 text-lg font-semibold">ASHA's Name <span
+                                    class="text-red-500">*</span></label>
+                            <input type="text" id="ashaName" name="ashaName" minlength="2" maxlength="30"
+                                class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                placeholder="Enter ASHA's Name" required>
+                            <p id="error-ashaName" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- Danger Signs During Pregnancy -->
+                        <div class="mb-6">
+                            <label for="dangerSigns" class="block text-gray-700 text-lg font-semibold">Does ASHA know
+                                about danger sign during pregnancy? <span class="text-red-500">*</span></label>
+                            <select id="dangerSigns"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                name="dangerSigns" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-dangerSigns" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- ASHA Trained in HBYC -->
+                        <div class="mb-6">
+                            <label for="trainedHBYC" class="block text-gray-700 text-lg font-semibold">ASHA trained in
+                                HBYC? <span class="text-red-500">*</span></label>
+                            <select id="trainedHBYC"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                name="trainedHBYC" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-trainedHBYC" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- EC Survey -->
+                        <div class="mb-6">
+                            <label for="ecSurvey" class="block text-gray-700 text-lg font-semibold">Has the ASHA carried
+                                out EC survey last year? <span class="text-red-500">*</span></label>
+                            <select id="ecSurvey"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                name="ecSurvey" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-ecSurvey" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- NCD-CPHC IT Application -->
+                        <div class="mb-6">
+                            <label for="ncdTraining" class="block text-gray-700 text-lg font-semibold">Have ASHAs been
+                                trained in use of NCD-CPHC IT application? <span class="text-red-500">*</span></label>
+                            <select id="ncdTraining"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                name="ncdTraining" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-ncdTraining" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- High Risk Pregnancies -->
+                        <div class="mb-6">
+                            <label for="highRiskPregnancies" class="block text-gray-700 text-lg font-semibold">High risk
+                                pregnancies identified by ASHA in last three months <span
+                                    class="text-red-500">*</span></label>
+                            <input type="number" id="highRiskPregnancies" name="highRiskPregnancies" min="0" max="80"
+                                class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                placeholder="Enter a number" required>
+                            <p id="error-highRiskPregnancies" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- Newborns Visited for HBYC -->
+                        <div class="mb-6">
+                            <label for="newbornsHBYC" class="block text-gray-700 text-lg font-semibold">Newborns visited
+                                for HBYC in last three months <span class="text-red-500">*</span></label>
+                            <input type="number" id="newbornsHBYC" name="newbornsHBYC" min="0" max="80"
+                                class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                placeholder="Enter a number" required>
+                            <p id="error-newbornsHBYC" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- ASHA Awareness of Contraceptive Choices -->
+                        <div class="mb-6">
+                            <label for="contraceptiveAwareness" class="block text-gray-700 text-lg font-semibold">Is
+                                ASHA aware about the contraceptive choices available? <span
+                                    class="text-red-500">*</span></label>
+                            <select id="contraceptiveAwareness"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                name="contraceptiveAwareness" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-contraceptiveAwareness" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- DOT Provider -->
+                        <div class="mb-6">
+                            <label for="dotProvider" class="block text-gray-700 text-lg font-semibold">Does the ASHA
+                                function as Treatment Supporter (DOT Provider)? <span
+                                    class="text-red-500">*</span></label>
+                            <select id="dotProvider"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                name="dotProvider" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-dotProvider" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- Trained on Module 6 & 7 -->
+                        <div class="mb-6">
+                            <label for="module6And7" class="block text-gray-700 text-lg font-semibold">Is the ASHA
+                                trained on module 6 & 7 for HBNC? <span class="text-red-500">*</span></label>
+                            <select id="module6And7"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                name="module6And7" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-module6And7" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- Sick Newborn Identified -->
+                        <div class="mb-6">
+                            <label for="sickNewbornIdentified" class="block text-gray-700 text-lg font-semibold">Sick
+                                newborns with danger signs identified by ASHA in last three months <span
+                                    class="text-red-500">*</span></label>
+                            <input type="number" id="sickNewbornIdentified" name="sickNewbornIdentified" min="0"
+                                max="80" class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                placeholder="Enter a number" required>
+                            <p id="error-sickNewbornIdentified" class="text-red-500 text-sm"></p>
+                        </div>
+
+
+                            <!-- Indenting FP Commodities -->
+                            <div class="mb-6">
+                                <label for="fpIndenting" class="block text-gray-700 text-lg font-semibold">
+                                    Has the ASHA started indenting FP commodities through FP-LMIS? 
+                                    <span class="text-red-500">*</span>
+                                </label>
+                                <select id="fpIndenting" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" name="fpIndenting" required>
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                                <p id="error-fpIndenting" class="text-red-500 text-sm"></p>
+                            </div>
+
+                            <!-- Newborns Visited for HBNC -->
+                            <div class="mb-6">
+                                <label for="newbornsHBNC" class="block text-gray-700 text-lg font-semibold">
+                                    Newborns visited for HBNC in last three months 
+                                    <span class="text-red-500">*</span>
+                                </label>
+                                <input type="number" id="newbornsHBNC" name="newbornsHBNC" min="0" max="80"
+                                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                    placeholder="Enter a number" required>
+                                <p id="error-newbornsHBNC" class="text-red-500 text-sm"></p>
+                            </div>
+                             <!-- Sick Newborn Referred -->
+                            <div class="mb-6">
+                                <label for="sickNewbornReferred" class="block text-gray-700 text-lg font-semibold">
+                                    Sick newborns with danger signs referred to higher facilities in last three months 
+                                    <span class="text-red-500">*</span>
+                                </label>
+                                <input type="number" id="sickNewbornReferred" name="sickNewbornReferred" min="0" max="80"
+                                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                    placeholder="Enter a number" required>
+                                <p id="error-sickNewbornReferred" class="text-red-500 text-sm"></p>
+                            </div>
+
+
+
+                        <!-- Presumptive TB Cases -->
+                        <div class="mb-6">
+                            <label for="tbCases" class="block text-gray-700 text-lg font-semibold">Presumptive TB cases
+                                referred to nearest microscopy center in last three months <span
+                                    class="text-red-500">*</span></label>
+                            <input type="number" id="tbCases" name="tbCases" min="0" max="500"
+                                class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                placeholder="Enter a number" required>
+                            <p id="error-tbCases" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- Individuals Screened for NCD -->
+                        <div class="mb-6">
+                            <label for="ncdScreening" class="block text-gray-700 text-lg font-semibold">Number of
+                                individuals aged 30 years and above screened for NCD at SHC/SHC-HWCs in last three
+                                months <span class="text-red-500">*</span></label>
+                            <input type="number" id="ncdScreening" name="ncdScreening" min="0" max="1000"
+                                class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                placeholder="Enter a number" required>
+                            <p id="error-ncdScreening" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- Delay in Payments -->
+                        <div class="mb-6">
+                            <label for="delayPayments" class="block text-gray-700 text-lg font-semibold">Is there any
+                                delay in payments to ASHA in last six months? <span
+                                    class="text-red-500">*</span></label>
+                            <select id="delayPayments"
+                                class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                name="delayPayments" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-delayPayments" class="text-red-500 text-sm"></p>
+                        </div>
+                    </div>
+                    <!-- Save & Next Button -->
+                    <div class="flex justify-end mt-6">
+                        <button type="button"
+                            class="save-next bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
+                            onclick="validateAndNext(2)">
+                            Save & Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+    </div>
+
     </div>
     </form>
     </div>
