@@ -157,8 +157,8 @@ const validations = {
             { id: 'ifaSyrup', errorMessage: 'IFA Syrup selection is required.' },
             { id: 'cotrimoxazoleSyrup', errorMessage: 'Cotrimoxazole Syrup selection is required.' },
             { id: 'cotrimoxazoleTablets', errorMessage: 'Cotrimoxazole Tablets selection is required.' },
-            { id: 'calciumTablets', errorMessage: 'Calcium Tablets selection is required.' },
             { id: 'ors', errorMessage: 'ORS selection is required.' },
+            { id: 'calciumTablets', errorMessage: 'Calcium Tablets selection is required.' },
             { id: 'zinc', errorMessage: 'Zinc selection is required.' },
             { id: 'paracetamol', errorMessage: 'Paracetamol selection is required.' }
         ];
@@ -168,14 +168,17 @@ const validations = {
             const errorElement = document.getElementById(`error-${field.id}`);
 
             if (!inputElement || !inputElement.value.trim()) {
+                console.log(`Validation failed for field: ${field.id}`);
                 if (errorElement) errorElement.textContent = field.errorMessage;
                 inputElement.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
                 inputElement.classList.remove('border-gray-300', 'focus:ring-indigo-500', 'focus:border-indigo-500');
                 isValid = false;
             } else {
+                console.log(`Validation passed for field: ${field.id}`);
                 if (errorElement) errorElement.textContent = '';
                 inputElement.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
                 inputElement.classList.add('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
+                isValid = true;
             }
         });
 
@@ -190,35 +193,35 @@ const validations = {
 
         // Fields to validate
         const fieldsToValidate = [
-            { 
-                id: 'pregnantWomen', 
-                minLength: 2, 
-                maxLength: 250, 
-                errorMessage: 'Please provide a valid summary for Pregnant Women (2-250 characters).' 
+            {
+                id: 'pregnantWomen',
+                minLength: 2,
+                maxLength: 250,
+                errorMessage: 'Please provide a valid summary for Pregnant Women (2-250 characters).'
             },
-            { 
-                id: 'lactatingMothers', 
-                minLength: 2, 
-                maxLength: 250, 
-                errorMessage: 'Please provide a valid summary for Lactating Mothers (2-250 characters).' 
+            {
+                id: 'lactatingMothers',
+                minLength: 2,
+                maxLength: 250,
+                errorMessage: 'Please provide a valid summary for Lactating Mothers (2-250 characters).'
             },
-            { 
-                id: 'newbornChildren', 
-                minLength: 2, 
-                maxLength: 250, 
-                errorMessage: 'Please provide a valid summary for New-born/children (2-250 characters).' 
+            {
+                id: 'newbornChildren',
+                minLength: 2,
+                maxLength: 250,
+                errorMessage: 'Please provide a valid summary for New-born/children (2-250 characters).'
             },
-            { 
-                id: 'tbPatients', 
-                minLength: 2, 
-                maxLength: 250, 
-                errorMessage: 'Please provide a valid summary for TB patients (2-250 characters).' 
+            {
+                id: 'tbPatients',
+                minLength: 2,
+                maxLength: 250,
+                errorMessage: 'Please provide a valid summary for TB patients (2-250 characters).'
             },
-            { 
-                id: 'ncdIndividuals', 
-                minLength: 2, 
-                maxLength: 250, 
-                errorMessage: 'Please provide a valid summary for Individuals over 30 years (2-250 characters).' 
+            {
+                id: 'ncdIndividuals',
+                minLength: 2,
+                maxLength: 250,
+                errorMessage: 'Please provide a valid summary for Individuals over 30 years (2-250 characters).'
             }
         ];
 
@@ -324,6 +327,7 @@ document.querySelectorAll('select, input, textarea').forEach(element => {
             const inputConfig = {
                 highRiskPregnancies: { min: 0, max: 80 },
                 newbornsHBYC: { min: 0, max: 80 },
+                newbornsHBNC: { min: 0, max: 80 },
                 sickNewbornIdentified: { min: 0, max: 80 },
                 sickNewbornReferred: { min: 0, max: 80 },
                 tbCases: { min: 0, max: 500 },
@@ -339,27 +343,28 @@ document.querySelectorAll('select, input, textarea').forEach(element => {
                 event.target.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
                 event.target.classList.add('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
             }
-        } 
+        }
         // Handle text and textarea inputs dynamically
         else if (event.target.tagName === 'TEXTAREA' || event.target.type === 'text') {
             const inputConfig = {
-                pregnantWomen: {minLength: 2, maxLength: 250 },
-                lactatingMothers: {minLength: 2, maxLength: 250 },
-                newbornChildren: {minLength: 2, maxLength: 250 },
-                tbPatients: {minLength: 2, maxLength: 250 },
-                ncdIndividuals: {minLength: 2, maxLength: 250 },
-                knowledgeIssue: {minLength: 2, maxLength: 200 },
-                knowledgeAction: {minLength: 2, maxLength: 200 },
-                attitudeIssue: {minLength: 2, maxLength: 200 },
-                attitudeAction: {minLength: 2, maxLength: 200 },
-                practiceIssue: {minLength: 2, maxLength: 200 },
-                practiceAction: {minLength: 2, maxLength: 200 },
-                otherIssue: {minLength: 2, maxLength: 200 },
-                otherAction: {minLength: 2, maxLength: 200 }
+                ashaName: { minLength: 2, maxLength: 30 },
+                pregnantWomen: { minLength: 2, maxLength: 250 },
+                lactatingMothers: { minLength: 2, maxLength: 250 },
+                newbornChildren: { minLength: 2, maxLength: 250 },
+                tbPatients: { minLength: 2, maxLength: 250 },
+                ncdIndividuals: { minLength: 2, maxLength: 250 },
+                knowledgeIssue: { minLength: 2, maxLength: 200 },
+                knowledgeAction: { minLength: 2, maxLength: 200 },
+                attitudeIssue: { minLength: 2, maxLength: 200 },
+                attitudeAction: { minLength: 2, maxLength: 200 },
+                practiceIssue: { minLength: 2, maxLength: 200 },
+                practiceAction: { minLength: 2, maxLength: 200 },
+                otherIssue: { minLength: 2, maxLength: 200 },
+                otherAction: { minLength: 2, maxLength: 200 }
             }[event.target.id];
             const value = event.target.value.trim();
             if (!value || value.length < inputConfig.minLength || value.length > inputConfig.maxLength) {
-                errorElement.textContent = `Please provide a valid summary (${inputConfig.minLength}-${inputConfig.maxLength} characters).`;
+                errorElement.textContent = `Please provide a text between (${inputConfig.minLength}-${inputConfig.maxLength} ).`;
                 event.target.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
                 event.target.classList.remove('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
             } else {
@@ -367,7 +372,7 @@ document.querySelectorAll('select, input, textarea').forEach(element => {
                 event.target.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
                 event.target.classList.add('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
             }
-        } 
+        }
         // Handle select inputs dynamically
         else if (event.target.tagName === 'SELECT') {
             if (!event.target.value.trim()) {
@@ -386,7 +391,7 @@ document.querySelectorAll('select, input, textarea').forEach(element => {
         const errorElement = document.getElementById(`error-${event.target.id}`);
 
         // Validate on change for all inputs
-        if (event.target.value.trim() !== "") {
+        if (errorElement && event.target.value.trim() !== "") {
             errorElement.textContent = "";
             event.target.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
             event.target.classList.add('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
@@ -398,6 +403,28 @@ document.querySelectorAll('select, input, textarea').forEach(element => {
         }
     });
 });
+
+document.querySelector('.submit').addEventListener('click', event => {
+    event.preventDefault();
+    if (validations.section5()) {
+        const formData = {
+            areasOfIssue: [],
+            details: {
+                knowledgeIssue: document.getElementById('knowledgeIssue')?.value || "",
+                knowledgeAction: document.getElementById('knowledgeAction')?.value || ""
+            }
+        };
+        fetch('https://your-backend-api.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+        })
+            .then(response => response.json())
+            .then(data => alert("Submission Successful"))
+            .catch(error => alert("Submission Failed"));
+    }
+});
+
 
 
 // Toggle VHND Section Visibility
