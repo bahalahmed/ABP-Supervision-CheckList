@@ -57,6 +57,72 @@ const validations = {
         }
 
         return isValid;
+    },
+    section2: () => {
+        let isValid = true;
+
+        // Fields to validate
+        const fieldsToValidate = [
+            { id: 'building', errorMessage: 'Building selection is required.' },
+            { id: 'roadAccessibility', errorMessage: 'Road Accessibility selection is required.' },
+            { id: 'powerBackup', errorMessage: '24X7 Power Backup selection is required.' },
+            { id: 'waitingArea', errorMessage: 'Patient Waiting Area selection is required.' },
+            { id: 'separateToilets', errorMessage: 'Separate Toilets selection is required.' },
+            { id: 'totalBeds', min: 0, max: 50, errorMessage: 'Total Number of Beds must be between 0 and 50.' },
+            { id: 'totalLaborTables', min: 0, max: 10, errorMessage: 'Total Number of Labor Tables must be between 0 and 10.' },
+            { id: 'laborRoom', errorMessage: 'Functional Labor Room selection is required.' },
+            { id: 'internetConnectivity', errorMessage: 'Internet Connectivity selection is required.' },
+            { id: 'runningWater', errorMessage: '24X7 Running Water Facility selection is required.' },
+            { id: 'yogaSpace', errorMessage: 'Space for Yoga/Health Promotion selection is required.' },
+            { id: 'radiantWarmer', errorMessage: 'Functional Radiant Warmer selection is required.' },
+            { id: 'rchPortal', errorMessage: 'Operational RCH Portal selection is required.' },
+            { id: 'anmolApp', errorMessage: 'Operational ANMOL App selection is required.' },
+            { id: 'brandingCompleted', errorMessage: 'Branding Completed selection is required.' },
+            { id: 'residentialFacility', errorMessage: 'Residential Facility selection is required.' },
+            { id: 'privacyDuringExamination', errorMessage: 'Privacy During Patient Examination selection is required.' },
+            { id: 'desktopAvailable', errorMessage: 'Desktop/Laptop/Tablet availability selection is required.' },
+            { id: 'linkagesFacilities', errorMessage: 'Linkages with Higher Facilities selection is required.' },
+            { id: 'afhcAvailable', errorMessage: 'AFHC Availability selection is required.' },
+            { id: 'biomedicalWaste', errorMessage: 'Biomedical Waste Management selection is required.' },
+            { id: 'drugStorage', errorMessage: 'Space for Drug Storage selection is required.' },
+            { id: 'dotsCenter', errorMessage: 'DOTS Center selection is required.' }
+        ];
+
+        fieldsToValidate.forEach(field => {
+            const inputElement = document.getElementById(field.id);
+            const errorElement = document.getElementById(`error-${field.id}`);
+
+            if (!inputElement) return;
+
+            if (inputElement.type === 'number') {
+                const value = parseInt(inputElement.value, 10);
+                if (isNaN(value) || value < field.min || value > field.max) {
+                    errorElement.textContent = field.errorMessage;
+                    inputElement.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                    inputElement.classList.remove('border-gray-300', 'focus:ring-indigo-500', 'focus:border-indigo-500');
+                    isValid = false;
+                } else {
+                    errorElement.textContent = '';
+                    inputElement.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                    inputElement.classList.add('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
+                }
+            } else if (!inputElement.value.trim()) {
+                errorElement.textContent = field.errorMessage;
+                inputElement.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                inputElement.classList.remove('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
+                isValid = false;
+            } else {
+                errorElement.textContent = '';
+                inputElement.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                inputElement.classList.add('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
+            }
+        });
+
+        if (!isValid) {
+            alert('Please fill out all required fields correctly before proceeding.');
+        }
+
+        return isValid;
     }
 };
 document.querySelectorAll('input, select, textarea').forEach(element => {
@@ -68,7 +134,9 @@ document.querySelectorAll('input, select, textarea').forEach(element => {
         if (event.target.type === 'number') {
             const inputConfig = {
                 villagesCovered: { min: 0, max: 150 },
-                populationCovered: { min: 4000, max: 500000 }
+                populationCovered: { min: 4000, max: 500000 },
+                totalBeds: { min: 0, max: 50 },
+                totalLaborTables: { min: 0, max: 10 }
             }[event.target.id];
 
             const value = parseInt(event.target.value, 10);
@@ -89,6 +157,7 @@ document.querySelectorAll('input, select, textarea').forEach(element => {
                 facilityName: { minLength: 2, maxLength: 30 },
                 facilityInCharge: { minLength: 2, maxLength: 40 },
                 designation: { minLength: 2, maxLength: 30 },
+                
             }[event.target.id];
 
             if (textConfig) {
