@@ -1,0 +1,1155 @@
+Medical Officers Section
+<div id="section3" class="bg-white p-6 rounded shadow-md mb-4">
+    <h2 class="text-3xl font-bold mb-6 text-black-600">Human Resource for Health</h2>
+    <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
+
+    <!-- Medical Officers -->
+    <div id="section3-MO" class="bg-white p-4 rounded-lg shadow-md mb-6">
+        <h3 class="text-2xl font-semibold text-blue-600 mb-4">Medical Officers</h3>
+        <!-- Regular Section -->
+        <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
+            <label for="regularMO-sanctioned"
+                class="block text-gray-700 text-lg font-semibold col-span-1">Regular</label>
+            <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
+                <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
+                    <input type="number" id="regularMO-sanctioned"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="regularMO-sanctioned" placeholder=" " min="0" max="5" required>
+                    <label for="regularMO-sanctioned"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Sanctioned
+                    </label>
+                    <p id="error-regularMO-sanctioned" class="text-red-500 text-sm"></p>
+                </div>
+                <div class="relative w-full sm:w-1/2">
+                    <input type="number" id="regularMO-available"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="regularMO-available" min="0" placeholder=" " disabled>
+                    <label for="regularMO-available"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Available
+                    </label>
+                    <p id="error-regularMO-available" class="text-red-500 text-sm"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contractual Section -->
+        <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
+            <label for="contractualMO-sanctioned"
+                class="block text-gray-700 text-lg font-semibold col-span-1">Contractual</label>
+            <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
+                <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
+                    <input type="number" id="contractualMO-sanctioned"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="contractualMO-sanctioned" placeholder=" " min="0" max="5" required>
+                    <label for="contractualMO-sanctioned"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Sanctioned
+                    </label>
+                    <p id="error-contractualMO-sanctioned" class="text-red-500 text-sm"></p>
+                </div>
+                <div class="relative w-full sm:w-1/2">
+                    <input type="number" id="contractualMO-available"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="contractualMO-available" min="0" placeholder=" ">
+                    <label for="contractualMO-available"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Available
+                    </label>
+                    <p id="error-contractualMO-available" class="text-red-500 text-sm"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trainings Section -->
+        <div id="trainingsContainer-MO" style="display: none;">
+            <h3 class="text-lg font-semibold text-gray-700 mb-4">Trainings</h3>
+
+            <!-- RCH -->
+            <div class="mb-6">
+                <label for="rchTraining-MO" class="block text-gray-700 font-semibold">RCH <span
+                        class="text-red-500">*</span></label>
+                <input type="number" id="rchTraining-MO" name="rchTraining-MO" min="0" max="10"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                <p id="error-rchTraining-MO" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- TB and Other Communicable -->
+            <div class="mb-6">
+                <label for="tbTraining-MO" class="block text-gray-700 font-semibold">TB and Other
+                    Communicable <span class="text-red-500">*</span></label>
+                <input type="number" id="tbTraining-MO" name="tbTraining-MO" min="0" max="10"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                <p id="error-tbTraining-MO" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- NQAS -->
+            <div class="mb-6">
+                <label for="nqasTraining-MO" class="block text-gray-700 font-semibold">NQAS <span
+                        class="text-red-500">*</span></label>
+                <input type="number" id="nqasTraining-MO" name="nqasTraining-MO" min="0" max="10"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                <p id="error-nqasTraining-MO" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- NCD -->
+            <div class="mb-6">
+                <label for="ncdTraining-MO" class="block text-gray-700 font-semibold">NCD <span
+                        class="text-red-500">*</span></label>
+                <input type="number" id="ncdTraining-MO" name="ncdTraining-MO" min="0" max="10"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                <p id="error-ncdTraining-MO" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- Specify Other Trainings -->
+            <div class="mb-6">
+                <label for="otherTrainings-MO" class="block text-gray-700 font-semibold">Specify Other
+                    Trainings</label>
+                <textarea id="otherTrainings-MO" name="otherTrainings-MO" rows="3" minlength="2"
+                    maxlength="100"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"></textarea>
+                <p id="error-otherTrainings-MO" class="text-red-500 text-sm"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MO (Dental) -->
+    <div id="section3-dental" class="bg-white p-4 rounded-lg shadow-md mb-6">
+        <h3 class="text-2xl font-semibold text-blue-600 mb-4">MO (Dental)</h3>
+
+        <!-- Regular Section -->
+        <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
+            <label for="regularDentalMO-sanctioned"
+                class="block text-gray-700 text-lg font-semibold col-span-1">Regular</label>
+            <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
+                <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
+                    <input type="number" id="regularDentalMO-sanctioned"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="regularDentalMO-sanctioned" placeholder=" " min="0" max="5" required>
+                    <label for="regularDentalMO-sanctioned"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Sanctioned
+                    </label>
+                    <p id="error-regularDentalMO-sanctioned" class="text-red-500 text-sm"></p>
+                </div>
+                <div class="relative w-full sm:w-1/2">
+                    <input type="number" id="regularDentalMO-available"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="regularDentalMO-available" min="0" placeholder=" " disabled>
+                    <label for="regularDentalMO-available"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Available
+                    </label>
+                    <p id="error-regularDentalMO-available" class="text-red-500 text-sm"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contractual Section -->
+        <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
+            <label for="contractualDentalMO-sanctioned"
+                class="block text-gray-700 text-lg font-semibold col-span-1">Contractual</label>
+            <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
+                <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
+                    <input type="number" id="contractualDentalMO-sanctioned"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="contractualDentalMO-sanctioned" placeholder=" " min="0" max="5" required>
+                    <label for="contractualDentalMO-sanctioned"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Sanctioned
+                    </label>
+                    <p id="error-contractualDentalMO-sanctioned" class="text-red-500 text-sm"></p>
+                </div>
+                <div class="relative w-full sm:w-1/2">
+                    <input type="number" id="contractualDentalMO-available"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="contractualDentalMO-available" min="0" placeholder=" " disabled>
+                    <label for="contractualDentalMO-available"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Available
+                    </label>
+                    <p id="error-contractualDentalMO-available" class="text-red-500 text-sm"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trainings Section -->
+        <div id="trainingsContainer-dentalMO" style="display: none;">
+            <h3 class="text-lg font-semibold text-gray-700 mb-4">Trainings</h3>
+
+            <!-- RCH -->
+            <div class="mb-6">
+                <label for="dentalRCHTraining" class="block text-gray-700 font-semibold">RCH <span
+                        class="text-red-500">*</span></label>
+                <input type="number" id="dentalRCHTraining" name="dentalRCHTraining" min="0" max="10"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                <p id="error-dentalRCHTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- TB and Other Communicable -->
+            <div class="mb-6">
+                <label for="dentalTBTraining" class="block text-gray-700 font-semibold">TB and Other
+                    Communicable <span class="text-red-500">*</span></label>
+                <input type="number" id="dentalTBTraining" name="dentalTBTraining" min="0" max="10"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                <p id="error-dentalTBTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- NQAS -->
+            <div class="mb-6">
+                <label for="dentalNQASTraining" class="block text-gray-700 font-semibold">NQAS <span
+                        class="text-red-500">*</span></label>
+                <input type="number" id="dentalNQASTraining" name="dentalNQASTraining" min="0" max="10"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                <p id="error-dentalNQASTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- NCD -->
+            <div class="mb-6">
+                <label for="dentalNCDTraining" class="block text-gray-700 font-semibold">NCD <span
+                        class="text-red-500">*</span></label>
+                <input type="number" id="dentalNCDTraining" name="dentalNCDTraining" min="0" max="10"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                <p id="error-dentalNCDTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- Specify Other Trainings -->
+            <div class="mb-6">
+                <label for="dentalOtherTrainings" class="block text-gray-700 font-semibold">Specify Other
+                    Trainings</label>
+                <textarea id="dentalOtherTrainings" name="dentalOtherTrainings" rows="3" minlength="2"
+                    maxlength="100"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"></textarea>
+                <p id="error-dentalOtherTrainings" class="text-red-500 text-sm"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Staff Nurse -->
+    <div id="section-staffNurse" class="bg-white p-4 rounded-lg shadow-md mb-6">
+        <h3 class="text-2xl font-semibold text-blue-600 mb-4">Staff Nurse</h3>
+
+        <!-- Regular Section -->
+        <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
+            <label for="regularStaffNurse-sanctioned"
+                class="block text-gray-700 text-lg font-semibold col-span-1">Regular</label>
+            <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
+                <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
+                    <input type="number" id="regularStaffNurse-sanctioned"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="regularStaffNurse-sanctioned" placeholder=" " min="0" max="5" required>
+                    <label for="regularStaffNurse-sanctioned"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Sanctioned
+                    </label>
+                    <p id="error-regularStaffNurse-sanctioned" class="text-red-500 text-sm"></p>
+                </div>
+                <div class="relative w-full sm:w-1/2">
+                    <input type="number" id="regularStaffNurse-available"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="regularStaffNurse-available" min="0" placeholder=" " disabled>
+                    <label for="regularStaffNurse-available"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Available
+                    </label>
+                    <p id="error-regularStaffNurse-available" class="text-red-500 text-sm"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contractual Section -->
+        <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
+            <label for="contractualStaffNurse-sanctioned"
+                class="block text-gray-700 text-lg font-semibold col-span-1">Contractual</label>
+            <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
+                <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
+                    <input type="number" id="contractualStaffNurse-sanctioned"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="contractualStaffNurse-sanctioned" placeholder=" " min="0" max="5" required>
+                    <label for="contractualStaffNurse-sanctioned"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Sanctioned
+                    </label>
+                    <p id="error-contractualStaffNurse-sanctioned" class="text-red-500 text-sm"></p>
+                </div>
+                <div class="relative w-full sm:w-1/2">
+                    <input type="number" id="contractualStaffNurse-available"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="contractualStaffNurse-available" min="0" placeholder=" " disabled>
+                    <label for="contractualStaffNurse-available"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Available
+                    </label>
+                    <p id="error-contractualStaffNurse-available" class="text-red-500 text-sm"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trainings Section -->
+        <div id="trainingsContainer-staffNurse" style="display: none;">
+            <h3 class="text-lg font-semibold text-gray-700 mb-4">Trainings</h3>
+
+            <!-- RCH -->
+            <div class="mb-6">
+                <label for="staffNurseRCHTraining" class="block text-gray-700 font-semibold">RCH <span
+                        class="text-red-500">*</span></label>
+                <input type="number" id="staffNurseRCHTraining" name="staffNurseRCHTraining" min="0"
+                    max="10" class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                    required>
+                <p id="error-staffNurseRCHTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- TB and Other Communicable -->
+            <div class="mb-6">
+                <label for="staffNurseTBTraining" class="block text-gray-700 font-semibold">TB and Other
+                    Communicable <span class="text-red-500">*</span></label>
+                <input type="number" id="staffNurseTBTraining" name="staffNurseTBTraining" min="0" max="10"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                <p id="error-staffNurseTBTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- NQAS -->
+            <div class="mb-6">
+                <label for="staffNurseNQASTraining" class="block text-gray-700 font-semibold">NQAS <span
+                        class="text-red-500">*</span></label>
+                <input type="number" id="staffNurseNQASTraining" name="staffNurseNQASTraining" min="0"
+                    max="10" class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                    required>
+                <p id="error-staffNurseNQASTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- NCD -->
+            <div class="mb-6">
+                <label for="staffNurseNCDTraining" class="block text-gray-700 font-semibold">NCD <span
+                        class="text-red-500">*</span></label>
+                <input type="number" id="staffNurseNCDTraining" name="staffNurseNCDTraining" min="0"
+                    max="10" class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                    required>
+                <p id="error-staffNurseNCDTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- Specify Other Trainings -->
+            <div class="mb-6">
+                <label for="staffNurseOtherTrainings" class="block text-gray-700 font-semibold">Specify
+                    Other Trainings</label>
+                <textarea id="staffNurseOtherTrainings" name="staffNurseOtherTrainings" rows="3"
+                    minlength="2" maxlength="100"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"></textarea>
+                <p id="error-staffNurseOtherTrainings" class="text-red-500 text-sm"></p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Pharmacists -->
+    <div id="section-pharmacists" class="bg-white p-4 rounded-lg shadow-md mb-6">
+        <h3 class="text-2xl font-semibold text-blue-600 mb-4">Pharmacists</h3>
+
+        <!-- Regular Section -->
+        <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
+            <label for="regularPharmacists-sanctioned"
+                class="block text-gray-700 text-lg font-semibold col-span-1">Regular</label>
+            <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
+                <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
+                    <input type="number" id="regularPharmacists-sanctioned"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="regularPharmacists-sanctioned" placeholder=" " min="0" max="5" required>
+                    <label for="regularPharmacists-sanctioned"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Sanctioned
+                    </label>
+                    <p id="error-regularPharmacists-sanctioned" class="text-red-500 text-sm"></p>
+                </div>
+                <div class="relative w-full sm:w-1/2">
+                    <input type="number" id="regularPharmacists-available"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="regularPharmacists-available" min="0" placeholder=" " disabled>
+                    <label for="regularPharmacists-available"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Available
+                    </label>
+                    <p id="error-regularPharmacists-available" class="text-red-500 text-sm"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contractual Section -->
+        <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
+            <label for="contractualPharmacists-sanctioned"
+                class="block text-gray-700 text-lg font-semibold col-span-1">Contractual</label>
+            <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
+                <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
+                    <input type="number" id="contractualPharmacists-sanctioned"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="contractualPharmacists-sanctioned" placeholder=" " min="0" max="5" required>
+                    <label for="contractualPharmacists-sanctioned"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Sanctioned
+                    </label>
+                    <p id="error-contractualPharmacists-sanctioned" class="text-red-500 text-sm"></p>
+                </div>
+                <div class="relative w-full sm:w-1/2">
+                    <input type="number" id="contractualPharmacists-available"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="contractualPharmacists-available" min="0" placeholder=" " disabled>
+                    <label for="contractualPharmacists-available"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Available
+                    </label>
+                    <p id="error-contractualPharmacists-available" class="text-red-500 text-sm"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trainings Section -->
+        <div id="pharmacistsTrainingsContainer" style="display: none;">
+            <h3 class="text-lg font-semibold text-gray-700 mb-4">Trainings</h3>
+
+            <!-- RCH -->
+            <div class="mb-6">
+                <label for="pharmacistsRCHTraining" class="block text-gray-700 font-semibold">RCH <span
+                        class="text-red-500">*</span></label>
+                <input type="number" id="pharmacistsRCHTraining" name="pharmacistsRCHTraining" min="0"
+                    max="10" class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                    required>
+                <p id="error-pharmacistsRCHTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- TB and Other Communicable -->
+            <div class="mb-6">
+                <label for="pharmacistsTBTraining" class="block text-gray-700 font-semibold">TB and Other
+                    Communicable <span class="text-red-500">*</span></label>
+                <input type="number" id="pharmacistsTBTraining" name="pharmacistsTBTraining" min="0"
+                    max="10" class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                    required>
+                <p id="error-pharmacistsTBTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- NQAS -->
+            <div class="mb-6">
+                <label for="pharmacistsNQASTraining" class="block text-gray-700 font-semibold">NQAS <span
+                        class="text-red-500">*</span></label>
+                <input type="number" id="pharmacistsNQASTraining" name="pharmacistsNQASTraining" min="0"
+                    max="10" class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                    required>
+                <p id="error-pharmacistsNQASTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- NCD -->
+            <div class="mb-6">
+                <label for="pharmacistsNCDTraining" class="block text-gray-700 font-semibold">NCD <span
+                        class="text-red-500">*</span></label>
+                <input type="number" id="pharmacistsNCDTraining" name="pharmacistsNCDTraining" min="0"
+                    max="10" class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                    required>
+                <p id="error-pharmacistsNCDTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- Specify Other Trainings -->
+            <div class="mb-6">
+                <label for="pharmacistsOtherTrainings" class="block text-gray-700 font-semibold">Specify
+                    Other Trainings</label>
+                <textarea id="pharmacistsOtherTrainings" name="pharmacistsOtherTrainings" rows="3"
+                    minlength="2" maxlength="100"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"></textarea>
+                <p id="error-pharmacistsOtherTrainings" class="text-red-500 text-sm"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lab Technician -->
+    <div id="section-labTechnician" class="bg-white p-4 rounded-lg shadow-md mb-6">
+        <h3 class="text-2xl font-semibold text-blue-600 mb-4">Lab Technician</h3>
+
+        <!-- Regular Section -->
+        <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
+            <label for="regularLabTechnician-sanctioned"
+                class="block text-gray-700 text-lg font-semibold col-span-1">Regular</label>
+            <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
+                <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
+                    <input type="number" id="regularLabTechnician-sanctioned"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="regularLabTechnician-sanctioned" placeholder=" " min="0" max="5" required>
+                    <label for="regularLabTechnician-sanctioned"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Sanctioned
+                    </label>
+                    <p id="error-regularLabTechnician-sanctioned" class="text-red-500 text-sm"></p>
+                </div>
+                <div class="relative w-full sm:w-1/2">
+                    <input type="number" id="regularLabTechnician-available"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="regularLabTechnician-available" min="0" placeholder=" " disabled>
+                    <label for="regularLabTechnician-available"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Available
+                    </label>
+                    <p id="error-regularLabTechnician-available" class="text-red-500 text-sm"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contractual Section -->
+        <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
+            <label for="contractualLabTechnician-sanctioned"
+                class="block text-gray-700 text-lg font-semibold col-span-1">Contractual</label>
+            <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
+                <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
+                    <input type="number" id="contractualLabTechnician-sanctioned"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="contractualLabTechnician-sanctioned" placeholder=" " min="0" max="5" required>
+                    <label for="contractualLabTechnician-sanctioned"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Sanctioned
+                    </label>
+                    <p id="error-contractualLabTechnician-sanctioned" class="text-red-500 text-sm"></p>
+                </div>
+                <div class="relative w-full sm:w-1/2">
+                    <input type="number" id="contractualLabTechnician-available"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="contractualLabTechnician-available" min="0" placeholder=" " disabled>
+                    <label for="contractualLabTechnician-available"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Available
+                    </label>
+                    <p id="error-contractualLabTechnician-available" class="text-red-500 text-sm"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trainings Section -->
+        <div id="labTechnicianTrainingsContainer" style="display: none;">
+            <h3 class="text-lg font-semibold text-gray-700 mb-4">Trainings</h3>
+
+            <!-- RCH -->
+            <div class="mb-6">
+                <label for="labTechnicianRCHTraining" class="block text-gray-700 font-semibold">RCH <span
+                        class="text-red-500">*</span></label>
+                <input type="number" id="labTechnicianRCHTraining" name="labTechnicianRCHTraining" min="0"
+                    max="10" class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                    required>
+                <p id="error-labTechnicianRCHTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- TB and Other Communicable -->
+            <div class="mb-6">
+                <label for="labTechnicianTBTraining" class="block text-gray-700 font-semibold">TB and Other
+                    Communicable <span class="text-red-500">*</span></label>
+                <input type="number" id="labTechnicianTBTraining" name="labTechnicianTBTraining" min="0"
+                    max="10" class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                    required>
+                <p id="error-labTechnicianTBTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- NQAS -->
+            <div class="mb-6">
+                <label for="labTechnicianNQASTraining" class="block text-gray-700 font-semibold">NQAS <span
+                        class="text-red-500">*</span></label>
+                <input type="number" id="labTechnicianNQASTraining" name="labTechnicianNQASTraining" min="0"
+                    max="10" class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                    required>
+                <p id="error-labTechnicianNQASTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- NCD -->
+            <div class="mb-6">
+                <label for="labTechnicianNCDTraining" class="block text-gray-700 font-semibold">NCD <span
+                        class="text-red-500">*</span></label>
+                <input type="number" id="labTechnicianNCDTraining" name="labTechnicianNCDTraining" min="0"
+                    max="10" class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                    required>
+                <p id="error-labTechnicianNCDTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- Specify Other Trainings -->
+            <div class="mb-6">
+                <label for="labTechnicianOtherTrainings" class="block text-gray-700 font-semibold">Specify
+                    Other Trainings</label>
+                <textarea id="labTechnicianOtherTrainings" name="labTechnicianOtherTrainings" rows="3"
+                    minlength="2" maxlength="100"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"></textarea>
+                <p id="error-labTechnicianOtherTrainings" class="text-red-500 text-sm"></p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- LHV -->
+    <div id="section-lhv" class="bg-white p-4 rounded-lg shadow-md mb-6">
+        <h3 class="text-2xl font-semibold text-blue-600 mb-4">LHV</h3>
+
+        <!-- Regular Section -->
+        <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
+            <label for="regularLHV-sanctioned"
+                class="block text-gray-700 text-lg font-semibold col-span-1">Regular</label>
+            <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
+                <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
+                    <input type="number" id="regularLHV-sanctioned"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="regularLHV-sanctioned" placeholder=" " min="0" max="5" required>
+                    <label for="regularLHV-sanctioned"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Sanctioned
+                    </label>
+                    <p id="error-regularLHV-sanctioned" class="text-red-500 text-sm"></p>
+                </div>
+                <div class="relative w-full sm:w-1/2">
+                    <input type="number" id="regularLHV-available"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="regularLHV-available" min="0" placeholder=" " disabled>
+                    <label for="regularLHV-available"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Available
+                    </label>
+                    <p id="error-regularLHV-available" class="text-red-500 text-sm"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contractual Section -->
+        <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
+            <label for="contractualLHV-sanctioned"
+                class="block text-gray-700 text-lg font-semibold col-span-1">Contractual</label>
+            <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
+                <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
+                    <input type="number" id="contractualLHV-sanctioned"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="contractualLHV-sanctioned" placeholder=" " min="0" max="5" required>
+                    <label for="contractualLHV-sanctioned"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Sanctioned
+                    </label>
+                    <p id="error-contractualLHV-sanctioned" class="text-red-500 text-sm"></p>
+                </div>
+                <div class="relative w-full sm:w-1/2">
+                    <input type="number" id="contractualLHV-available"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="contractualLHV-available" min="0" placeholder=" " disabled>
+                    <label for="contractualLHV-available"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Available
+                    </label>
+                    <p id="error-contractualLHV-available" class="text-red-500 text-sm"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trainings Section -->
+        <div id="lhvTrainingsContainer" style="display: none;">
+            <h3 class="text-lg font-semibold text-gray-700 mb-4">Trainings</h3>
+
+            <!-- RCH -->
+            <div class="mb-6">
+                <label for="lhvRCHTraining" class="block text-gray-700 font-semibold">RCH <span
+                        class="text-red-500">*</span></label>
+                <input type="number" id="lhvRCHTraining" name="lhvRCHTraining" min="0" max="10"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                <p id="error-lhvRCHTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- TB and Other Communicable -->
+            <div class="mb-6">
+                <label for="lhvTBTraining" class="block text-gray-700 font-semibold">TB and Other
+                    Communicable <span class="text-red-500">*</span></label>
+                <input type="number" id="lhvTBTraining" name="lhvTBTraining" min="0" max="10"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                <p id="error-lhvTBTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- NQAS -->
+            <div class="mb-6">
+                <label for="lhvNQASTraining" class="block text-gray-700 font-semibold">NQAS <span
+                        class="text-red-500">*</span></label>
+                <input type="number" id="lhvNQASTraining" name="lhvNQASTraining" min="0" max="10"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                <p id="error-lhvNQASTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- NCD -->
+            <div class="mb-6">
+                <label for="lhvNCDTraining" class="block text-gray-700 font-semibold">NCD <span
+                        class="text-red-500">*</span></label>
+                <input type="number" id="lhvNCDTraining" name="lhvNCDTraining" min="0" max="10"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                <p id="error-lhvNCDTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- Specify Other Trainings -->
+            <div class="mb-6">
+                <label for="lhvOtherTrainings" class="block text-gray-700 font-semibold">Specify Other
+                    Trainings</label>
+                <textarea id="lhvOtherTrainings" name="lhvOtherTrainings" rows="3" minlength="2"
+                    maxlength="100"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"></textarea>
+                <p id="error-lhvOtherTrainings" class="text-red-500 text-sm"></p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- CHO -->
+    <div id="section-cho" class="bg-white p-4 rounded-lg shadow-md mb-6">
+        <h3 class="text-2xl font-semibold text-blue-600 mb-4">CHO</h3>
+
+        <!-- Regular Section -->
+        <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
+            <label for="regularCHO-sanctioned"
+                class="block text-gray-700 text-lg font-semibold col-span-1">Regular</label>
+            <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
+                <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
+                    <input type="number" id="regularCHO-sanctioned"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="regularCHO-sanctioned" placeholder=" " min="0" max="5" required>
+                    <label for="regularCHO-sanctioned"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Sanctioned
+                    </label>
+                    <p id="error-regularCHO-sanctioned" class="text-red-500 text-sm"></p>
+                </div>
+                <div class="relative w-full sm:w-1/2">
+                    <input type="number" id="regularCHO-available"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="regularCHO-available" placeholder=" " min="0" disabled>
+                    <label for="regularCHO-available"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Available
+                    </label>
+                    <p id="error-regularCHO-available" class="text-red-500 text-sm"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contractual Section -->
+        <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
+            <label for="contractualCHO-sanctioned"
+                class="block text-gray-700 text-lg font-semibold col-span-1">Contractual</label>
+            <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
+                <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
+                    <input type="number" id="contractualCHO-sanctioned"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="contractualCHO-sanctioned" placeholder=" " min="0" max="5" required>
+                    <label for="contractualCHO-sanctioned"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Sanctioned
+                    </label>
+                    <p id="error-contractualCHO-sanctioned" class="text-red-500 text-sm"></p>
+                </div>
+                <div class="relative w-full sm:w-1/2">
+                    <input type="number" id="contractualCHO-available"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="contractualCHO-available" placeholder=" " min="0" disabled>
+                    <label for="contractualCHO-available"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Available
+                    </label>
+                    <p id="error-contractualCHO-available" class="text-red-500 text-sm"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trainings Section -->
+        <div id="choTrainingsContainer" style="display: none;">
+            <h3 class="text-lg font-semibold text-gray-700 mb-4">Trainings</h3>
+
+            <!-- RCH -->
+            <div class="mb-6">
+                <label for="choRCHTraining" class="block text-gray-700 font-semibold">RCH <span
+                        class="text-red-500">*</span></label>
+                <input type="number" id="choRCHTraining" name="choRCHTraining" min="0" max="10"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                <p id="error-choRCHTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- TB and Other Communicable -->
+            <div class="mb-6">
+                <label for="choTBTraining" class="block text-gray-700 font-semibold">TB and Other
+                    Communicable <span class="text-red-500">*</span></label>
+                <input type="number" id="choTBTraining" name="choTBTraining" min="0" max="10"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                <p id="error-choTBTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- NQAS -->
+            <div class="mb-6">
+                <label for="choNQASTraining" class="block text-gray-700 font-semibold">NQAS <span
+                        class="text-red-500">*</span></label>
+                <input type="number" id="choNQASTraining" name="choNQASTraining" min="0" max="10"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                <p id="error-choNQASTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- NCD -->
+            <div class="mb-6">
+                <label for="choNCDTraining" class="block text-gray-700 font-semibold">NCD <span
+                        class="text-red-500">*</span></label>
+                <input type="number" id="choNCDTraining" name="choNCDTraining" min="0" max="10"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                <p id="error-choNCDTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- Specify Other Trainings -->
+            <div class="mb-6">
+                <label for="choOtherTrainings" class="block text-gray-700 font-semibold">Specify Other
+                    Trainings</label>
+                <textarea id="choOtherTrainings" name="choOtherTrainings" rows="3" minlength="2"
+                    maxlength="100"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"></textarea>
+                <p id="error-choOtherTrainings" class="text-red-500 text-sm"></p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MPW (Male) -->
+    <div id="section-mpw-male" class="bg-white p-4 rounded-lg shadow-md mb-6">
+        <h3 class="text-2xl font-semibold text-blue-600 mb-4">MPW (Male)</h3>
+
+        <!-- Regular Section -->
+        <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
+            <label for="regularMPWMale-sanctioned"
+                class="block text-gray-700 text-lg font-semibold col-span-1">Regular</label>
+            <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
+                <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
+                    <input type="number" id="regularMPWMale-sanctioned"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="regularMPWMale-sanctioned" placeholder=" " min="0" max="5" required>
+                    <label for="regularMPWMale-sanctioned"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Sanctioned
+                    </label>
+                    <p id="error-regularMPWMale-sanctioned" class="text-red-500 text-sm"></p>
+                </div>
+                <div class="relative w-full sm:w-1/2">
+                    <input type="number" id="regularMPWMale-available"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="regularMPWMale-available" placeholder=" " min="0" disabled>
+                    <label for="regularMPWMale-available"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Available
+                    </label>
+                    <p id="error-regularMPWMale-available" class="text-red-500 text-sm"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contractual Section -->
+        <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
+            <label for="contractualMPWMale-sanctioned"
+                class="block text-gray-700 text-lg font-semibold col-span-1">Contractual</label>
+            <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
+                <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
+                    <input type="number" id="contractualMPWMale-sanctioned"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="contractualMPWMale-sanctioned" placeholder=" " min="0" max="5" required>
+                    <label for="contractualMPWMale-sanctioned"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Sanctioned
+                    </label>
+                    <p id="error-contractualMPWMale-sanctioned" class="text-red-500 text-sm"></p>
+                </div>
+                <div class="relative w-full sm:w-1/2">
+                    <input type="number" id="contractualMPWMale-available"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="contractualMPWMale-available" placeholder=" " min="0" disabled>
+                    <label for="contractualMPWMale-available"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Available
+                    </label>
+                    <p id="error-contractualMPWMale-available" class="text-red-500 text-sm"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trainings Section -->
+        <div id="mpwMaleTrainingsContainer" style="display: none;">
+            <h3 class="text-lg font-semibold text-gray-700 mb-4">Trainings</h3>
+
+            <!-- RCH -->
+            <div class="mb-6">
+                <label for="mpwMaleRCHTraining" class="block text-gray-700 font-semibold">RCH <span
+                        class="text-red-500">*</span></label>
+                <input type="number" id="mpwMaleRCHTraining" name="mpwMaleRCHTraining" min="0" max="10"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                <p id="error-mpwMaleRCHTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- TB and Other Communicable -->
+            <div class="mb-6">
+                <label for="mpwMaleTBTraining" class="block text-gray-700 font-semibold">TB and Other
+                    Communicable <span class="text-red-500">*</span></label>
+                <input type="number" id="mpwMaleTBTraining" name="mpwMaleTBTraining" min="0" max="10"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                <p id="error-mpwMaleTBTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- NQAS -->
+            <div class="mb-6">
+                <label for="mpwMaleNQASTraining" class="block text-gray-700 font-semibold">NQAS <span
+                        class="text-red-500">*</span></label>
+                <input type="number" id="mpwMaleNQASTraining" name="mpwMaleNQASTraining" min="0" max="10"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                <p id="error-mpwMaleNQASTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- NCD -->
+            <div class="mb-6">
+                <label for="mpwMaleNCDTraining" class="block text-gray-700 font-semibold">NCD <span
+                        class="text-red-500">*</span></label>
+                <input type="number" id="mpwMaleNCDTraining" name="mpwMaleNCDTraining" min="0" max="10"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                <p id="error-mpwMaleNCDTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- Specify Other Trainings -->
+            <div class="mb-6">
+                <label for="mpwMaleOtherTrainings" class="block text-gray-700 font-semibold">Specify Other
+                    Trainings</label>
+                <textarea id="mpwMaleOtherTrainings" name="mpwMaleOtherTrainings" rows="3" minlength="2"
+                    maxlength="100"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"></textarea>
+                <p id="error-mpwMaleOtherTrainings" class="text-red-500 text-sm"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MPW (Female) -->
+    <div id="section-mpw-female" class="bg-white p-4 rounded-lg shadow-md mb-6">
+        <h3 class="text-2xl font-semibold text-blue-600 mb-4">MPW (Female)</h3>
+
+        <!-- Regular Section -->
+        <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
+            <label for="regularMPWFemale-sanctioned"
+                class="block text-gray-700 text-lg font-semibold col-span-1">Regular</label>
+            <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
+                <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
+                    <input type="number" id="regularMPWFemale-sanctioned"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="regularMPWFemale-sanctioned" placeholder=" " min="0" max="5" required>
+                    <label for="regularMPWFemale-sanctioned"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Sanctioned
+                    </label>
+                    <p id="error-regularMPWFemale-sanctioned" class="text-red-500 text-sm"></p>
+                </div>
+                <div class="relative w-full sm:w-1/2">
+                    <input type="number" id="regularMPWFemale-available"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="regularMPWFemale-available" placeholder=" " min="0" disabled>
+                    <label for="regularMPWFemale-available"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Available
+                    </label>
+                    <p id="error-regularMPWFemale-available" class="text-red-500 text-sm"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contractual Section -->
+        <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
+            <label for="contractualMPWFemale-sanctioned"
+                class="block text-gray-700 text-lg font-semibold col-span-1">Contractual</label>
+            <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
+                <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
+                    <input type="number" id="contractualMPWFemale-sanctioned"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="contractualMPWFemale-sanctioned" placeholder=" " min="0" max="5" required>
+                    <label for="contractualMPWFemale-sanctioned"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Sanctioned
+                    </label>
+                    <p id="error-contractualMPWFemale-sanctioned" class="text-red-500 text-sm"></p>
+                </div>
+                <div class="relative w-full sm:w-1/2">
+                    <input type="number" id="contractualMPWFemale-available"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="contractualMPWFemale-available" placeholder=" " min="0" disabled>
+                    <label for="contractualMPWFemale-available"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Available
+                    </label>
+                    <p id="error-contractualMPWFemale-available" class="text-red-500 text-sm"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trainings Section -->
+        <div id="mpwFemaleTrainingsContainer" style="display: none;">
+            <h3 class="text-lg font-semibold text-gray-700 mb-4">Trainings</h3>
+
+            <!-- RCH -->
+            <div class="mb-6">
+                <label for="mpwFemaleRCHTraining" class="block text-gray-700 font-semibold">RCH <span
+                        class="text-red-500">*</span></label>
+                <input type="number" id="mpwFemaleRCHTraining" name="mpwFemaleRCHTraining" min="0" max="10"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                <p id="error-mpwFemaleRCHTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- TB and Other Communicable -->
+            <div class="mb-6">
+                <label for="mpwFemaleTBTraining" class="block text-gray-700 font-semibold">TB and Other
+                    Communicable <span class="text-red-500">*</span></label>
+                <input type="number" id="mpwFemaleTBTraining" name="mpwFemaleTBTraining" min="0" max="10"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                <p id="error-mpwFemaleTBTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- NQAS -->
+            <div class="mb-6">
+                <label for="mpwFemaleNQASTraining" class="block text-gray-700 font-semibold">NQAS <span
+                        class="text-red-500">*</span></label>
+                <input type="number" id="mpwFemaleNQASTraining" name="mpwFemaleNQASTraining" min="0"
+                    max="10" class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                    required>
+                <p id="error-mpwFemaleNQASTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- NCD -->
+            <div class="mb-6">
+                <label for="mpwFemaleNCDTraining" class="block text-gray-700 font-semibold">NCD <span
+                        class="text-red-500">*</span></label>
+                <input type="number" id="mpwFemaleNCDTraining" name="mpwFemaleNCDTraining" min="0" max="10"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                <p id="error-mpwFemaleNCDTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- Specify Other Trainings -->
+            <div class="mb-6">
+                <label for="mpwFemaleOtherTrainings" class="block text-gray-700 font-semibold">Specify Other
+                    Trainings</label>
+                <textarea id="mpwFemaleOtherTrainings" name="mpwFemaleOtherTrainings" rows="3" minlength="2"
+                    maxlength="100"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"></textarea>
+                <p id="error-mpwFemaleOtherTrainings" class="text-red-500 text-sm"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ASHA -->
+    <div id="section-asha" class="bg-white p-4 rounded-lg shadow-md mb-6">
+        <h3 class="text-2xl font-semibold text-blue-600 mb-4">ASHA</h3>
+
+        <!-- Regular Section -->
+        <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
+            <label for="regularASHA-sanctioned"
+                class="block text-gray-700 text-lg font-semibold col-span-1">Regular</label>
+            <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
+                <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
+                    <input type="number" id="regularASHA-sanctioned"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="regularASHA-sanctioned" placeholder=" " min="0" max="10" required>
+                    <label for="regularASHA-sanctioned"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Sanctioned
+                    </label>
+                    <p id="error-regularASHA-sanctioned" class="text-red-500 text-sm"></p>
+                </div>
+                <div class="relative w-full sm:w-1/2">
+                    <input type="number" id="regularASHA-available"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="regularASHA-available" placeholder=" " min="0" disabled>
+                    <label for="regularASHA-available"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Available
+                    </label>
+                    <p id="error-regularASHA-available" class="text-red-500 text-sm"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contractual Section -->
+        <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
+            <label for="contractualASHA-sanctioned"
+                class="block text-gray-700 text-lg font-semibold col-span-1">Contractual</label>
+            <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
+                <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
+                    <input type="number" id="contractualASHA-sanctioned"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="contractualASHA-sanctioned" placeholder=" " min="0" max="10" required>
+                    <label for="contractualASHA-sanctioned"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Sanctioned
+                    </label>
+                    <p id="error-contractualASHA-sanctioned" class="text-red-500 text-sm"></p>
+                </div>
+                <div class="relative w-full sm:w-1/2">
+                    <input type="number" id="contractualASHA-available"
+                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        name="contractualASHA-available" placeholder=" " min="0" disabled>
+                    <label for="contractualASHA-available"
+                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                        Available
+                    </label>
+                    <p id="error-contractualASHA-available" class="text-red-500 text-sm"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trainings Section -->
+        <div id="ashaTrainingsContainer" style="display: none;">
+            <h3 class="text-lg font-semibold text-gray-700 mb-4">Trainings</h3>
+
+            <!-- RCH -->
+            <div class="mb-6">
+                <label for="ashaRCHTraining" class="block text-gray-700 font-semibold">RCH <span
+                        class="text-red-500">*</span></label>
+                <input type="number" id="ashaRCHTraining" name="ashaRCHTraining" min="0" max="10"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                <p id="error-ashaRCHTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- TB and Other Communicable -->
+            <div class="mb-6">
+                <label for="ashaTBTraining" class="block text-gray-700 font-semibold">TB and Other
+                    Communicable <span class="text-red-500">*</span></label>
+                <input type="number" id="ashaTBTraining" name="ashaTBTraining" min="0" max="10"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                <p id="error-ashaTBTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- NQAS -->
+            <div class="mb-6">
+                <label for="ashaNQASTraining" class="block text-gray-700 font-semibold">NQAS <span
+                        class="text-red-500">*</span></label>
+                <input type="number" id="ashaNQASTraining" name="ashaNQASTraining" min="0" max="10"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                <p id="error-ashaNQASTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- NCD -->
+            <div class="mb-6">
+                <label for="ashaNCDTraining" class="block text-gray-700 font-semibold">NCD <span
+                        class="text-red-500">*</span></label>
+                <input type="number" id="ashaNCDTraining" name="ashaNCDTraining" min="0" max="10"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                <p id="error-ashaNCDTraining" class="text-red-500 text-sm"></p>
+            </div>
+
+            <!-- Specify Other Trainings -->
+            <div class="mb-6">
+                <label for="ashaOtherTrainings" class="block text-gray-700 font-semibold">Specify Other
+                    Trainings</label>
+                <textarea id="ashaOtherTrainings" name="ashaOtherTrainings" rows="3" minlength="2"
+                    maxlength="100"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"></textarea>
+                <p id="error-ashaOtherTrainings" class="text-red-500 text-sm"></p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <div class="flex justify-end mt-6">
+        <button type="button"
+            class="save-next bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
+            onclick="validateAndNext(3)">
+            Save & Next
+        </button>
+    </div>
+</div>

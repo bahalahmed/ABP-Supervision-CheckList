@@ -1,114 +1,150 @@
-const validations = {
-    section1: () => {
-        let isValid = true;
+const validateSection3 = () => {
+    let isValid = true;
 
-        const fieldsToValidate = [
-            { id: 'dateOfVisit', errorMessage: 'Date of Visit is required.' },
-            { id: 'state', errorMessage: 'State selection is required.' },
-            { id: 'district', errorMessage: 'District selection is required.' },
-            { id: 'block', errorMessage: 'Block selection is required.' },
-            { id: 'villageWard', errorMessage: 'Village/Ward selection is required.' }
-        ];
+    const sectionsToValidate = [
+        'regularMO',
+        'contractualMO',
+        'regularDentalMO',
+        'contractualDentalMO',
+        'regularStaffNurse',
+        'contractualStaffNurse',
+        'regularPharmacists',
+        'contractualPharmacists',
+        'regularLabTechnician',
+        'contractualLabTechnician',
+        'regularLHV',
+        'contractualLHV',
+        'regularCHO',
+        'contractualCHO',
+        'regularMPWMale',
+        'contractualMPWMale',
+        'regularMPWFemale',
+        'contractualMPWFemale',
+        'regularASHA',
+        'contractualASHA',
+    ];
 
-        const numberFields = [
-            { id: 'villagesCovered', min: 0, max: 150, errorMessage: 'Villages/Wards must be between 0 and 150.' },
-            { id: 'populationCovered', min: 4000, max: 500000, errorMessage: 'Population must be between 4000 and 500000.' }
-        ];
+    sectionsToValidate.forEach((sectionId) => {
+        if (!validateSection(sectionId)) isValid = false;
+    });
 
-        // Validate text/select inputs
-        fieldsToValidate.forEach(field => {
-            const inputElement = document.getElementById(field.id);
-            const errorElement = document.getElementById(`error-${field.id}`);
-
-            if (!inputElement) return;
-
-            if (!inputElement.value || !inputElement.value.trim()) {
-                // If input is empty, show error
-                errorElement.textContent = field.errorMessage;
-                inputElement.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
-                inputElement.classList.remove('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
-                isValid = false;
-            } else {
-                // If input is valid, clear the error
-                errorElement.textContent = '';
-                inputElement.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
-                inputElement.classList.add('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
-            }
-        });
-
-        // Validate number inputs
-        numberFields.forEach(field => {
-            const inputElement = document.getElementById(field.id);
-            const errorElement = document.getElementById(`error-${field.id}`);
-
-            if (!inputElement) return;
-
-            const value = parseInt(inputElement.value, 10);
-            if (isNaN(value) || value < field.min || value > field.max) {
-                // If input is out of range or not a number, show error
-                errorElement.textContent = field.errorMessage;
-                inputElement.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
-                inputElement.classList.remove('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
-                isValid = false;
-            } else {
-                // If input is valid, clear the error
-                errorElement.textContent = '';
-                inputElement.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
-                inputElement.classList.add('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
-            }
-        });
-
-        if (!isValid) {
-            alert('Please fill out all required fields correctly before proceeding.');
-        }
-
-        return isValid;
-    }
+    return isValid;
 };
 
-// Add dynamic error handling for all input types (text, select, number, etc.)
-document.querySelectorAll('input, select, textarea').forEach(element => {
-    element.addEventListener('input', event => {
-        const errorElement = document.getElementById(`error-${event.target.id}`);
-        if (!errorElement) return;
+const validateSection = (sectionId) => {
+    let isValid = true;
 
-        // Handle number inputs dynamically
-        if (event.target.type === 'number') {
-            const inputConfig = {
-                villagesCovered: { min: 0, max: 150 },
-                populationCovered: { min: 4000, max: 500000 }
-            }[event.target.id];
+    // Get the section element
+    const section = document.getElementById(sectionId);
+    const sanctionedInputs = section.querySelectorAll('[id$="-sanctioned"]');
+    const availableInputs = section.querySelectorAll('[id$="-available"]');
 
-            const value = parseInt(event.target.value, 10);
-            if (!event.target.value.trim() || isNaN(value) || value < inputConfig.min || value > inputConfig.max) {
-                errorElement.textContent = `Value must be between ${inputConfig.min} and ${inputConfig.max}.`;
-                event.target.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
-                event.target.classList.remove('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
-            } else {
-                errorElement.textContent = '';
-                event.target.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
-                event.target.classList.add('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
-            }
-        }
+    // Validate Sanctioned and Available fields
+    sanctionedInputs.forEach((sanctionedInput) => {
+        const inputId = sanctionedInput.id;
+        const errorElement = document.getElementById(`error-${inputId}`);
+        const maxSanctioned = parseInt(sanctionedInput.getAttribute('max'), 10) || 10;
 
-        // Handle text/select inputs dynamically
-        else {
-            if (event.target.value.trim()) {
-                errorElement.textContent = '';
-                event.target.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
-                event.target.classList.add('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
-            } else {
-                errorElement.textContent = 'This field is required.';
-                event.target.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
-                event.target.classList.remove('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
-            }
+        if (!sanctionedInput.value || parseInt(sanctionedInput.value) < 0 || parseInt(sanctionedInput.value) > maxSanctioned) {
+            errorElement.textContent = `Sanctioned value must be between 0 and ${maxSanctioned}.`;
+            sanctionedInput.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+            isValid = false;
+        } else {
+            errorElement.textContent = '';
+            sanctionedInput.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
         }
     });
-});
 
-// Example usage of validateAndNext function
+    availableInputs.forEach((availableInput) => {
+        const inputId = availableInput.id;
+        const errorElement = document.getElementById(`error-${inputId}`);
+        const sanctionedInputId = inputId.replace('-available', '-sanctioned');
+        const sanctionedInput = document.getElementById(sanctionedInputId);
+
+        if (
+            !availableInput.disabled &&
+            (!availableInput.value ||
+                parseInt(availableInput.value) < 0 ||
+                parseInt(availableInput.value) > parseInt(sanctionedInput.value))
+        ) {
+            errorElement.textContent = `Available value must be between 0 and the Sanctioned value (${sanctionedInput.value || 0}).`;
+            availableInput.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+            isValid = false;
+        } else {
+            errorElement.textContent = '';
+            availableInput.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+        }
+    });
+
+    // Separate Training Validation Logic
+    if (!validateTrainings(sectionId, availableInputs)) {
+        isValid = false;
+    }
+
+    return isValid;
+};
+
+const validateTrainings = (sectionId, availableInputs) => {
+    let isValid = true;
+
+    // Find the associated training container using the section ID
+    const trainingContainerId = `${sectionId}-trainingsContainer`; // Adjust this logic based on your actual ID structure
+    const trainingsContainer = document.getElementById(trainingContainerId);
+
+    // Check if any available value is greater than 0
+    const hasAvailableValues = Array.from(availableInputs).some((input) => parseInt(input.value || '0') > 0);
+
+    if (trainingsContainer) {
+        trainingsContainer.style.display = hasAvailableValues ? 'block' : 'none';
+
+        if (hasAvailableValues) {
+            // Validate Training fields
+            const trainingFields = trainingsContainer.querySelectorAll('[id$="Training"]');
+            trainingFields.forEach((trainingField) => {
+                const inputId = trainingField.id;
+                const errorElement = document.getElementById(`error-${inputId}`);
+                const maxTrainingValue = parseInt(trainingField.getAttribute('max'), 10) || 10;
+
+                if (
+                    !trainingField.value ||
+                    parseInt(trainingField.value) < 0 ||
+                    parseInt(trainingField.value) > maxTrainingValue
+                ) {
+                    errorElement.textContent = `Value must be between 0 and ${maxTrainingValue}.`;
+                    trainingField.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                    isValid = false;
+                } else {
+                    errorElement.textContent = '';
+                    trainingField.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                }
+            });
+
+            // Validate "Specify Other Trainings" text input
+            const otherTrainingsField = trainingsContainer.querySelector('[id$="OtherTrainings"]');
+            if (otherTrainingsField) {
+                const errorElement = document.getElementById(`error-${otherTrainingsField.id}`);
+                const minLength = parseInt(otherTrainingsField.getAttribute('minlength'), 10) || 2;
+                const maxLength = parseInt(otherTrainingsField.getAttribute('maxlength'), 10) || 100;
+                const valueLength = otherTrainingsField.value.trim().length;
+
+                if (valueLength < minLength || valueLength > maxLength) {
+                    errorElement.textContent = `Text must be between ${minLength} and ${maxLength} characters.`;
+                    otherTrainingsField.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                    isValid = false;
+                } else {
+                    errorElement.textContent = '';
+                    otherTrainingsField.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                }
+            }
+        }
+    }
+
+    return isValid;
+};
+
+// Usage Example
 function validateAndNext(section) {
-    if (validations[`section${section}`]()) {
+    if (validateSection3()) {
         document.getElementById(`section${section}`).classList.add('hidden');
         const nextSection = document.getElementById(`section${section + 1}`);
         if (nextSection) {
@@ -116,6 +152,3 @@ function validateAndNext(section) {
         }
     }
 }
-
-// Example of a save button functionality
-document.querySelector('.save-next').addEventListener('click', () => validateAndNext(1));

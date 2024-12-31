@@ -123,7 +123,79 @@ const validations = {
         }
 
         return isValid;
-    }
+    },
+    section4: () => {
+        let isValid = true;
+
+        // List of fields to validate
+        const fieldsToValidate = [
+            // OPD and IPD load
+            { id: 'opdLoad', min: 0, max: 500, errorMessage: 'OPD Load must be between 0 and 500.' },
+            { id: 'ipdLoad', min: 0, max: 500, errorMessage: 'IPD Load must be between 0 and 500.' },
+            { id: 'teleConsultations', min: 0, max: 2000, errorMessage: 'Tele Consultations must be between 0 and 2000.' },
+
+            // Maternal Child Health
+            { id: 'pregnantFirstTrimester', min: 0, max: 1000, errorMessage: 'Pregnant Women Registered in First Trimester must be between 0 and 1000.' },
+            { id: 'pregnant4ANC', min: 0, max: 1000, errorMessage: 'Pregnant Women Received 4 ANC Check-ups must be between 0 and 1000.' },
+            { id: 'ifaTablets', min: 0, max: 500, errorMessage: 'Pregnant Women Given IFA Tablets must be between 0 and 500.' },
+            { id: 'calciumTablets', min: 0, max: 500, errorMessage: 'Pregnant Women Given Calcium Tablets must be between 0 and 500.' },
+            { id: 'albendazoleTablets', min: 0, max: 500, errorMessage: 'Pregnant Women Given Albendazole Tablets must be between 0 and 500.' },
+            { id: 'highRiskPregnancies', min: 0, max: 250, errorMessage: 'High Risk Pregnancies Identified must be between 0 and 250.' },
+            { id: 'totalANCRegistered', min: 0, max: 500, errorMessage: 'Total ANC Registered must be between 0 and 500.' },
+            { id: 'highRiskReferred', min: 0, max: 500, errorMessage: 'High Risk Pregnancies Referred Out must be between 0 and 500.' },
+            { id: 'deliveriesConducted', min: 0, max: 1000, errorMessage: 'Deliveries Conducted must be between 0 and 1000.' },
+            { id: 'liveBirths', min: 0, max: 300, errorMessage: 'Live Births must be between 0 and 300.' },
+            { id: 'stillBirths', min: 0, max: 300, errorMessage: 'Still Births must be between 0 and 300.' },
+            { id: 'lowBirthWeightBabies', min: 0, max: 250, errorMessage: 'Low Birth Weight Babies must be between 0 and 250.' },
+            { id: 'sickNewbornsReferred', min: 0, max: 500, errorMessage: 'Sick Newborns Referred must be between 0 and 500.' },
+            { id: 'iucdInsertions', min: 0, max: 250, errorMessage: 'IUCD Insertions must be between 0 and 250.' },
+            { id: 'ppiucdInsertions', min: 0, max: 500, errorMessage: 'PPIUCD Insertions must be between 0 and 500.' },
+            { id: 'adolescentsCounseled', min: 0, max: 1000, errorMessage: 'Adolescents Counseled/Treated must be between 0 and 1000.' },
+            { id: 'hepatitisVaccines', min: 0, max: 1000, errorMessage: 'Hepatitis B, OPV, BCG  must be between 0 and 1000.' },
+
+            { id: 'childrenDiarrhea', min: 0, max: 1000, errorMessage: 'Under 5 Children Diagnosed with Diarrhoea must be between 0 and 1000.' },
+            { id: 'injectableContraceptive', min: 0, max: 1000, errorMessage: 'Injectable Contraceptive (Antara) must be between 0 and 1000.' },
+            { id: 'earlyBreastfeeding', min: 0, max: 500, errorMessage: 'Neonates Received Early Breastfeeding must be between 0 and 500.' },
+            { id: 'childrenARI', min: 0, max: 500, errorMessage: 'Under 5 Children Diagnosed with ARI must be between 0 and 500.' },
+            { id: 'treatedDiarrhea', min: 0, max: 500, errorMessage: 'Under 5 Children Treated for Diarrhoea with ORS and Zinc must be between 0 and 500.' },
+
+            // NCDs 
+            { id: 'targetPopulationNCD', min: 0, max: 2000, errorMessage: 'People Diagnosed with NCD (Hypertension) must be between 0 and 2000.' },
+            { id: 'ncdScreeningCompleted', min: 0, max: 2000, errorMessage: 'People Diagnosed with NCD (Diabetes) must be between 0 and 2000.' },
+            { id: 'cbacFilled', min: 0, max: 2000, errorMessage: 'People Diagnosed with CBAC must be between 0 and 2000.' },
+            { id: 'ncdScreenedPositive', min: 0, max: 2000, errorMessage: 'Patients on NCD(Screened Positive) must be between 0 and 2000.' },
+            { id: 'ncdDiagnosedHypertension', min: 0, max: 2000, errorMessage: ' Value must be between 0 and 2000.' },
+            { id: 'ncdDiagnosedDiabetes', min: 0, max: 2000, errorMessage: 'Value must be between 0 and 2000.' },
+            { id: 'ncdDiagnosedCancer', min: 0, max: 2000, errorMessage: 'Value must be between 0 and 2000.' },
+            { id: 'ncdTreatmentHypertension', min: 0, max: 2000, errorMessage: 'Value must be between 0 and 2000.' },
+            { id: 'ncdTreatmentDiabetes', min: 0, max: 2000, errorMessage: 'Value must be between 0 and 2000.' },
+            { id: 'ncdTreatmentCancer', min: 0, max: 2000, errorMessage: 'Value must be between 0 and 2000.' },
+            { id : 'ncdReferredHypertension', min: 0, max: 2000, errorMessage: 'Value must be between 0 and 2000.' },
+            { id: 'ncdReferredDiabetes', min: 0, max: 2000, errorMessage: 'Value must be between 0 and 2000.' }, 
+            { id: 'ncdReferredCancer', min: 0, max: 2000, errorMessage: 'Value must be between 0 and 2000.' },
+        ];
+
+        // Validate each field
+        fieldsToValidate.forEach(field => {
+            const inputElement = document.getElementById(field.id);
+            const errorElement = document.getElementById(`error-${field.id}`);
+
+            if (inputElement && (!inputElement.value || isNaN(inputElement.value) || inputElement.value < field.min || inputElement.value > field.max)) {
+                errorElement.textContent = field.errorMessage;
+                inputElement.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                isValid = false;
+            } else if (inputElement) {
+                errorElement.textContent = '';
+                inputElement.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+            }
+        });
+
+        if (!isValid) {
+            alert('Please fill out all required fields correctly before proceeding.');
+        }
+
+        return isValid;
+    },
 };
 document.querySelectorAll('input, select, textarea').forEach(element => {
     element.addEventListener('input', event => {
@@ -136,7 +208,45 @@ document.querySelectorAll('input, select, textarea').forEach(element => {
                 villagesCovered: { min: 0, max: 150 },
                 populationCovered: { min: 4000, max: 500000 },
                 totalBeds: { min: 0, max: 50 },
-                totalLaborTables: { min: 0, max: 10 }
+                totalLaborTables: { min: 0, max: 10 },
+                regularDentalMOSanctioned: { min: 0, max: 5 },
+                opdLoad: { min: 0, max: 500 },
+                ipdLoad: { min: 0, max: 500 },
+                teleConsultations: { min: 0, max: 2000 },
+                pregnantFirstTrimester: { min: 0, max: 1000 },
+                pregnant4ANC: { min: 0, max: 1000 },
+                ifaTablets: { min: 0, max: 500 },
+                calciumTablets: { min: 0, max: 500 },
+                albendazoleTablets: { min: 0, max: 500 },
+                highRiskPregnancies: { min: 0, max: 250 },
+                totalANCRegistered: { min: 0, max: 500 },
+                highRiskReferred: { min: 0, max: 500 },
+                deliveriesConducted: { min: 0, max: 1000 },
+                liveBirths: { min: 0, max: 300 },
+                stillBirths: { min: 0, max: 300 },
+                lowBirthWeightBabies: { min: 0, max: 250 },
+                sickNewbornsReferred: { min: 0, max: 500 },
+                iucdInsertions: { min: 0, max: 250 },
+                ppiucdInsertions: { min: 0, max: 500 },
+                adolescentsCounseled: { min: 0, max: 1000 },
+                hepatitisVaccines: { min: 0, max: 1000 },
+                childrenDiarrhea: { min: 0, max: 1000 },
+                injectableContraceptive: { min: 0, max: 1000 },
+                earlyBreastfeeding: { min: 0, max: 500 },
+                childrenARI: { min: 0, max: 500 },
+                treatedDiarrhea: { min: 0, max: 500 },
+                targetPopulationNCD: { min: 0, max: 2000 },
+                ncdScreeningCompleted: { min: 0, max: 2000 },
+                cbacFilled: { min: 0, max: 2000 },
+                ncdDiagnosedHypertension: { min: 0, max: 2000 },
+                ncdDiagnosedDiabetes: { min: 0, max: 2000 },
+                ncdDiagnosedCancer: { min: 0, max: 2000 },
+                ncdTreatmentHypertension   : { min: 0, max: 2000 },
+                ncdTreatmentDiabetes: { min: 0, max: 2000 },
+                ncdTreatmentCancer: { min: 0, max: 2000 },
+                ncdReferredHypertension: { min: 0, max: 2000 },
+                ncdReferredDiabetes: { min: 0, max: 2000 },
+                ncdReferredCancer: { min: 0, max: 2000 },   
             }[event.target.id];
 
             const value = parseInt(event.target.value, 10);

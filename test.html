@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section 4</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div id="section4" class="section bg-white p-6 rounded-lg shadow-md mb-4">
+        <div class="mb-6">
+            <h2 class="text-3xl font-bold mb-6 text-black-600">Service Delivery </h2>
+            <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
+
+
+
+            <!-- General Information -->
+            <div class="bg-white p-4 rounded-lg shadow-md mb-6">
+                <h3 class="text-2xl font-bold mb-6 text-blue-600 ">General Information</h3>
+
+                <!-- OPD Load -->
+                <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                    <label for="opdLoad" class="block text-gray-700 font-semibold">OPD Load <span
+                            class="text-red-500">*</span></label>
+                    <input type="number" id="opdLoad" name="opdLoad"
+                        class="w-full p-3 border border-gray-300 rounded-md" min="0" max="500" required>
+                    <p id="error-opdLoad" class="text-red-500 text-sm"></p>
+                </div>
+
+                <!-- IPD Load -->
+                <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                    <label for="ipdLoad" class="block text-gray-700 font-semibold">IPD Load <span
+                            class="text-red-500">*</span></label>
+                    <input type="number" id="ipdLoad" name="ipdLoad"
+                        class="w-full p-3 border border-gray-300 rounded-md" min="0" max="500" required>
+                    <p id="error-ipdLoad" class="text-red-500 text-sm"></p>
+                </div>
+
+                <!-- Teleconsultations -->
+                <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                    <label for="teleConsultations" class="block text-gray-700 font-semibold">Total Number of
+                        Teleconsultations under e-Sanjeevani <span class="text-red-500">*</span></label>
+                    <input type="number" id="teleConsultations" name="teleConsultations"
+                        class="w-full p-3 border border-gray-300 rounded-md" min="0" max="2000" required>
+                    <p id="error-teleConsultations" class="text-red-500 text-sm"></p>
+                </div>
+            </div>
+
+            <!-- Maternal Child Health -->
+            <div class="bg-white p-4 rounded-lg shadow-md mb-6">
+                <h3 class="text-2xl font-bold mb-6 text-blue-600">Maternal Child Health</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md ">
+                        <label for="pregnantFirstTrimester" class="block text-gray-700 font-semibold">Pregnant women
+                            registered in first trimester <span class="text-red-500">*</span></label>
+                        <input type="number" id="pregnantFirstTrimester" name="pregnantFirstTrimester"
+                            class="w-full p-3 border border-gray-300 rounded-md" min="0" max="1000" required>
+                        <p id="error-pregnantFirstTrimester" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md ">
+                        <label for="pregnant4ANC" class="block text-gray-700 font-semibold">Pregnant women received 4
+                            ANC check-ups <span class="text-red-500">*</span></label>
+                        <input type="number" id="pregnant4ANC" name="pregnant4ANC"
+                            class="w-full p-3 border border-gray-300 rounded-md" min="0" max="1000" required>
+                        <p id="error-pregnant4ANC" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md ">
+                        <label for="ifaTablets" class="block text-gray-700 font-semibold">Pregnant women given IFA
+                            Tablets <span class="text-red-500">*</span></label>
+                        <input type="number" id="ifaTablets" name="ifaTablets"
+                            class="w-full p-3 border border-gray-300 rounded-md" min="0" max="500" required>
+                        <p id="error-ifaTablets" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md ">
+                        <label for="calciumTablets" class="block text-gray-700 font-semibold">Pregnant women given
+                            Calcium Tablets <span class="text-red-500">*</span></label>
+                        <input type="number" id="calciumTablets" name="calciumTablets"
+                            class="w-full p-3 border border-gray-300 rounded-md" min="0" max="500" required>
+                        <p id="error-calciumTablets" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md ">
+                        <label for="albendazoleTablets" class="block text-gray-700 font-semibold">Pregnant Women given
+                            Albendazole Tablets <span class="text-red-500">*</span></label>
+                        <input type="number" id="albendazoleTablets" name="albendazoleTablets"
+                            class="w-full p-3 border border-gray-300 rounded-md" min="0" max="500" required>
+                        <p id="error-albendazoleTablets" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md ">
+                        <label for="highRiskPregnancies" class="block text-gray-700 font-semibold">High risk pregnancies
+                            identified <span class="text-red-500">*</span></label>
+                        <input type="number" id="highRiskPregnancies" name="highRiskPregnancies"
+                            class="w-full p-3 border border-gray-300 rounded-md" min="0" max="250" required>
+                        <p id="error-highRiskPregnancies" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md ">
+                        <label for="totalANCRegistered" class="block text-gray-700 font-semibold">Total ANC Registered
+                            <span class="text-red-500">*</span></label>
+                        <input type="number" id="totalANCRegistered" name="totalANCRegistered"
+                            class="w-full p-3 border border-gray-300 rounded-md" min="0" max="500" required>
+                        <p id="error-totalANCRegistered" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md ">
+                        <label for="highRiskReferred" class="block text-gray-700 font-semibold">High Risk pregnancies
+                            referred out <span class="text-red-500">*</span></label>
+                        <input type="number" id="highRiskReferred" name="highRiskReferred"
+                            class="w-full p-3 border border-gray-300 rounded-md" min="0" max="500" required>
+                        <p id="error-highRiskReferred" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Live Births -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md ">
+                        <label for="liveBirths" class="block text-gray-700 font-semibold">Live Births <span
+                                class="text-red-500">*</span></label>
+                        <input type="number" id="liveBirths" name="liveBirths"
+                            class="w-full p-3 border border-gray-300 rounded-md" min="0" max="300" required>
+                        <p id="error-liveBirths" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Still Births -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md ">
+                        <label for="stillBirths" class="block text-gray-700 font-semibold">Still Births <span
+                                class="text-red-500">*</span></label>
+                        <input type="number" id="stillBirths" name="stillBirths"
+                            class="w-full p-3 border border-gray-300 rounded-md" min="0" max="300" required>
+                        <p id="error-stillBirths" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Low Birth Weight Babies -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md ">
+                        <label for="lowBirthWeightBabies" class="block text-gray-700 font-semibold">Low Birth Weight
+                            Babies (<2500 gms) <span class="text-red-500">*</span></label>
+                        <input type="number" id="lowBirthWeightBabies" name="lowBirthWeightBabies"
+                            class="w-full p-3 border border-gray-300 rounded-md" min="0" max="250" required>
+                        <p id="error-lowBirthWeightBabies" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Sick Newborns Referred -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md ">
+                        <label for="sickNewbornsReferred" class="block text-gray-700 font-semibold">Sick Newborns
+                            Referred to Higher Facility <span class="text-red-500">*</span></label>
+                        <input type="number" id="sickNewbornsReferred" name="sickNewbornsReferred"
+                            class="w-full p-3 border border-gray-300 rounded-md" min="0" max="500" required>
+                        <p id="error-sickNewbornsReferred" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- IUCD Insertions -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md ">
+                        <label for="iucdInsertions" class="block text-gray-700 font-semibold">IUCD Insertions <span
+                                class="text-red-500">*</span></label>
+                        <input type="number" id="iucdInsertions" name="iucdInsertions"
+                            class="w-full p-3 border border-gray-300 rounded-md" min="0" max="250" required>
+                        <p id="error-iucdInsertions" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- PPIUCD Insertions -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md ">
+                        <label for="ppiucdInsertions" class="block text-gray-700 font-semibold">PPIUCD Insertions <span
+                                class="text-red-500">*</span></label>
+                        <input type="number" id="ppiucdInsertions" name="ppiucdInsertions"
+                            class="w-full p-3 border border-gray-300 rounded-md" min="0" max="500" required>
+                        <p id="error-ppiucdInsertions" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Adolescents Counseled -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md ">
+                        <label for="adolescentsCounseled" class="block text-gray-700 font-semibold">Adolescents
+                            Counseled/Treated at AFHC <span class="text-red-500">*</span></label>
+                        <input type="number" id="adolescentsCounseled" name="adolescentsCounseled"
+                            class="w-full p-3 border border-gray-300 rounded-md" min="0" max="1000" required>
+                        <p id="error-adolescentsCounseled" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Hepatitis Vaccines -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md ">
+                        <label for="hepatitisVaccines" class="block text-gray-700 font-semibold">Hepatitis B, OPV, BCG
+                            Provided to Newborns <span class="text-red-500">*</span></label>
+                        <input type="number" id="hepatitisVaccines" name="hepatitisVaccines"
+                            class="w-full p-3 border border-gray-300 rounded-md" min="0" max="1000" required>
+                        <p id="error-hepatitisVaccines" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Under 5 Children Diagnosed with Diarrhea -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md ">
+                        <label for="childrenDiarrhea" class="block text-gray-700 font-semibold">Under 5 Children
+                            Diagnosed with Diarrhea <span class="text-red-500">*</span></label>
+                        <input type="number" id="childrenDiarrhea" name="childrenDiarrhea"
+                            class="w-full p-3 border border-gray-300 rounded-md" min="0" max="1000" required>
+                        <p id="error-childrenDiarrhea" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Injectable Contraceptive (Antara) -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md ">
+                        <label for="injectableContraceptive" class="block text-gray-700 font-semibold">Injectable
+                            Contraceptive (Antara) <span class="text-red-500">*</span></label>
+                        <input type="number" id="injectableContraceptive" name="injectableContraceptive"
+                            class="w-full p-3 border border-gray-300 rounded-md" min="0" max="1000" required>
+                        <p id="error-injectableContraceptive" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Neonates Received Early Breastfeeding -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md ">
+                        <label for="earlyBreastfeeding" class="block text-gray-700 font-semibold">Neonates Received
+                            Early Breastfeeding (within 1 hour) <span class="text-red-500">*</span></label>
+                        <input type="number" id="earlyBreastfeeding" name="earlyBreastfeeding"
+                            class="w-full p-3 border border-gray-300 rounded-md" min="0" max="500" required>
+                        <p id="error-earlyBreastfeeding" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Under 5 Children Diagnosed with ARI -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md ">
+                        <label for="childrenARI" class="block text-gray-700 font-semibold">Under 5 Children Diagnosed
+                            with ARI <span class="text-red-500">*</span></label>
+                        <input type="number" id="childrenARI" name="childrenARI"
+                            class="w-full p-3 border border-gray-300 rounded-md" min="0" max="500" required>
+                        <p id="error-childrenARI" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Under-5 Children Treated for Diarrhea -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md ">
+                        <label for="treatedDiarrhea" class="block text-gray-700 font-semibold">Under-5 Children Treated
+                            for Diarrhea with ORS and Zinc <span class="text-red-500">*</span></label>
+                        <input type="number" id="treatedDiarrhea" name="treatedDiarrhea"
+                            class="w-full p-3 border border-gray-300 rounded-md" min="0" max="500" required>
+                        <p id="error-treatedDiarrhea" class="text-red-500 text-sm"></p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Non-Communicable Diseases -->
+            <div class="bg-white p-4 rounded-lg shadow-md mb-6">
+                <h3 class="text-2xl font-bold mb-6 text-blue-600">Non-Communicable Diseases</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md ">
+                        <label for="targetPopulationNCD" class="block text-gray-700 font-semibold">Target for Population
+                            Enumeration for NCD Screening <span class="text-red-500">*</span></label>
+                        <input type="number" id="targetPopulationNCD" name="targetPopulationNCD"
+                            class="w-full p-3 border border-gray-300 rounded-md" min="0" max="2000" required>
+                        <p id="error-targetPopulationNCD" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md ">
+                        <label for="ncdScreeningCompleted" class="block text-gray-700 font-semibold">Population
+                            Enumeration for NCD Screening Completed <span class="text-red-500">*</span></label>
+                        <input type="number" id="ncdScreeningCompleted" name="ncdScreeningCompleted"
+                            class="w-full p-3 border border-gray-300 rounded-md" min="0" max="2000" required>
+                        <p id="error-ncdScreeningCompleted" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md ">
+                        <label for="cbacFilled" class="block text-gray-700 font-semibold">CBAC Filled <span
+                                class="text-red-500">*</span></label>
+                        <input type="number" id="cbacFilled" name="cbacFilled"
+                            class="w-full p-3 border border-gray-300 rounded-md" min="0" max="2000" required>
+                        <p id="error-cbacFilled" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md ">
+                        <label for="ncdScreenedPositive" class="block text-gray-700 font-semibold">No. of People
+                            Screened Positive for NCD <span class="text-red-500">*</span></label>
+                        <input type="number" id="ncdScreenedPositive" name="ncdScreenedPositive"
+                            class="w-full p-3 border border-gray-300 rounded-md" min="0" max="2000" required>
+                        <p id="error-ncdScreenedPositive" class="text-red-500 text-sm"></p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md space-y-6">
+                    <!-- Total People Diagnosed with NCD -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-700 mb-4">Total People Diagnosed with NCD</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div>
+                                <label for="ncdDiagnosedHypertension" class="block text-sm font-medium text-gray-600">Hypertension</label>
+                                <input type="number" id="ncdDiagnosedHypertension" name="ncdDiagnosedHypertension" placeholder="0" min="0" max="2000"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label for="ncdDiagnosedDiabetes" class="block text-sm font-medium text-gray-600">Diabetes</label>
+                                <input type="number" id="ncdDiagnosedDiabetes" name="ncdDiagnosedDiabetes" placeholder="0" min="0" max="2000"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label for="ncdDiagnosedCancer" class="block text-sm font-medium text-gray-600">Cancer</label>
+                                <input type="number" id="ncdDiagnosedCancer" name="ncdDiagnosedCancer" placeholder="0" min="0" max="2000"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Patients with an NCD on Treatment Regime -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-700 mb-4">Patients with an NCD on Treatment Regime</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div>
+                                <label for="ncdTreatmentHypertension" class="block text-sm font-medium text-gray-600">Hypertension</label>
+                                <input type="number" id="ncdTreatmentHypertension" name="ncdTreatmentHypertension" placeholder="0" min="0" max="2000"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label for="ncdTreatmentDiabetes" class="block text-sm font-medium text-gray-600">Diabetes</label>
+                                <input type="number" id="ncdTreatmentDiabetes" name="ncdTreatmentDiabetes" placeholder="0" min="0" max="2000"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label for="ncdTreatmentCancer" class="block text-sm font-medium text-gray-600">Cancer</label>
+                                <input type="number" id="ncdTreatmentCancer" name="ncdTreatmentCancer" placeholder="0" min="0" max="2000"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Patients with an NCD Referred to Higher Facility -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-700 mb-4">Patients with an NCD Referred to Higher Facility</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div>
+                                <label for="ncdReferredHypertension" class="block text-sm font-medium text-gray-600">Hypertension</label>
+                                <input type="number" id="ncdReferredHypertension" name="ncdReferredHypertension" placeholder="0" min="0" max="2000"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label for="ncdReferredDiabetes" class="block text-sm font-medium text-gray-600">Diabetes</label>
+                                <input type="number" id="ncdReferredDiabetes" name="ncdReferredDiabetes" placeholder="0" min="0" max="2000"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label for="ncdReferredCancer" class="block text-sm font-medium text-gray-600">Cancer</label>
+                                <input type="number" id="ncdReferredCancer" name="ncdReferredCancer" placeholder="0" min="0" max="2000"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
