@@ -4,466 +4,248 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Section 5: Medicines</title>
+    <title>Section 6 - Diagnostics</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-gray-100 p-4">
-    <div id="section5" class="section bg-white p-6 rounded-lg shadow-md mb-4">
+    <div id="section6" class="section bg-white p-6 rounded-lg shadow-md mb-4">
         <div class="mb-6">
-            <h2 class="text-3xl font-bold mb-6 text-black-600"> Medicines</h2>
+
+            <h2 class="text-3xl font-bold mb-4 text-black-600">Diagnostics</h2>
             <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
 
-            <!-- Medicine Fields -->
+            <!-- Diagnostics test conducted in facility -->
             <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="injTd" class="block text-gray-700 text-lg font-semibold">Inj. TD <span
+                <label for="diagnosticsTestConducted" class="block text-lg font-semibold text-gray-700">
+                    Diagnostics test conducted in facility <span class="text-red-500">*</span>
+                </label>
+                <input type="number" id="diagnosticsTestConducted"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                    placeholder="Enter count (0-250)" min="0" max="250" required />
+                <p id="error-diagnosticsTestConducted" class="text-red-500 text-sm mt-1"></p>
+            </div>
+
+            <!-- Non-functional / Missing diagnostic tests -->
+            <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                <label for="nonFunctionalTests" class="block text-lg font-semibold text-gray-700">
+                    Non-functional / Missing diagnostic tests <span class="text-red-500">*</span>
+                </label>
+                <input type="number" id="nonFunctionalTests"
+                    class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                    placeholder="Enter count (0-250)" min="0" max="250" required />
+                <p id="error-nonFunctionalTests" class="text-red-500 text-sm mt-1"></p>
+            </div>
+
+            <!-- Dynamic Yes/No Fields -->
+            <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                <label for="haemoglobin" class="block text-gray-700 text-lg font-semibold">Haemoglobin <span
                         class="text-red-500">*</span></label>
-                <select id="injTd" name="injTd"
+                <select id="haemoglobin" name="haemoglobin"
                     class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
                     <option value="" disabled selected>Select</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
+                <p id="error-haemoglobin" class="text-red-500 text-sm mt-1"></p>
             </div>
 
             <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="injMgSulph" class="block text-gray-700 text-lg font-semibold">Inj. MgSulph <span
-                        class="text-red-500">*</span> </label>
-                <select id="injMgSulph" name="injMgSulph"
+                <label for="bloodSugar" class="block text-gray-700 text-lg font-semibold">Blood Sugar <span
+                        class="text-red-500">*</span></label>
+                <select id="bloodSugar" name="bloodSugar"
                     class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
                     <option value="" disabled selected>Select</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
+                <p id="error-bloodSugar" class="text-red-500 text-sm mt-1"></p>
             </div>
 
+            <!-- Additional fields -->
             <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="injectableMPA" class="block text-gray-700 text-lg font-semibold">Injectable MPA <span
+                <label for="malariaSmear" class="block text-gray-700 text-lg font-semibold">Malaria Smear (RDK) <span
                         class="text-red-500">*</span></label>
-                <select id="injectableMPA" name="injectableMPA"
+                <select id="malariaSmear" name="malariaSmear"
                     class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
                     <option value="" disabled selected>Select</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
+                <p id="error-malariaSmear" class="text-red-500 text-sm mt-1"></p>
             </div>
 
             <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="injOxytocin" class="block text-gray-700 text-lg font-semibold">Inj. Oxytocin <span
-                        class="text-red-500">*</span></label>
-                <select id="injOxytocin" name="injOxytocin"
-                    class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
-                    <option value="" disabled selected>Select</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-            </div>
-
-            <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="injIronSucrose" class="block text-gray-700 text-lg font-semibold">Inj. Iron Sucrose <span
-                        class="text-red-500">*</span></label>
-                <select id="injIronSucrose" name="injIronSucrose"
-                    class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
-                    <option value="" disabled selected>Select</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-            </div>
-
-            <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="injDexamethasone" class="block text-gray-700 text-lg font-semibold">Inj. Dexamethasone <span
-                        class="text-red-500">*</span></label>
-                <select id="injDexamethasone" name="injDexamethasone"
-                    class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
-                    <option value="" disabled selected>Select</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-            </div>
-
-            <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="tabCalcium" class="block text-gray-700 text-lg font-semibold">Tab. Calcium <span
-                        class="text-red-500">*</span></label>
-                <select id="tabCalcium" name="tabCalcium"
-                    class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
-                    <option value="" disabled selected>Select</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-            </div>
-
-            <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="tabIFA" class="block text-gray-700 text-lg font-semibold">Tab. IFA <span
-                        class="text-red-500">*</span></label>
-                <select id="tabIFA" name="tabIFA"
-                    class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
-                    <option value="" disabled selected>Select</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-            </div>
-
-            <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="antihistamines" class="block text-gray-700 text-lg font-semibold">Anti-histamines <span
-                        class="text-red-500">*</span></label>
-                <select id="antihistamines" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                    name="antihistamines" required>
-                    <option value="" disabled selected>Select</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-            </div>
-
-            <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="vitaminK1" class="block text-gray-700 text-lg font-semibold">Vitamin K1 (1 mg preparation)
+                <label for="urinePregnancyTest" class="block text-gray-700 text-lg font-semibold">Urine Pregnancy Test
                     <span class="text-red-500">*</span></label>
-                <select id="vitaminK1" name="vitaminK1"
+                <select id="urinePregnancyTest" name="urinePregnancyTest"
                     class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
                     <option value="" disabled selected>Select</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
+                <p id="error-urinePregnancyTest" class="text-red-500 text-sm mt-1"></p>
             </div>
 
-            <!-- Antiseptics -->
             <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="antiseptics" class="block text-gray-700 text-lg font-semibold">Antiseptics <span
+                <label for="ogtt" class="block text-gray-700 text-lg font-semibold">OGTT <span
                         class="text-red-500">*</span></label>
-                <select id="antiseptics" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                    name="antiseptics" required>
+                <select id="ogtt" name="ogtt"
+                    class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
                     <option value="" disabled selected>Select</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
+                <p id="error-ogtt" class="text-red-500 text-sm mt-1"></p>
             </div>
-
-            <!-- Antihypertensives -->
             <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="antihypertensives" class="block text-gray-700 text-lg font-semibold">Antihypertensives <span
-                        class="text-red-500">*</span></label>
-                <select id="antihypertensives"
-                    class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" name="antihypertensives"
-                    required>
+                <label for="urineAlbuminSugar" class="block text-gray-700 text-lg font-semibold">Urine Albumin & Sugar <span class="text-red-500">*</span></label>
+                <select id="urineAlbuminSugar" name="urineAlbuminSugar" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
                     <option value="" disabled selected>Select</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
+                <p id="error-urineAlbuminSugar" class="text-red-500 text-sm mt-1"></p>
             </div>
-
-            <!-- Antidiabetics -->
+            
             <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="antidiabetics" class="block text-gray-700 text-lg font-semibold">Antidiabetics <span
-                        class="text-red-500">*</span></label>
-                <select id="antidiabetics" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                    name="antidiabetics" required>
+                <label for="hivTesting" class="block text-gray-700 text-lg font-semibold">HIV Testing (WBFPT) <span class="text-red-500">*</span></label>
+                <select id="hivTesting" name="hivTesting" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
                     <option value="" disabled selected>Select</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
+                <p id="error-hivTesting" class="text-red-500 text-sm mt-1"></p>
             </div>
-
-            <!-- EC pills -->
+            
             <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="ecPills" class="block text-gray-700 text-lg font-semibold">EC pills <span
-                        class="text-red-500">*</span></label>
-                <select id="ecPills" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                    name="ecPills" required>
+                <label for="microscopicSputumExamination" class="block text-gray-700 text-lg font-semibold">Microscopic Sputum Examination <span class="text-red-500">*</span></label>
+                <select id="microscopicSputumExamination" name="microscopicSputumExamination" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
                     <option value="" disabled selected>Select</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
+                <p id="error-microscopicSputumExamination" class="text-red-500 text-sm mt-1"></p>
             </div>
-
-            <!-- Tab. Misoprostol -->
+            
             <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="tabMisoprostol" class="block text-gray-700 text-lg font-semibold">Tab. Misoprostol <span
-                        class="text-red-500">*</span></label>
-                <select id="tabMisoprostol" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                    name="tabMisoprostol" required>
+                <label for="rapidSyphilisTest" class="block text-gray-700 text-lg font-semibold">Rapid Syphilis Test <span class="text-red-500">*</span></label>
+                <select id="rapidSyphilisTest" name="rapidSyphilisTest" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
                     <option value="" disabled selected>Select</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
+                <p id="error-rapidSyphilisTest" class="text-red-500 text-sm mt-1"></p>
             </div>
-
-            <!-- Anti TB drugs -->
+            
             <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="antiTbDrugs" class="block text-gray-700 text-lg font-semibold">Anti TB drugs <span
-                        class="text-red-500">*</span></label>
-                <select id="antiTbDrugs" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                    name="antiTbDrugs" required>
+                <label for="bloodGrouping" class="block text-gray-700 text-lg font-semibold">Blood Grouping <span class="text-red-500">*</span></label>
+                <select id="bloodGrouping" name="bloodGrouping" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
                     <option value="" disabled selected>Select</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
+                <p id="error-bloodGrouping" class="text-red-500 text-sm mt-1"></p>
             </div>
-
-            <!-- Zinc tablets -->
+            
             <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="zincTablets" class="block text-gray-700 text-lg font-semibold">Zinc tablets <span
-                        class="text-red-500">*</span></label>
-                <select id="zincTablets" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                    name="zincTablets" required>
+                <label for="stoolOvaCyst" class="block text-gray-700 text-lg font-semibold">Stool for OVA and cyst <span class="text-red-500">*</span></label>
+                <select id="stoolOvaCyst" name="stoolOvaCyst" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
                     <option value="" disabled selected>Select</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
+                <p id="error-stoolOvaCyst" class="text-red-500 text-sm mt-1"></p>
             </div>
-
-            <!-- Paracetamol Tab/ syrup -->
+            
             <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="paracetamol" class="block text-gray-700 text-lg font-semibold">Paracetamol Tab/ syrup <span
-                        class="text-red-500">*</span></label>
-                <select id="paracetamol" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                    name="paracetamol" required>
+                <label for="waterQualityTesting" class="block text-gray-700 text-lg font-semibold">Water Quality Testing-H2S strip test for fecal contamination <span class="text-red-500">*</span></label>
+                <select id="waterQualityTesting" name="waterQualityTesting" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
                     <option value="" disabled selected>Select</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
+                <p id="error-waterQualityTesting" class="text-red-500 text-sm mt-1"></p>
             </div>
-
+            
             <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="tabAlbendazole" class="block text-gray-700 text-lg font-semibold">Tab. Albendazole <span
-                        class="text-red-500">*</span></label>
-                <select id="tabAlbendazole" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                    name="tabAlbendazole" required>
+                <label for="wetMount" class="block text-gray-700 text-lg font-semibold">Wet mount- Direct Microscopy (RTI/STD) <span class="text-red-500">*</span></label>
+                <select id="wetMount" name="wetMount" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
                     <option value="" disabled selected>Select</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
+                <p id="error-wetMount" class="text-red-500 text-sm mt-1"></p>
             </div>
-
-            <!-- Antibiotics -->
+            
             <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="antibiotics" class="block text-gray-700 text-lg font-semibold">Antibiotics <span
-                        class="text-red-500">*</span></label>
-                <select id="antibiotics" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                    name="antibiotics" required>
+                <label for="typhoidSerology" class="block text-gray-700 text-lg font-semibold">Typhoid serology <span class="text-red-500">*</span></label>
+                <select id="typhoidSerology" name="typhoidSerology" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
                     <option value="" disabled selected>Select</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
+                <p id="error-typhoidSerology" class="text-red-500 text-sm mt-1"></p>
             </div>
-
-            <!-- ORS sachets -->
+            
             <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="orsSachets" class="block text-gray-700 text-lg font-semibold">ORS sachets <span
-                        class="text-red-500">*</span></label>
-                <select id="orsSachets" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                    name="orsSachets" required>
+                <label for="serologyDengue" class="block text-gray-700 text-lg font-semibold">Serology for Dengue (RDK) <span class="text-red-500">*</span></label>
+                <select id="serologyDengue" name="serologyDengue" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
                     <option value="" disabled selected>Select</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
+                <p id="error-serologyDengue" class="text-red-500 text-sm mt-1"></p>
             </div>
-
-            <!-- IPV -->
             <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="ipv" class="block text-gray-700 text-lg font-semibold">IPV <span
-                        class="text-red-500">*</span></label>
-                <select id="ipv" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" name="ipv"
-                    required>
+                <label for="esr" class="block text-gray-700 text-lg font-semibold">ESR <span class="text-red-500">*</span></label>
+                <select id="esr" name="esr" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
                     <option value="" disabled selected>Select</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
+                <p id="error-esr" class="text-red-500 text-sm mt-1"></p>
             </div>
-
-            <!-- Rota Virus -->
+            
             <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="rotaVirus" class="block text-gray-700 text-lg font-semibold">Rota Virus <span
-                        class="text-red-500">*</span></label>
-                <select id="rotaVirus" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                    name="rotaVirus" required>
+                <label for="sickleCellTesting" class="block text-gray-700 text-lg font-semibold">Sickle Cell testing <span class="text-red-500">*</span></label>
+                <select id="sickleCellTesting" name="sickleCellTesting" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
                     <option value="" disabled selected>Select</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
+                <p id="error-sickleCellTesting" class="text-red-500 text-sm mt-1"></p>
             </div>
-
-            <!-- BCG -->
+            
             <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="bcg" class="block text-gray-700 text-lg font-semibold">BCG <span
-                        class="text-red-500">*</span></label>
-                <select id="bcg" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" name="bcg"
-                    required>
+                <label for="tlcDlc" class="block text-gray-700 text-lg font-semibold">TLC, DLC <span class="text-red-500">*</span></label>
+                <select id="tlcDlc" name="tlcDlc" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
                     <option value="" disabled selected>Select</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
+                <p id="error-tlcDlc" class="text-red-500 text-sm mt-1"></p>
             </div>
-
-            <!-- Pentavalent -->
+            
             <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="pentavalent" class="block text-gray-700 text-lg font-semibold">Pentavalent <span
-                        class="text-red-500">*</span></label>
-                <select id="pentavalent" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                    name="pentavalent" required>
+                <label for="serumBilirubin" class="block text-gray-700 text-lg font-semibold">Serum Bilirubin <span class="text-red-500">*</span></label>
+                <select id="serumBilirubin" name="serumBilirubin" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
                     <option value="" disabled selected>Select</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
+                <p id="error-serumBilirubin" class="text-red-500 text-sm mt-1"></p>
             </div>
+            
 
-            <!-- Japanese Encephalitis (JE) -->
-            <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="japaneseEncephalitis" class="block text-gray-700 text-lg font-semibold">Japanese
-                    Encephalitis (JE) <span class="text-red-500">*</span></label>
-                <select id="japaneseEncephalitis"
-                    class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                    name="japaneseEncephalitis" required>
-                    <option value="" disabled selected>Select</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
+            <!-- Submit Button -->
+            <div class="flex justify-end mt-6">
+                <button type="button"
+                    class="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
+                    onclick="validateAndNext(6)">
+                    Save & Next
+                </button>
             </div>
-
-            <!-- Hepatitis B -->
-            <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="hepatitisB" class="block text-gray-700 text-lg font-semibold">Hepatitis B <span
-                        class="text-red-500">*</span></label>
-                <select id="hepatitisB" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                    name="hepatitisB" required>
-                    <option value="" disabled selected>Select</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-            </div>
-
-            <!-- OPV -->
-            <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="opv" class="block text-gray-700 text-lg font-semibold">OPV <span
-                        class="text-red-500">*</span></label>
-                <select id="opv" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" name="opv"
-                    required>
-                    <option value="" disabled selected>Select</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-            </div>
-
-            <!-- DPT -->
-            <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="dpt" class="block text-gray-700 text-lg font-semibold">DPT <span
-                        class="text-red-500">*</span></label>
-                <select id="dpt" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" name="dpt"
-                    required>
-                    <option value="" disabled selected>Select</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-            </div>
-
-            <!-- Measles Rubella (MR) -->
-            <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="measlesRubella" class="block text-gray-700 text-lg font-semibold">Measles Rubella (MR) <span
-                        class="text-red-500">*</span></label>
-                <select id="measlesRubella" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                    name="measlesRubella" required>
-                    <option value="" disabled selected>Select</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-            </div>
-
-            <!-- Anti Rabies Vaccine -->
-            <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="antiRabiesVaccine" class="block text-gray-700 text-lg font-semibold">Anti Rabies Vaccine
-                    <span class="text-red-500">*</span></label>
-                <select id="antiRabiesVaccine"
-                    class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" name="antiRabiesVaccine"
-                    required>
-                    <option value="" disabled selected>Select</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-            </div>
-
-            <!-- Vitamin A -->
-            <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="vitaminA" class="block text-gray-700 text-lg font-semibold">Vitamin A <span
-                        class="text-red-500">*</span></label>
-                <select id="vitaminA" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                    name="vitaminA" required>
-                    <option value="" disabled selected>Select</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-            </div>
-
-            <!-- Combined Oral Contraceptives (Mala N) -->
-            <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="combinedOralContraceptives" class="block text-gray-700 text-lg font-semibold">Combined Oral
-                    Contraceptives (Mala N) <span class="text-red-500">*</span></label>
-                <select id="combinedOralContraceptives"
-                    class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                    name="combinedOralContraceptives" required>
-                    <option value="" disabled selected>Select</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-            </div>
-
-            <!-- Centchroman pills (Chhaya) -->
-            <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="centchromanPills" class="block text-gray-700 text-lg font-semibold">Centchroman pills
-                    (Chhaya) <span class="text-red-500">*</span></label>
-                <select id="centchromanPills"
-                    class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" name="centchromanPills"
-                    required>
-                    <option value="" disabled selected>Select</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-            </div>
-
-            <!-- IUCD -->
-            <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="iucd" class="block text-gray-700 text-lg font-semibold">IUCD <span
-                        class="text-red-500">*</span></label>
-                <select id="iucd" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                    name="iucd" required>
-                    <option value="" disabled selected>Select</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-            </div>
-
-            <!-- MMA Kit -->
-            <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="mmaKit" class="block text-gray-700 text-lg font-semibold">MMA Kit <span
-                        class="text-red-500">*</span></label>
-                <select id="mmaKit" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                    name="mmaKit" required>
-                    <option value="" disabled selected>Select</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-            </div>
-
-            <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="maleCondoms" class="block text-gray-700 text-lg font-semibold">Male Condoms <span
-                        class="text-red-500">*</span></label>
-                <select id="maleCondoms" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                    name="maleCondoms" required>
-                    <option value="" disabled selected>Select</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-            </div>
-
-            <!-- Sanitary Napkins -->
-            <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                <label for="sanitaryNapkins" class="block text-gray-700 text-lg font-semibold">Sanitary Napkins <span
-                        class="text-red-500">*</span></label>
-                <select id="sanitaryNapkins" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                    name="sanitaryNapkins" required>
-                    <option value="" disabled selected>Select</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-            </div>
-
         </div>
     </div>
 </body>

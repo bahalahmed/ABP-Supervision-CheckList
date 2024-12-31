@@ -897,7 +897,7 @@
                 </div>
             </div>
 
-            <div id="section5" class="section bg-white p-6 rounded-lg shadow-md mb-4">
+            <div id="section5" class="section bg-white p-6 rounded-lg shadow-md mb-4 hidden">
                 <div class="mb-6">
                     <h2 class="text-3xl font-bold mb-6 text-black-600"> Medicines</h2>
                     <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
@@ -1350,6 +1350,7 @@
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                         </select>
+                        <p id="error-iucd" class="text-red-500 text-sm"></p>
                     </div>
         
                     <!-- MMA Kit -->
@@ -1393,6 +1394,246 @@
                         <button type="button"
                             class="save-next bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
                             onclick="validateAndNext(5)">
+                            Save & Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="section6" class="section bg-white p-6 rounded-lg shadow-md mb-4">
+                <div class="mb-6">
+        
+                    <h2 class="text-3xl font-bold mb-4 text-black-600">Diagnostics</h2>
+                    <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
+        
+                    <!-- Diagnostics test conducted in facility -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="diagnosticsTestConducted" class="block text-lg font-semibold text-gray-700">
+                            Diagnostics test conducted in facility <span class="text-red-500">*</span>
+                        </label>
+                        <input type="number" id="diagnosticsTestConducted"
+                            class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                             min="0" max="250" required />
+                        <p id="error-diagnosticsTestConducted" class="text-red-500 text-sm mt-1"></p>
+                    </div>
+        
+                    <!-- Non-functional / Missing diagnostic tests -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="nonFunctionalTests" class="block text-lg font-semibold text-gray-700">
+                            Non-functional / Missing diagnostic tests <span class="text-red-500">*</span>
+                        </label>
+                        <input type="number" id="nonFunctionalTests"
+                            class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                            min="0" max="250" required />
+                        <p id="error-nonFunctionalTests" class="text-red-500 text-sm mt-1"></p>
+                    </div>
+        
+                    <!-- Dynamic Yes/No Fields -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="haemoglobin" class="block text-gray-700 text-lg font-semibold">Haemoglobin <span
+                                class="text-red-500">*</span></label>
+                        <select id="haemoglobin" name="haemoglobin"
+                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <option value="" disabled selected>Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-haemoglobin" class="text-red-500 text-sm mt-1"></p>
+                    </div>
+        
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="bloodSugar" class="block text-gray-700 text-lg font-semibold">Blood Sugar <span
+                                class="text-red-500">*</span></label>
+                        <select id="bloodSugar" name="bloodSugar"
+                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <option value="" disabled selected>Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-bloodSugar" class="text-red-500 text-sm mt-1"></p>
+                    </div>
+        
+                    <!-- Additional fields -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="malariaSmear" class="block text-gray-700 text-lg font-semibold">Malaria Smear (RDK) <span
+                                class="text-red-500">*</span></label>
+                        <select id="malariaSmear" name="malariaSmear"
+                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <option value="" disabled selected>Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-malariaSmear" class="text-red-500 text-sm mt-1"></p>
+                    </div>
+        
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="urinePregnancyTest" class="block text-gray-700 text-lg font-semibold">Urine Pregnancy Test
+                            <span class="text-red-500">*</span></label>
+                        <select id="urinePregnancyTest" name="urinePregnancyTest"
+                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <option value="" disabled selected>Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-urinePregnancyTest" class="text-red-500 text-sm mt-1"></p>
+                    </div>
+        
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="ogtt" class="block text-gray-700 text-lg font-semibold">OGTT <span
+                                class="text-red-500">*</span></label>
+                        <select id="ogtt" name="ogtt"
+                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <option value="" disabled selected>Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-ogtt" class="text-red-500 text-sm mt-1"></p>
+                    </div>
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="urineAlbuminSugar" class="block text-gray-700 text-lg font-semibold">Urine Albumin & Sugar <span class="text-red-500">*</span></label>
+                        <select id="urineAlbuminSugar" name="urineAlbuminSugar" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <option value="" disabled selected>Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-urineAlbuminSugar" class="text-red-500 text-sm mt-1"></p>
+                    </div>
+                    
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="hivTesting" class="block text-gray-700 text-lg font-semibold">HIV Testing (WBFPT) <span class="text-red-500">*</span></label>
+                        <select id="hivTesting" name="hivTesting" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <option value="" disabled selected>Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-hivTesting" class="text-red-500 text-sm mt-1"></p>
+                    </div>
+                    
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="microscopicSputumExamination" class="block text-gray-700 text-lg font-semibold">Microscopic Sputum Examination <span class="text-red-500">*</span></label>
+                        <select id="microscopicSputumExamination" name="microscopicSputumExamination" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <option value="" disabled selected>Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-microscopicSputumExamination" class="text-red-500 text-sm mt-1"></p>
+                    </div>
+                    
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="rapidSyphilisTest" class="block text-gray-700 text-lg font-semibold">Rapid Syphilis Test <span class="text-red-500">*</span></label>
+                        <select id="rapidSyphilisTest" name="rapidSyphilisTest" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <option value="" disabled selected>Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-rapidSyphilisTest" class="text-red-500 text-sm mt-1"></p>
+                    </div>
+                    
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="bloodGrouping" class="block text-gray-700 text-lg font-semibold">Blood Grouping <span class="text-red-500">*</span></label>
+                        <select id="bloodGrouping" name="bloodGrouping" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <option value="" disabled selected>Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-bloodGrouping" class="text-red-500 text-sm mt-1"></p>
+                    </div>
+                    
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="stoolOvaCyst" class="block text-gray-700 text-lg font-semibold">Stool for OVA and cyst <span class="text-red-500">*</span></label>
+                        <select id="stoolOvaCyst" name="stoolOvaCyst" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <option value="" disabled selected>Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-stoolOvaCyst" class="text-red-500 text-sm mt-1"></p>
+                    </div>
+                    
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="waterQualityTesting" class="block text-gray-700 text-lg font-semibold">Water Quality Testing-H2S strip test for fecal contamination <span class="text-red-500">*</span></label>
+                        <select id="waterQualityTesting" name="waterQualityTesting" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <option value="" disabled selected>Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-waterQualityTesting" class="text-red-500 text-sm mt-1"></p>
+                    </div>
+                    
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="wetMount" class="block text-gray-700 text-lg font-semibold">Wet mount- Direct Microscopy (RTI/STD) <span class="text-red-500">*</span></label>
+                        <select id="wetMount" name="wetMount" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <option value="" disabled selected>Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-wetMount" class="text-red-500 text-sm mt-1"></p>
+                    </div>
+                    
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="typhoidSerology" class="block text-gray-700 text-lg font-semibold">Typhoid serology <span class="text-red-500">*</span></label>
+                        <select id="typhoidSerology" name="typhoidSerology" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <option value="" disabled selected>Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-typhoidSerology" class="text-red-500 text-sm mt-1"></p>
+                    </div>
+                    
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="serologyDengue" class="block text-gray-700 text-lg font-semibold">Serology for Dengue (RDK) <span class="text-red-500">*</span></label>
+                        <select id="serologyDengue" name="serologyDengue" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <option value="" disabled selected>Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-serologyDengue" class="text-red-500 text-sm mt-1"></p>
+                    </div>
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="esr" class="block text-gray-700 text-lg font-semibold">ESR <span class="text-red-500">*</span></label>
+                        <select id="esr" name="esr" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <option value="" disabled selected>Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-esr" class="text-red-500 text-sm mt-1"></p>
+                    </div>
+                    
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="sickleCellTesting" class="block text-gray-700 text-lg font-semibold">Sickle Cell testing <span class="text-red-500">*</span></label>
+                        <select id="sickleCellTesting" name="sickleCellTesting" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <option value="" disabled selected>Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-sickleCellTesting" class="text-red-500 text-sm mt-1"></p>
+                    </div>
+                    
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="tlcDlc" class="block text-gray-700 text-lg font-semibold">TLC, DLC <span class="text-red-500">*</span></label>
+                        <select id="tlcDlc" name="tlcDlc" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <option value="" disabled selected>Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-tlcDlc" class="text-red-500 text-sm mt-1"></p>
+                    </div>
+                    
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="serumBilirubin" class="block text-gray-700 text-lg font-semibold">Serum Bilirubin <span class="text-red-500">*</span></label>
+                        <select id="serumBilirubin" name="serumBilirubin" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <option value="" disabled selected>Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-serumBilirubin" class="text-red-500 text-sm mt-1"></p>
+                    </div>
+                    
+        
+                    <!-- Submit Button -->
+                    <div class="flex justify-end mt-6">
+                        <button type="button"
+                            class="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
+                            onclick="validateAndNext(6)">
                             Save & Next
                         </button>
                     </div>

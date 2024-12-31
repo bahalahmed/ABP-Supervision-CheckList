@@ -262,7 +262,74 @@ const validations = {
 
         return isValid;
     },
+    section6: () => {
+        let isValid = true;
+
+        // List of fields to validate
+        const diagnosticFields = [
+            { id: 'diagnosticsTestConducted', min: 0, max: 250, errorMessage: 'Diagnostics test conducted in facility must be between 0 and 250.' },
+            { id: 'nonFunctionalTests', min: 0, max: 250, errorMessage: 'Non-functional / Missing diagnostic tests must be between 0 and 250.' },
+            { id: 'haemoglobin', errorMessage: 'Haemoglobin selection is required.' },
+            { id: 'bloodSugar', errorMessage: 'Blood Sugar selection is required.' },
+            { id: 'malariaSmear', errorMessage: 'Malaria Smear (RDK) selection is required.' },
+            { id: 'urinePregnancyTest', errorMessage: 'Urine Pregnancy Test selection is required.' },
+            { id: 'ogtt', errorMessage: 'OGTT selection is required.' },
+            { id: 'urineAlbuminSugar', errorMessage: 'Urine Albumin & Sugar selection is required.' },
+            { id: 'hivTesting', errorMessage: 'HIV Testing (WBFPT) selection is required.' },
+            { id: 'microscopicSputumExamination', errorMessage: 'Microscopic Sputum Examination selection is required.' },
+            { id: 'rapidSyphilisTest', errorMessage: 'Rapid Syphilis Test selection is required.' },
+            { id: 'bloodGrouping', errorMessage: 'Blood Grouping selection is required.' },
+            { id: 'stoolOvaCyst', errorMessage: 'Stool for OVA and cyst selection is required.' },
+            { id: 'waterQualityTesting', errorMessage: 'Water Quality Testing selection is required.' },
+            { id: 'wetMount', errorMessage: 'Wet mount- Direct Microscopy selection is required.' },
+            { id: 'typhoidSerology', errorMessage: 'Typhoid serology selection is required.' },
+            { id: 'serologyDengue', errorMessage: 'Serology for Dengue selection is required.' },
+            { id: 'esr', errorMessage: 'ESR selection is required.' },
+            { id: 'sickleCellTesting', errorMessage: 'Sickle Cell testing selection is required.' },
+            { id: 'tlcDlc', errorMessage: 'TLC, DLC selection is required.' },
+            { id: 'serumBilirubin', errorMessage: 'Serum Bilirubin selection is required.' }
+        ];
+
+        diagnosticFields.forEach(field => {
+            const inputElement = document.getElementById(field.id);
+            const errorElement = document.getElementById(`error-${field.id}`);
+
+            if (!inputElement) return;
+
+            if (inputElement.type === 'number') {
+                const value = parseInt(inputElement.value, 10);
+                if (isNaN(value) || value < field.min || value > field.max) {
+                    errorElement.textContent = field.errorMessage;
+                    inputElement.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                    inputElement.classList.remove('border-gray-300', 'focus:ring-blue-500', 'focus:border-blue-500');
+                    isValid = false;
+                } else {
+                    errorElement.textContent = '';
+                    inputElement.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                    inputElement.classList.add('border-gray-300', 'focus:ring-blue-500', 'focus:border-blue-500');
+                }
+            } else if (inputElement.tagName === 'SELECT') {
+                if (!inputElement.value.trim()) {
+                    errorElement.textContent = field.errorMessage;
+                    inputElement.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                    inputElement.classList.remove('border-gray-300', 'focus:ring-blue-500', 'focus:border-blue-500');
+                    isValid = false;
+                } else {
+                    errorElement.textContent = '';
+                    inputElement.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                    inputElement.classList.add('border-gray-300', 'focus:ring-blue-500', 'focus:border-blue-500');
+                }
+            }
+        });
+
+        if (!isValid) {
+            alert('Please fill out all required fields correctly before proceeding.');
+        }
+
+        return isValid;
+    }
 };
+
 
 document.querySelectorAll('input, select, textarea').forEach(element => {
     element.addEventListener('input', event => {
@@ -313,7 +380,10 @@ document.querySelectorAll('input, select, textarea').forEach(element => {
                 ncdTreatmentCancer: { min: 0, max: 2000 },
                 ncdReferredHypertension: { min: 0, max: 2000 },
                 ncdReferredDiabetes: { min: 0, max: 2000 },
-                ncdReferredCancer: { min: 0, max: 2000 },   
+                ncdReferredCancer: { min: 0, max: 2000 },  
+                diagnosticsTestConducted: { min: 0, max: 250 },
+                nonFunctionalTests: { min: 0, max: 250 },
+
             }[event.target.id];
 
             const value = parseInt(event.target.value, 10);
