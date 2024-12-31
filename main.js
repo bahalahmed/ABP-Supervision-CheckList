@@ -196,7 +196,74 @@ const validations = {
 
         return isValid;
     },
+    section5: () => {
+        let isValid = true;
+
+        // List all field IDs in Section 5
+        const fieldsToValidate = [
+            {id: 'injTd',errorMessage: 'Inj. TD selection is required.'},
+            {id: 'injMgSulph', errorMessage: 'Inj. Mg Sulphate selection is required.'},
+            {id: 'injectableMPA', errorMessage: 'Injectable MPA selection is required.'},
+            {id:'injOxytocin', errorMessage: 'Inj. Oxytocin selection is required.'},
+            {id: 'injIronSucrose', errorMessage: 'Inj. Iron Sucrose selection is required.'},
+            {id: 'injDexamethasone', errorMessage: 'Inj. Dexamethasone selection is required.'},
+            {id: 'tabCalcium', errorMessage: 'Tab. Calcium selection is required.'},
+            {id: 'tabIFA', errorMessage: 'Tab. IFA selection is required.'},
+            {id: 'antihistamines', errorMessage: 'Antihistamines selection is required.'},
+            {id:  'vitaminK1', errorMessage: 'Vitamin K1 selection is required.'},
+            {id: 'antiseptics', errorMessage: 'Antiseptics selection is required.'},
+            {id: 'antihypertensives', errorMessage: 'Antihypertensives selection is required.'},
+            {id: 'antidiabetics', errorMessage: 'Antidiabetics selection is required.'},
+            {id :'ecPills', errorMessage: 'EC Pills selection is required.'},
+            {id :'tabMisoprostol', errorMessage: 'Tab. Misoprostol selection is required.'},
+            {id :'antiTbDrugs', errorMessage: 'Anti-TB Drugs selection is required.'},
+            {id: 'zincTablets', errorMessage: 'Zinc Tablets selection is required.'},
+            {id: 'paracetamol', errorMessage: 'Paracetamol selection is required.'},
+            {id: 'tabAlbendazole', errorMessage: 'Tab. Albendazole selection is required.'},
+            {id: 'antibiotics', errorMessage: 'Antibiotics selection is required.'},
+            {id: 'orsSachets', errorMessage: 'ORS Sachets selection is required.'},
+            {id: 'ipv',  errorMessage: 'IPV selection is required.'},
+            {id: 'rotaVirus', errorMessage: 'Rota Virus selection is required.'},
+            {id: 'bcg', errorMessage: 'BCG selection is required.'},
+            {id: 'pentavalent', errorMessage: 'Pentavalent selection is required.'},
+            {id: 'japaneseEncephalitis', errorMessage: 'Japanese Encephalitis selection is required.'},
+            {id: 'hepatitisB', errorMessage: 'Hepatitis B selection is required.'},
+            {id:'opv', errorMessage: 'OPV selection is required.'},
+            {id: 'dpt', errorMessage: 'DPT selection is required.'},
+            {id: 'measlesRubella', errorMessage: 'Measles Rubella selection is required.'},
+            {id: 'antiRabiesVaccine', errorMessage: 'Anti Rabies Vaccine selection is required.'},
+            {id: 'vitaminA', errorMessage: 'Vitamin A selection is required.'},
+            {id: 'combinedOralContraceptives', errorMessage: 'Combined Oral Contraceptives selection is required.'},
+            {id :'centchromanPills', errorMessage: 'Centchroman Pills selection is required.'},
+            {id: 'iucd', errorMessage: 'IUCD selection is required.'},
+            {id: 'mmaKit', errorMessage: 'MMA Kit selection is required.'},
+            {id: 'maleCondoms', errorMessage:'Male Condoms selection is required.'},
+            {id: 'sanitaryNapkins', errorMessage: 'Sanitary Napkins selection is required.'},
+        ];
+
+        fieldsToValidate.forEach(field => {
+            const inputElement = document.getElementById(field.id);
+            const errorElement = document.getElementById(`error-${field.id}`);
+
+            if (inputElement && (!inputElement.value || !inputElement.value.trim())) {
+                if (errorElement) errorElement.textContent = field.errorMessage;
+                inputElement.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                inputElement.classList.remove('border-gray-300', 'focus:ring-indigo-500', 'focus:border-indigo-500');
+                isValid = false;
+            } else if (inputElement) {
+                if (errorElement) errorElement.textContent = '';
+                inputElement.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                inputElement.classList.add('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
+            }
+        });
+        if (!isValid) {
+            alert('Please fill out all required fields correctly before proceeding.');
+        }
+
+        return isValid;
+    },
 };
+
 document.querySelectorAll('input, select, textarea').forEach(element => {
     element.addEventListener('input', event => {
         const errorElement = document.getElementById(`error-${event.target.id}`);
