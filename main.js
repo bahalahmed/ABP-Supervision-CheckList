@@ -124,6 +124,74 @@ const validations = {
 
         return isValid;
     },
+    section3: () => {
+        let isValid = true;
+
+        // Get all sanctioned and available fields
+        const sanctionedFields = document.querySelectorAll('input[id$="-sanctioned"]');
+        //console.log('sanctionedFields:', sanctionedFields);
+
+        const availableFields = document.querySelectorAll('input[id$="-available"]');
+
+        sanctionedFields.forEach((sanctionedInput) => {
+
+
+            const idParts = sanctionedInput.id.split('-'); // Extract type and role
+            const type = idParts[0]; // e.g., "regular" or "contractual"
+            const role = idParts[1]; // e.g., "MO", "DentalMO", etc.
+            const availableInput = document.getElementById(`${type}-${role}-available`);
+            const trainingContainer = document.getElementById(`${role.toLowerCase()}TrainingsContainer`);
+            const errorSanctioned = document.getElementById(`error-${sanctionedInput.id}`);
+            const errorAvailable = document.getElementById(`error-${availableInput.id}`);
+
+            // Validation for sanctioned field
+            const sanctionedValue = parseInt(sanctionedInput.value, 10);
+            if (isNaN(sanctionedValue) || sanctionedValue <= 0) {
+                isValid = false;
+                errorSanctioned.textContent = 'Sanctioned value must be greater than 0.';
+                sanctionedInput.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                sanctionedInput.classList.remove('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
+                availableInput.setAttribute('disabled', true);
+                availableInput.value = ''; // Clear the available field
+                if (trainingContainer) {
+                    trainingContainer.style.display = 'none'; // Hide the training container
+                } // Hide the training container
+            } else {
+                errorSanctioned.textContent = '';
+                sanctionedInput.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                sanctionedInput.classList.add('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
+                availableInput.removeAttribute('disabled'); // Enable the available input
+            }
+
+            // // Validation for available field
+            const availableValue = parseInt(availableInput.value, 10);
+            if (
+                sanctionedValue > 0 &&
+                (!availableValue || isNaN(availableValue) || availableValue <= 0 || availableValue > sanctionedValue)
+            ) {
+                isValid = false;
+                errorAvailable.textContent = `Available value must be between 1 and ${sanctionedValue}.`;
+                availableInput.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                availableInput.classList.remove('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
+                if (trainingContainer) {
+                    trainingContainer.style.display = 'none'; // Hide the training container
+                } // Hide the training container
+            } else if (sanctionedValue > 0) {
+                errorAvailable.textContent = '';
+                availableInput.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                availableInput.classList.add('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
+                if (trainingContainer) {
+                    trainingContainer.style.display = 'block'; // Show the training container
+                }// Show the training container
+            }
+        });
+
+        if (!isValid) {
+            alert('Please correct the errors in Section 3 before proceeding.');
+        }
+
+        return isValid;
+    },
     section4: () => {
         let isValid = true;
 
@@ -404,8 +472,10 @@ const validations = {
 };
 
 
-document.querySelectorAll('input, select, textarea,checkbox').forEach(element => {
+document.querySelectorAll('input, select, textarea, checkbox').forEach(element => {
     element.addEventListener('input', event => {
+
+        
         const errorElement = document.getElementById(`error-${event.target.id}`);
         if (!errorElement) return;
 
@@ -456,7 +526,86 @@ document.querySelectorAll('input, select, textarea,checkbox').forEach(element =>
                 ncdReferredCancer: { min: 0, max: 2000 },  
                 diagnosticsTestConducted: { min: 0, max: 250 },
                 nonFunctionalTests: { min: 0, max: 250 },
-
+                "regular-MO-sanctioned": {min: 0, max: 5},
+                "regular-MO-available": {min: 0, max: 5},
+                "contractual-MO-sanctioned": {min: 0, max: 5},
+                "contractual-MO-available": {min: 0, max: 5},
+                "regular-DentalMO-sanctioned": {min: 0, max: 5},
+                "regular-DentalMO-available": {min: 0, max: 5},
+                "contractual-DentalMO-sanctioned": {min: 0, max: 5},
+                "contractual-DentalMO-available": {min: 0, max: 5},
+                "regular-StaffNurse-sanctioned": {min: 0, max: 5},
+                "regular-StaffNurse-available": {min: 0, max: 5},
+                "contractual-StaffNurse-sanctioned": {min: 0, max: 5},
+                "contractual-StaffNurse-available": {min: 0, max: 5},
+                "regular-Pharmacists-sanctioned": {min: 0, max: 5},
+                "regular-Pharmacists-available": {min: 0, max: 5},
+                "contractual-Pharmacists-sanctioned": {min: 0, max: 5},
+                "contractual-Pharmacists-available": {min: 0, max: 5},
+                "regular-LabTechnician-sanctioned": {min: 0, max: 5},
+                "regular-LabTechnician-available": {min: 0, max: 5},
+                "contractual-LabTechnician-sanctioned": {min: 0, max: 5},
+                "contractual-LabTechnician-available": {min: 0, max: 5},
+                "regular-LHV-sanctioned": {min: 0, max: 5},
+                "regular-LHV-available": {min: 0, max: 5},
+                "contractual-LHV-sanctioned": {min: 0, max: 5},
+                "contractual-LHV-available": {min: 0, max: 5},
+                "regular-CHO-sanctioned": {min: 0, max: 5},
+                "regular-CHO-available": {min: 0, max: 5},
+                "contractual-CHO-sanctioned": {min: 0, max: 5},
+                "contractual-CHO-available": {min: 0, max: 5},
+                "regular-MPWMale-sanctioned": {min: 0, max: 5},
+                "regular-MPWMale-available": {min: 0, max: 5},
+                "contractual-MPWMale-sanctioned": {min: 0, max: 5},
+                "contractual-MPWMale-available": {min: 0, max: 5},
+                "regular-MPWFemale-sanctioned": {min: 0, max: 5},
+                "regular-MPWFemale-available": {min: 0, max: 5},
+                "contractual-MPWFemale-sanctioned": {min: 0, max: 5},
+                "contractual-MPWFemale-available": {min: 0, max: 5},
+                "regular-ASHA-sanctioned": {min: 0, max: 5},
+                "regular-ASHA-available": {min: 0, max: 5},
+                "contractual-ASHA-sanctioned": {min: 0, max: 5},
+                "contractual-ASHA-available": {min: 0, max: 5},
+                "rchTraining-MO" : {min: 0, max: 10},
+                "tbTraining-MO" : {min: 0, max: 10},
+                "nqasTraining-MO" : {min: 0, max: 10},
+                "ncdTraining-MO" : {min: 0, max: 10},
+                "rchTraining-DentalMO" : {min: 0, max: 10},
+                "tbTraining-DentalMO" : {min: 0, max: 10},
+                "nqasTraining-DentalMO" : {min: 0, max: 10},
+                "ncdTraining-DentalMO" : {min: 0, max: 10},
+                "rchTraining-StaffNurse" : {min: 0, max: 10},
+                "tbTraining-StaffNurse" : {min: 0, max: 10},
+                "nqasTraining-StaffNurse" : {min: 0, max: 10},
+                "ncdTraining-StaffNurse" : {min: 0, max: 10},
+                "rchTraining-Pharmacists": { min: 0, max: 10 },
+                "tbTraining-Pharmacists": { min: 0, max: 10 },
+                "nqasTraining-Pharmacists": { min: 0, max: 10 },
+                "ncdTraining-Pharmacists": { min: 0, max: 10 },
+                "rchTraining-LabTechnician": { min: 0, max: 10 },
+                "tbTraining-LabTechnician": { min: 0, max: 10 },
+                "nqasTraining-LabTechnician": { min: 0, max: 10 },
+                "ncdTraining-LabTechnician": { min: 0, max: 10 },
+                "rchTraining-LHV": { min: 0, max: 10 },
+                "tbTraining-LHV": { min: 0, max: 10 },
+                "nqasTraining-LHV": { min: 0, max: 10 },
+                "ncdTraining-LHV": { min: 0, max: 10 },
+                "rchTraining-CHO": { min: 0, max: 10 },
+                "tbTraining-CHO": { min: 0, max: 10 },
+                "nqasTraining-CHO": { min: 0, max: 10 },
+                "ncdTraining-CHO": { min: 0, max: 10 },
+                "rchTraining-MPWMale": { min: 0, max: 10 },
+                "tbTraining-MPWMale": { min: 0, max: 10 },
+                "nqasTraining-MPWMale": { min: 0, max: 10 },
+                "ncdTraining-MPWMale": { min: 0, max: 10 },
+                "rchTraining-MPWFemale": { min: 0, max: 10 },
+                "tbTraining-MPWFemale": { min: 0, max: 10 },
+                "nqasTraining-MPWFemale": { min: 0, max: 10 },
+                "ncdTraining-MPWFemale": { min: 0, max: 10 },
+                "rchTraining-ASHA": { min: 0, max: 10 },
+                "tbTraining-ASHA": { min: 0, max: 10 },
+                "nqasTraining-ASHA": { min: 0, max: 10 },
+                "ncdTraining-ASHA": { min: 0, max: 10 },                
             }[event.target.id];
 
             const value = parseInt(event.target.value, 10);
@@ -477,6 +626,18 @@ document.querySelectorAll('input, select, textarea,checkbox').forEach(element =>
                 facilityName: { minLength: 2, maxLength: 30 },
                 facilityInCharge: { minLength: 2, maxLength: 40 },
                 designation: { minLength: 2, maxLength: 30 },
+                ashaOtherTrainings: { minLength: 2, maxLength: 100 },
+                mpwFemaleOtherTrainings: { minLength: 2, maxLength: 100 },
+                mpwMaleOtherTrainings: { minLength: 2, maxLength: 100 },
+                moOtherTrainings : { minLength: 2, maxLength: 100 },
+                choOtherTrainings: { minLength: 2, maxLength: 100 },
+                lhvOtherTrainings: { minLength: 2, maxLength: 100 },
+                labTechnicianOtherTrainings: { minLength: 2, maxLength: 100 },
+                pharmacistOtherTrainings: { minLength: 2, maxLength: 100 },
+                staffNurseOtherTrainings: { minLength: 2, maxLength: 100 },
+                dentalOtherTrainings: { minLength: 2, maxLength: 100 },
+                pharmacistsOtherTrainings: { minLength: 2, maxLength: 100 },
+
                 
             }[event.target.id];
 
@@ -511,6 +672,42 @@ document.querySelectorAll('input, select, textarea,checkbox').forEach(element =>
                 event.target.classList.remove('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
             }
         }
+        // Dynamic handling for sanctioned and available inputs
+        const sanctionedFieldMatch = event.target.id.match(/(regular|contractual)-(.*?)-(sanctioned|available)/);
+        if (sanctionedFieldMatch) {
+            const [_, type, role, fieldType] = sanctionedFieldMatch;
+            const sanctionedInput = document.getElementById(`${type}-${role}-sanctioned`);
+            const availableInput = document.getElementById(`${type}-${role}-available`);
+            //const trainingContainer = document.getElementById(`trainingsContainer-${role}`);
+            const trainingContainer = document.getElementById(`trainingsContainer-${role}`);
+            console.log('Training Container:', trainingContainer);
+
+
+
+            if (fieldType === 'sanctioned') {
+                const sanctionedValue = parseInt(event.target.value, 10);
+                if (isNaN(sanctionedValue) || sanctionedValue <= 0) {
+                    availableInput.setAttribute('disabled', true);
+                    availableInput.value = ''; // Clear available field
+                    errorElement.textContent = 'Sanctioned value must be greater than 0.';
+                    if (trainingContainer) trainingContainer.style.display = 'none'; // Hide training container
+                } else {
+                    availableInput.removeAttribute('disabled'); // Enable available input
+                    //errorElement.textContent = '';
+                }
+            } else if (fieldType === 'available') {
+                const sanctionedValue = parseInt(sanctionedInput?.value || 0, 10);
+                const availableValue = parseInt(event.target.value, 10);
+                if (isNaN(availableValue) || availableValue <= 0 || availableValue > sanctionedValue) {
+                    errorElement.textContent = `Count should not exceed the ${sanctionedValue} count`;
+                    if (trainingContainer) trainingContainer.style.display = 'none'; // Hide training container
+                } else {
+                    errorElement.textContent = '';
+                    if (trainingContainer) trainingContainer.style.display = 'block'; // Show training container
+                }
+            }
+        }
+        
     });
 });
 
