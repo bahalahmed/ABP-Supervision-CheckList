@@ -1,3 +1,6 @@
+function navigateTo(url) {
+    window.location.href = url;
+}
 const validations = {
     section1: () => {
         let isValid = true;
@@ -468,8 +471,8 @@ const validations = {
         }
 
         return isValid;
-    }
-};
+    },
+    };
 
 
 document.querySelectorAll('input, select, textarea, checkbox').forEach(element => {
@@ -637,8 +640,10 @@ document.querySelectorAll('input, select, textarea, checkbox').forEach(element =
                 staffNurseOtherTrainings: { minLength: 2, maxLength: 100 },
                 dentalOtherTrainings: { minLength: 2, maxLength: 100 },
                 pharmacistsOtherTrainings: { minLength: 2, maxLength: 100 },
-
-                
+                "major-findings": { minLength: 2, maxLength: 200 },
+                "interventions": { minLength: 2, maxLength: 200 },
+                "intervention-level": { minLength: 2, maxLength: 200 },
+                "responsibility": { minLength: 2, maxLength: 200 },
             }[event.target.id];
 
             if (textConfig) {
@@ -721,3 +726,5 @@ function validateAndNext(section) {
         }
     }
 }
+
+

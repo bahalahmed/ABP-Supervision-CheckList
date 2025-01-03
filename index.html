@@ -505,7 +505,7 @@
             </div>
 
             <!--Medical Officers Section -->
-            <div id="section3" class="bg-white p-6 rounded shadow-md mb-4">
+            <div id="section3" class="bg-white p-6 rounded shadow-md mb-4 hidden">
                 <h2 class="text-3xl font-bold mb-6 text-black-600">Human Resource for Health</h2>
                 <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
 
@@ -706,8 +706,9 @@
                         <div class="mb-6">
                             <label for=" nqasTraining-DentalMO" class="block text-gray-700 font-semibold">NQAS <span
                                     class="text-red-500">*</span></label>
-                            <input type="number" id="nqasTraining-DentalMO" name="nqasTraining-DentalMO" min="0" max="10"
-                                class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <input type="number" id="nqasTraining-DentalMO" name="nqasTraining-DentalMO" min="0"
+                                max="10" class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                required>
                             <p id="error-nqasTraining-DentalMO" class="text-red-500 text-sm"></p>
                         </div>
 
@@ -810,8 +811,9 @@
                         <div class="mb-6">
                             <label for="tbTraining-StaffNurse" class="block text-gray-700 font-semibold">TB and Other
                                 Communicable <span class="text-red-500">*</span></label>
-                            <input type="number" id="tbTraining-StaffNurse" name="tbTraining-StaffNurse" min="0" max="10"
-                                class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <input type="number" id="tbTraining-StaffNurse" name="tbTraining-StaffNurse" min="0"
+                                max="10" class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                required>
                             <p id="error-tbTraining-StaffNurse" class="text-red-500 text-sm"></p>
                         </div>
 
@@ -1004,7 +1006,8 @@
                             <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
                                 <input type="number" id="contractual-LabTechnician-sanctioned"
                                     class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                    name="contractual-LabTechnician-sanctioned" placeholder=" " min="0" max="5" required>
+                                    name="contractual-LabTechnician-sanctioned" placeholder=" " min="0" max="5"
+                                    required>
                                 <label for="contractual-LabTechnician-sanctioned"
                                     class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
                                     Sanctioned
@@ -1052,9 +1055,9 @@
                         <div class="mb-6">
                             <label for="nqasTraining-LabTechnician" class="block text-gray-700 font-semibold">NQAS <span
                                     class="text-red-500">*</span></label>
-                            <input type="number" id="nqasTraining-LabTechnician" name="nqasTraining-LabTechnician" min="0"
-                                max="10" class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                                required>
+                            <input type="number" id="nqasTraining-LabTechnician" name="nqasTraining-LabTechnician"
+                                min="0" max="10"
+                                class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
                             <p id="error-nqasTraining-LabTechnician" class="text-red-500 text-sm"></p>
                         </div>
 
@@ -1488,8 +1491,9 @@
                         <div class="mb-6">
                             <label for="rchTraining-MPWFemale" class="block text-gray-700 font-semibold">RCH <span
                                     class="text-red-500">*</span></label>
-                            <input type="number" id="rchTraining-MPWFemale" name="rchTraining-MPWFemale" min="0" max="10"
-                                class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <input type="number" id="rchTraining-MPWFemale" name="rchTraining-MPWFemale" min="0"
+                                max="10" class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                required>
                             <p id="error-rchTraining-MPWFemale" class="text-red-500 text-sm"></p>
                         </div>
 
@@ -1516,8 +1520,9 @@
                         <div class="mb-6">
                             <label for="ncdTraining-MPWFemale" class="block text-gray-700 font-semibold">NCD <span
                                     class="text-red-500">*</span></label>
-                            <input type="number" id="ncdTraining-MPWFemale" name="ncdTraining-MPWFemale" min="0" max="10"
-                                class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <input type="number" id="ncdTraining-MPWFemale" name="ncdTraining-MPWFemale" min="0"
+                                max="10" class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                required>
                             <p id="error-ncdTraining-MPWFemale" class="text-red-500 text-sm"></p>
                         </div>
 
@@ -1644,7 +1649,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="flex justify-end mt-6">
                     <button type="button"
                         class="save-next bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
@@ -3249,19 +3254,20 @@
                 </div>
             </div>
 
+            <div id="section8" class="section bg-white p-8 rounded-lg shadow-md mb-6 hidden">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold mb-4 text-gray-800">Key Programmatic Issues</h2>
+                    <p class="text-base text-gray-600 mb-6"> 
+                        On clicking "Add issue" --- Key programatic Issues will appear in sequetial order</p>
+                    <a href="/kpi.html" class="inline-block px-6 py-3 bg-blue-500 text-white font-semibold text-lg rounded-lg shadow hover:bg-blue-600 transition duration-300">
+                        Add Issues
+                    </a>
+                </div>
+            </div> 
+        </form>
     </div>
-    </div>
 
-
-    </form>
-    </div>
-</body>
-
-</html>
-
-</form>
-</div>
-<script src="main.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>
