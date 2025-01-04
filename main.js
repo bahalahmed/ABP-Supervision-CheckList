@@ -1,22 +1,31 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const totalHealthFacilitiesField = document.getElementById("totalHealthFacilities");
-
-    const updateTotalHealthFacilities = () => {
-        const totalPHC = parseInt(document.getElementById("totalPHC").value || 0, 10);
-        const totalCHC = parseInt(document.getElementById("totalCHC").value || 0, 10);
-        const totalSubCenter = parseInt(document.getElementById("totalSubCenter").value || 0, 10);
-        
-        const total = totalPHC + totalCHC + totalSubCenter;
-
-        totalHealthFacilitiesField.value = total; // Update the total in the field
+    const updateTotalHealthFacilities = (totalFieldId, fieldIds) => {
+        const totalField = document.getElementById(totalFieldId);
+        const total = fieldIds.reduce((sum, id) => {
+            const value = parseInt(document.getElementById(id)?.value || 0, 10);
+            return sum + value;
+        }, 0);
+        if (totalField) {
+            totalField.value = total; // Update the total field
+        }
     };
 
-    // Add event listeners to the relevant fields
-    ["totalPHC", "totalCHC", "totalSubCenter"].forEach((id) => {
-        const inputField = document.getElementById(id);
-        inputField.addEventListener("input", updateTotalHealthFacilities);
-    });
+    const addEventListenersForTotal = (totalFieldId, fieldIds) => {
+        fieldIds.forEach((id) => {
+            const inputField = document.getElementById(id);
+            if (inputField) {
+                inputField.addEventListener("input", () => updateTotalHealthFacilities(totalFieldId, fieldIds));
+            }
+        });
+    };
+
+    
+    addEventListenersForTotal("totalHealthFacilities", ["totalPHC", "totalCHC", "totalSubCenter"]);
+
+    
+    addEventListenersForTotal("totalHealthFacilities1", ["totalPHC1", "totalCHC1", "totalSubCenter1"]);
 });
+
 const validations = {
     section1: () => {
         let isValid = true;
@@ -176,6 +185,86 @@ const validations = {
 
         return isValid;
     },
+    section2: () => {
+        let isValid = true;
+
+        // Fields to validate
+        const fieldsToValidate = [
+            { id: 'building', errorMessage: 'Building selection is required.' },
+            {id:'orientationCompleted', errorMessage: 'Orientation Completed is required.'},
+            {id:'healthActionPlan', errorMessage: 'Health Action Plan is required.'},
+            {id:'mchnPlan', errorMessage: 'MCHN Plan is required.'},
+            {id:'blockMap', errorMessage: 'Block Map is required.'},
+
+            {id:'keyFocusAreas', errorMessage: 'Key Focus Areas is required.'},
+            {id:'healthActionPlanDisseminated', errorMessage: 'Health Action Plan Disseminated is required.'},
+            {id:'dhsMeeting', errorMessage: 'DHS Meeting is required.'},
+            {id:'nqasCertification', errorMessage: 'NQAS Certification is required.'},
+           
+            {id:'referralMechanism', errorMessage: 'Referral Mechanism is required.',},
+        ];
+
+        const nqasDetails = document.getElementById('nqasDetails');
+        if (nqasDetails && !nqasDetails.classList.contains('hidden')) {
+            const nqasFields = [
+                {id:'totalPHC1', errorMessage: 'Total PHC is required.',},
+                {id:'totalCHC1', errorMessage: 'Total CHC is required.',},
+                {id:'totalSubCenter1', errorMessage: 'Total SubCenter is required.',},  
+            ];
+            fieldsToValidate.push(...nqasFields);
+        }
+        fieldsToValidate.forEach(field => {
+            const inputElement = document.getElementById(field.id);
+            const errorElement = document.getElementById(`error-${field.id}`);
+
+            if (inputElement && (!inputElement.value || !inputElement.value.trim())) {
+                if (errorElement) errorElement.textContent = field.errorMessage;
+                inputElement.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                inputElement.classList.remove('border-gray-300', 'focus:ring-indigo-500', 'focus:border-indigo-500');
+                isValid = false;
+            } else if (inputElement) {
+                if (errorElement) errorElement.textContent = '';
+                inputElement.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                inputElement.classList.add('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
+            }
+        });
+
+        fieldsToValidate.forEach(field => {
+            const inputElement = document.getElementById(field.id);
+            const errorElement = document.getElementById(`error-${field.id}`);
+
+            if (!inputElement) return;
+
+            if (inputElement.type === 'number') {
+                const value = parseInt(inputElement.value, 10);
+                if (isNaN(value) || value < field.min || value > field.max) {
+                    errorElement.textContent = field.errorMessage;
+                    inputElement.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                    inputElement.classList.remove('border-gray-300', 'focus:ring-indigo-500', 'focus:border-indigo-500');
+                    isValid = false;
+                } else {
+                    errorElement.textContent = '';
+                    inputElement.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                    inputElement.classList.add('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
+                }
+            } else if (!inputElement.value.trim()) {
+                errorElement.textContent = field.errorMessage;
+                inputElement.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                inputElement.classList.remove('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
+                isValid = false;
+            } else {
+                errorElement.textContent = '';
+                inputElement.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                inputElement.classList.add('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
+            }
+        });
+
+        if (!isValid) {
+            alert('Please fill out all required fields correctly before proceeding.');
+        }
+
+        return isValid;
+    },
 };
 
 function validateAndNext(section) {
@@ -228,6 +317,9 @@ document.querySelectorAll('input, select, textarea, checkbox').forEach(element =
                 totalPHC: { min: 0, max: 50 },
                 totalCHC: { min: 0, max: 20 },
                 totalSubCenter: { min: 0, max: 100 },
+                totalPHC1: { min: 0, max: 50 },
+                totalCHC1: { min: 0, max: 20 },
+                totalSubCenter1: { min: 0, max: 100 },
                 anganwadiCentres: { min: 0, max: 150 },
                 populationCovered: { min: 50000, max: 1000000 },
                 totalEligibleCouple: { min: 0, max: 100000 },
@@ -293,6 +385,22 @@ document.querySelectorAll('input, select, textarea, checkbox').forEach(element =
                 event.target.classList.remove('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
             }
         }
+
+        element.addEventListener('change', event => {
+            const errorElement = document.getElementById(`error-${event.target.id}`);
+    
+            // Validate on change for all inputs
+            if (errorElement && event.target.value.trim() !== "") {
+                errorElement.textContent = "";
+                event.target.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                event.target.classList.add('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
+            }
+    
+            // Toggle VHND Section for specific input
+            if (event.target.id === 'nqasCertification') {
+                togglenqasDetails(event.target.value);
+            }
+        });
         // Dynamic handling for sanctioned and available inputs
         const sanctionedFieldMatch = event.target.id.match(/(regular|contractual)-(.*?)-(sanctioned|available)/);
         if (sanctionedFieldMatch) {
@@ -331,6 +439,17 @@ document.querySelectorAll('input, select, textarea, checkbox').forEach(element =
         
     });
 });
+
+function togglenqasDetails(value) {
+    const nqasDetails = document.getElementById('nqasDetails');
+    if (nqasDetails) {
+        if (value === 'Yes') {
+            nqasDetails.classList.remove('hidden');
+        } else {
+            nqasDetails.classList.add('hidden');
+        }
+    }
+}
 
 
 

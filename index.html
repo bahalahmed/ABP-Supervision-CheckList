@@ -289,313 +289,185 @@
                 </div>
 
             </div>
-            <!-- Infrastructure Section -->
-            <div id="section2" class="section bg-white p-6 rounded-lg shadow-md mb-4 hidden">
+
+            <!-- Block Preparedness Section -->
+            <div id="section2" class="section bg-white p-6 rounded-lg shadow-md mb-4 ">
                 <div class="mb-6">
-                    <h2 class="text-3xl font-bold mb-6 text-black-600">Infrastructure</h2>
+                    <h2 class="text-3xl font-bold mb-6 text-black-600">Block Preparedness</h2>
                     <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
 
-                    <!-- Building -->
+                    <!-- Orientation on Aspirational Blocks Programme / Sampurnata Abhiyaan completed -->
                     <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                        <label for="building" class="block text-gray-700 text-lg font-semibold">Building <span
+                        <label for="orientationCompleted" class="block text-gray-700 text-lg font-semibold">Orientation
+                            on Aspirational Blocks Programme / Sampurnata Abhiyaan completed? <span
                                 class="text-red-500">*</span></label>
-                        <select id="building" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                            name="building" required>
-                            <option value="" disabled selected>Select Building Type</option>
-                            <option value="Government">Government</option>
-                            <option value="Rented">Rented</option>
-                        </select>
-                        <p id="error-building" class="text-red-500 text-sm"></p>
-                    </div>
-
-                    <!-- Road Accessibility -->
-                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                        <label for="roadAccessibility" class="block text-gray-700 text-lg font-semibold">Road
-                            Accessibility <span class="text-red-500">*</span></label>
-                        <select id="roadAccessibility"
-                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" name="roadAccessibility"
-                            required>
-                            <option value="" disabled selected>Select Option</option>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                        <p id="error-roadAccessibility" class="text-red-500 text-sm"></p>
-                    </div>
-
-                    <!-- 24X7 Power Backup -->
-                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                        <label for="powerBackup" class="block text-gray-700 text-lg font-semibold">24X7 Power Backup
-                            <span class="text-red-500">*</span></label>
-                        <select id="powerBackup" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                            name="powerBackup" required>
-                            <option value="" disabled selected>Select Option</option>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                        <p id="error-powerBackup" class="text-red-500 text-sm"></p>
-                    </div>
-
-                    <!-- Patient Waiting Area -->
-                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                        <label for="waitingArea" class="block text-gray-700 text-lg font-semibold">Patient Waiting Area
-                            (20-25 chairs) <span class="text-red-500">*</span></label>
-                        <select id="waitingArea" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                            name="waitingArea" required>
-                            <option value="" disabled selected>Select Option</option>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                        <p id="error-waitingArea" class="text-red-500 text-sm"></p>
-                    </div>
-
-                    <!-- Separate Toilets -->
-                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                        <label for="separateToilets" class="block text-gray-700 text-lg font-semibold">Separate Toilets
-                            for Males and Females <span class="text-red-500">*</span></label>
-                        <select id="separateToilets" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                            name="separateToilets" required>
-                            <option value="" disabled selected>Select Option</option>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                        <p id="error-separateToilets" class="text-red-500 text-sm"></p>
-                    </div>
-
-                    <!-- Total Number of Beds -->
-                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                        <label for="totalBeds" class="block text-gray-700 text-lg font-semibold">Total Number of Beds
-                            <span class="text-red-500">*</span></label>
-                        <input type="number" id="totalBeds"
-                            class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" name="totalBeds" min="0"
-                            max="50" required>
-                        <p id="error-totalBeds" class="text-red-500 text-sm"></p>
-                    </div>
-
-                    <!-- Total Number of Labor Tables -->
-                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                        <label for="totalLaborTables" class="block text-gray-700 text-lg font-semibold">Total Number of
-                            Labor Tables <span class="text-red-500">*</span></label>
-                        <input type="number" id="totalLaborTables"
-                            class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" name="totalLaborTables"
-                            min="0" max="10" required>
-                        <p id="error-totalLaborTables" class="text-red-500 text-sm"></p>
-                    </div>
-
-                    <!-- Functional Labor Room -->
-                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                        <label for="laborRoom" class="block text-gray-700 text-lg font-semibold">Functional Labor Room
-                            Available <span class="text-red-500">*</span></label>
-                        <select id="laborRoom" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                            name="laborRoom" required>
-                            <option value="" disabled selected>Select Option</option>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                        <p id="error-laborRoom" class="text-red-500 text-sm"></p>
-                    </div>
-                    <!-- Internet Connectivity -->
-                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                        <label for="internetConnectivity" class="block text-gray-700 text-lg font-semibold">Internet
-                            Connectivity <span class="text-red-500">*</span></label>
-                        <select id="internetConnectivity"
+                        <select id="orientationCompleted"
                             class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                            name="internetConnectivity" required>
+                            name="orientationCompleted" required>
                             <option value="" disabled selected>Select an option</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                         </select>
-                        <p id="error-internetConnectivity" class="text-red-500 text-sm"></p>
+                        <p id="error-orientationCompleted" class="text-red-500 text-sm"></p>
                     </div>
 
-                    <!-- 24X7 Running water facility -->
+                    <!-- Block health action plan prepared and available -->
                     <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                        <label for="runningWater" class="block text-gray-700 text-lg font-semibold">24X7 Running water
-                            facility <span class="text-red-500">*</span></label>
-                        <select id="runningWater" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                            name="runningWater" required>
+                        <label for="healthActionPlan" class="block text-gray-700 text-lg font-semibold">Block health
+                            action plan prepared and available (verify the hard copy)? <span
+                                class="text-red-500">*</span></label>
+                        <select id="healthActionPlan"
+                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                            name="healthActionPlan" required>
                             <option value="" disabled selected>Select an option</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                         </select>
-                        <p id="error-runningWater" class="text-red-500 text-sm"></p>
+                        <p id="error-healthActionPlan" class="text-red-500 text-sm"></p>
                     </div>
 
-                    <!-- Space for yoga/ health promotion -->
+                    <!-- MCHN / RI plan available with BCMO -->
                     <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                        <label for="yogaSpace" class="block text-gray-700 text-lg font-semibold">Space for yoga/ health
-                            promotion <span class="text-red-500">*</span></label>
-                        <select id="yogaSpace" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                            name="yogaSpace" required>
-                            <option value="" disabled selected>Select an option</option>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                        <p id="error-yogaSpace" class="text-red-500 text-sm"></p>
-                    </div>
-
-                    <!-- Functional Radiant warmer -->
-                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                        <label for="radiantWarmer" class="block text-gray-700 text-lg font-semibold">Functional Radiant
-                            warmer <span class="text-red-500">*</span></label>
-                        <select id="radiantWarmer" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                            name="radiantWarmer" required>
-                            <option value="" disabled selected>Select an option</option>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                        <p id="error-radiantWarmer" class="text-red-500 text-sm"></p>
-                    </div>
-
-                    <!-- Operational RCH portal -->
-                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                        <label for="rchPortal" class="block text-gray-700 text-lg font-semibold">Operational RCH portal
-                            <span class="text-red-500">*</span></label>
-                        <select id="rchPortal" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                            name="rchPortal" required>
-                            <option value="" disabled selected>Select an option</option>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                        <p id="error-rchPortal" class="text-red-500 text-sm"></p>
-                    </div>
-
-                    <!-- Operational ANMOL App -->
-                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                        <label for="anmolApp" class="block text-gray-700 text-lg font-semibold">Operational ANMOL App
-                            <span class="text-red-500">*</span></label>
-                        <select id="anmolApp" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
-                            name="anmolApp" required>
-                            <option value="" disabled selected>Select an option</option>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                        <p id="error-anmolApp" class="text-red-500 text-sm"></p>
-                    </div>
-
-                    <!-- Branding completed -->
-                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                        <label for="brandingCompleted" class="block text-gray-700 text-lg font-semibold">Branding
-                            completed <span class="text-red-500">*</span></label>
-                        <select id="brandingCompleted"
-                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" name="brandingCompleted"
+                        <label for="mchnPlan" class="block text-gray-700 text-lg font-semibold">MCHN / RI plan available
+                            with BCMO? <span class="text-red-500">*</span></label>
+                        <select id="mchnPlan"
+                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" name="mchnPlan"
                             required>
                             <option value="" disabled selected>Select an option</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                         </select>
-                        <p id="error-brandingCompleted" class="text-red-500 text-sm"></p>
+                        <p id="error-mchnPlan" class="text-red-500 text-sm"></p>
                     </div>
 
-                    <!-- Residential Facility -->
+                    <!-- Latest map of the Block displayed at the BCMO office -->
                     <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                        <label for="residentialFacility" class="block text-gray-700 text-lg font-semibold">
-                            Residential Facility for staff as per IPHS norms <span class="text-red-500">*</span>
-                        </label>
-                        <select id="residentialFacility" name="residentialFacility"
-                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                        <label for="blockMap" class="block text-gray-700 text-lg font-semibold">Latest map of the Block
+                            displayed at the BCMO office? <span class="text-red-500">*</span></label>
+                        <select id="blockMap"
+                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" name="blockMap"
+                            required>
                             <option value="" disabled selected>Select an option</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                         </select>
-                        <p id="error-residentialFacility" class="text-red-500 text-sm"></p>
+                        <p id="error-blockMap" class="text-red-500 text-sm"></p>
                     </div>
 
-                    <!-- Privacy During Patient Examination -->
+                    <!-- Key focus areas identified for strategic interventions -->
                     <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                        <label for="privacyDuringExamination" class="block text-gray-700 text-lg font-semibold">
-                            Privacy ensured during Patient Examination <span class="text-red-500">*</span>
-                        </label>
-                        <select id="privacyDuringExamination" name="privacyDuringExamination"
-                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                        <label for="keyFocusAreas" class="block text-gray-700 text-lg font-semibold">Key focus areas
+                            identified for strategic interventions? <span class="text-red-500">*</span></label>
+                        <select id="keyFocusAreas"
+                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                            name="keyFocusAreas" required>
                             <option value="" disabled selected>Select an option</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                         </select>
-                        <p id="error-privacyDuringExamination" class="text-red-500 text-sm"></p>
+                        <p id="error-keyFocusAreas" class="text-red-500 text-sm"></p>
                     </div>
 
-                    <!-- Desktop/Laptop/Tablet -->
+                    <!-- Block Health Action Plan disseminated with all health functionaries -->
                     <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                        <label for="desktopAvailable" class="block text-gray-700 text-lg font-semibold">
-                            Desktop/Laptop/Tablet available <span class="text-red-500">*</span>
-                        </label>
-                        <select id="desktopAvailable" name="desktopAvailable"
-                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                        <label for="healthActionPlanDisseminated"
+                            class="block text-gray-700 text-lg font-semibold">Block Health Action Plan disseminated with
+                            all health functionaries? <span class="text-red-500">*</span></label>
+                        <select id="healthActionPlanDisseminated"
+                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                            name="healthActionPlanDisseminated" required>
                             <option value="" disabled selected>Select an option</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                         </select>
-                        <p id="error-desktopAvailable" class="text-red-500 text-sm"></p>
+                        <p id="error-healthActionPlanDisseminated" class="text-red-500 text-sm"></p>
                     </div>
 
-                    <!-- Linkages with Higher Facilities -->
+                    <!-- Monthly DHS meeting organized -->
                     <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                        <label for="linkagesFacilities" class="block text-gray-700 text-lg font-semibold">
-                            Linkages with higher facilities <span class="text-red-500">*</span>
-                        </label>
-                        <select id="linkagesFacilities" name="linkagesFacilities"
-                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                        <label for="dhsMeeting" class="block text-gray-700 text-lg font-semibold">Whether monthly DHS
+                            meeting with all the line departments organized under chairmanship of DC/DM for Aspirational
+                            Blocks Programme? <span class="text-red-500">*</span></label>
+                        <select id="dhsMeeting"
+                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                            name="dhsMeeting" required>
                             <option value="" disabled selected>Select an option</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                         </select>
-                        <p id="error-linkagesFacilities" class="text-red-500 text-sm"></p>
+                        <p id="error-dhsMeeting" class="text-red-500 text-sm"></p>
                     </div>
 
-                    <!-- AFHC Available -->
+
+                    <!-- NQAS Certification -->
                     <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                        <label for="afhcAvailable" class="block text-gray-700 text-lg font-semibold">
-                            AFHC available <span class="text-red-500">*</span>
-                        </label>
-                        <select id="afhcAvailable" name="afhcAvailable"
-                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                        <label for="nqasCertification" class="block text-gray-700 text-lg font-semibold">Has the block
+                            identified the facilities for NQAS certification? <span
+                                class="text-red-500">*</span></label>
+                        <select id="nqasCertification"
+                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                            name="nqasCertification" required>
                             <option value="" disabled selected>Select an option</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                         </select>
-                        <p id="error-afhcAvailable" class="text-red-500 text-sm"></p>
+                        <p id="error-nqasCertification" class="text-red-500 text-sm"></p>
                     </div>
 
-                    <!-- Biomedical Waste Management -->
+                    <!-- nqas details -->
+                    <div id="nqasDetails" class="hidden">
+                        <!-- Total PHC -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="totalPHC1" class="block text-gray-700 text-lg font-semibold mt-4">Total PHC <span
+                                class="text-red-500">*</span></label>
+                        <input type="number" id="totalPHC1"
+                            class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" name="totalPHC1"
+                            min="0" max="50" >
+                        <p id="error-totalPHC1" class="text-red-500 text-sm"></p>
+                    </div>
+
+                        <!-- Total CHC -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="totalCHC1" class="block text-gray-700 text-lg font-semibold mt-4">Total CHC <span
+                                class="text-red-500">*</span></label>
+                        <input type="number" id="totalCHC1"
+                            class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" name="totalCHC1"
+                            min="0" max="20" >
+                        <p id="error-totalCHC1" class="text-red-500 text-sm"></p>
+                    </div>
+
+                        <!-- Total Sub-Center -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">    
+                        <label for="totalSubCenter1" class="block text-gray-700 text-lg font-semibold mt-4">Total
+                            Sub-Center
+                            <span class="text-red-500">*</span></label>
+                        <input type="number" id="totalSubCenter1"
+                            class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                            name="totalSubCenter1" min="0" max="100" >
+                        <p id="error-totalSubCenter1" class="text-red-500 text-sm"></p>
+                    </div>
+
+                        <!-- Total Health Facilities (PHC+CHC+SC) -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="totalHealthFacilities1" class="block text-gray-700 text-lg font-semibold mt-4">Total
+                            Health
+                            Facilities (PHC+CHC+SC) <span class="text-red-500">*</span></label>
+                        <input type="number" id="totalHealthFacilities1"
+                            class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                            name="totalHealthFacilities1" disabled>
+                        <p id="error-totalHealthFacilities1" class="text-red-500 text-sm"></p>
+                        </div>
+                    </div>
+
+                    <!-- Referral Mechanism Established -->
                     <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                        <label for="biomedicalWaste" class="block text-gray-700 text-lg font-semibold">
-                            Provision for biomedical waste management <span class="text-red-500">*</span>
-                        </label>
-                        <select id="biomedicalWaste" name="biomedicalWaste"
-                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                        <label for="referralMechanism" class="block text-gray-700 text-lg font-semibold">Is the referral mechanism established from SC-HWC up to DH/other referral centre? <span class="text-red-500">*</span></label>
+                        <select id="referralMechanism" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" name="referralMechanism" required>
                             <option value="" disabled selected>Select an option</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                         </select>
-                        <p id="error-biomedicalWaste" class="text-red-500 text-sm"></p>
-                    </div>
-
-                    <!-- Space for Drug Storage -->
-                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                        <label for="drugStorage" class="block text-gray-700 text-lg font-semibold">
-                            Space for drug storage available <span class="text-red-500">*</span>
-                        </label>
-                        <select id="drugStorage" name="drugStorage"
-                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
-                            <option value="" disabled selected>Select an option</option>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                        <p id="error-drugStorage" class="text-red-500 text-sm"></p>
-                    </div>
-
-                    <!-- DOTS Center Available -->
-                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
-                        <label for="dotsCenter" class="block text-gray-700 text-lg font-semibold">
-                            DOTS center available in facility <span class="text-red-500">*</span>
-                        </label>
-                        <select id="dotsCenter" name="dotsCenter"
-                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
-                            <option value="" disabled selected>Select an option</option>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                        <p id="error-dotsCenter" class="text-red-500 text-sm"></p>
+                        <p id="error-referralMechanism" class="text-red-500 text-sm"></p>
                     </div>
 
                     <!-- Save & Next Button -->
@@ -608,7 +480,9 @@
                     </div>
                 </div>
             </div>
-    </form>
+
+            
+        </form>
     </div>
 
     <script src="main.js"></script>
