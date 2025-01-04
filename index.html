@@ -3179,7 +3179,7 @@
             </div>
 
             <!-- Knowledge and Practice Assessment -->
-            <div id="section8" class="section bg-white p-6 rounded-lg shadow-md mb-4 ">
+            <div id="section8" class="section bg-white p-6 rounded-lg shadow-md mb-4 hidden ">
                 <h2 class="text-3xl font-bold mb-4 text-black-600">Knowledge and Practice Assessment</h2>
                 <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
 
@@ -3316,16 +3316,241 @@
                             </select>
                             <p id="error-reviewMeeting" class="text-red-500 text-sm"></p>
                         </div>
-                    <!-- Save & Next Button -->
+                        <!-- Save & Next Button -->
+                        <div class="flex justify-end mt-6">
+                            <button type="button"
+                                class="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
+                                onclick="validateAndNext(8)">
+                                Save & Next
+                            </button>
+                        </div>
+                </div>
+             </div>
+
+
+              <!-- Section 9: Key Programmatic Issues -->
+            <div id="section9" class="section bg-white p-6 rounded-lg shadow-md mb-4 ">
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold mb-6 text-black-600">Key Programmatic Issues</h2>
+                    <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h2 class="text-xl font-bold mb-6 text-blue-600">Please select areas of issue</h2>
+
+                        <!-- Service Delivery -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" id="serviceDelivery" name="areasOfIssue" value="Service Delivery"
+                                    class="form-checkbox" onclick="toggleFields('serviceDeliveryFields', this)">
+                                <span class="ml-2 text-gray-700">Service Delivery</span>
+                            </label>
+                            <div id="serviceDeliveryFields" class="hidden mt-4 p-4 border rounded-md bg-gray-50">
+                                <h3 class="text-lg font-bold text-blue-600 mb-2">Service Delivery</h3>
+                                <label for="serviceDeliveryIssue" class="block text-gray-700 text-sm font-semibold">Issue</label>
+                                <textarea id="serviceDeliveryIssue" name="serviceDeliveryIssue" minlength="2" maxlength="200"
+                                    class="form-textarea mt-1 block w-full p-2 border rounded-md"
+                                    placeholder="Describe the issue"></textarea>
+                                <p id="error-serviceDeliveryIssue" class="text-red-500 text-sm mt-1"></p>
+
+                                <label for="serviceDeliveryAction" class="block text-gray-700 text-sm font-semibold mt-4">Action Plan</label>
+                                <textarea id="serviceDeliveryAction" name="serviceDeliveryAction" minlength="2" maxlength="200"
+                                    class="form-textarea mt-1 block w-full p-2 border rounded-md"
+                                    placeholder="Describe the action plan"></textarea>
+                                <p id="error-serviceDeliveryAction" class="text-red-500 text-sm mt-1"></p>
+                            </div>
+                        </div>
+
+                        <!-- OPD -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" id="opd" name="areasOfIssue" value="OPD" class="form-checkbox" onclick="toggleFields('opdFields', this)">
+                                <span class="ml-2 text-gray-700">OPD</span>
+                            </label>
+                            <div id="opdFields" class="hidden mt-4 p-4 border rounded-md bg-gray-50">
+                                <h3 class="text-lg font-bold text-blue-600 mb-2">OPD</h3>
+                                <label for="opdIssue" class="block text-gray-700 text-sm font-semibold">Issue</label>
+                                <textarea id="opdIssue" name="opdIssue" minlength="2" maxlength="200" class="form-textarea mt-1 block w-full p-2 border rounded-md" placeholder="Describe the issue"></textarea>
+                                <p id="error-opdIssue" class="text-red-500 text-sm mt-1"></p>
+
+                                <label for="opdAction" class="block text-gray-700 text-sm font-semibold mt-4">Action Plan</label>
+                                <textarea id="opdAction" name="opdAction" minlength="2" maxlength="200" class="form-textarea mt-1 block w-full p-2 border rounded-md" placeholder="Describe the action plan"></textarea>
+                                <p id="error-opdAction" class="text-red-500 text-sm mt-1"></p>
+                            </div>
+                        </div>
+
+                        <!-- Labor Room & OT -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" id="laborRoomOT" name="areasOfIssue" value="Labor Room & OT"
+                                    class="form-checkbox" onclick="toggleFields('laborRoomOTFields', this)">
+                                <span class="ml-2 text-gray-700">Labor Room & OT</span>
+                            </label>
+                            <div id="laborRoomOTFields" class="hidden mt-4 p-4 border rounded-md bg-gray-50">
+                                <h3 class="text-lg font-bold text-blue-600 mb-2">Labor Room & OT</h3>
+                                <label for="laborRoomOTIssue" class="block text-gray-700 text-sm font-semibold">Issue</label>
+                                <textarea id="laborRoomOTIssue" name="laborRoomOTIssue" minlength="2" maxlength="200"
+                                    class="form-textarea mt-1 block w-full p-2 border rounded-md"
+                                    placeholder="Describe the issue"></textarea>
+                                <p id="error-laborRoomOTIssue" class="text-red-500 text-sm mt-1"></p>
+
+                                <label for="laborRoomOTAction" class="block text-gray-700 text-sm font-semibold mt-4">Action Plan</label>
+                                <textarea id="laborRoomOTAction" name="laborRoomOTAction" minlength="2" maxlength="200"
+                                    class="form-textarea mt-1 block w-full p-2 border rounded-md"
+                                    placeholder="Describe the action plan"></textarea>
+                                <p id="error-laborRoomOTAction" class="text-red-500 text-sm mt-1"></p>
+                            </div>
+                        </div>
+
+                        <!-- SNCU/NBSU -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" id="sncuNbsu" name="areasOfIssue" value="SNCU/NBSU" class="form-checkbox" onclick="toggleFields('sncuNbsuFields', this)">
+                                <span class="ml-2 text-gray-700">SNCU/NBSU</span>
+                            </label>
+                            <div id="sncuNbsuFields" class="hidden mt-4 p-4 border rounded-md bg-gray-50">
+                                <h3 class="text-lg font-bold text-blue-600 mb-2">SNCU/NBSU,including referral and follow-up</h3>
+                                <label for="sncuNbsuIssue" class="block text-gray-700 text-sm font-semibold">Issue</label>
+                                <textarea id="sncuNbsuIssue" name="sncuNbsuIssue" minlength="2" maxlength="200" class="form-textarea mt-1 block w-full p-2 border rounded-md" placeholder="Describe the issue"></textarea>
+                                <p id="error-sncuNbsuIssue" class="text-red-500 text-sm mt-1"></p>
+
+                                <label for="sncuNbsuAction" class="block text-gray-700 text-sm font-semibold mt-4">Action Plan</label>
+                                <textarea id="sncuNbsuAction" name="sncuNbsuAction" minlength="2" maxlength="200" class="form-textarea mt-1 block w-full p-2 border rounded-md" placeholder="Describe the action plan"></textarea>
+                                <p id="error-sncuNbsuAction" class="text-red-500 text-sm mt-1"></p>
+                            </div>
+                        </div>
+
+
+                        <!-- ANC/INC/PNC Ward -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" id="ancIncPncWard" name="areasOfIssue" value="ANC/INC/PNC Ward" class="form-checkbox" onclick="toggleFields('ancIncPncWardFields', this)">
+                                <span class="ml-2 text-gray-700">ANC/INC/PNC Ward</span>
+                            </label>
+                            <div id="ancIncPncWardFields" class="hidden mt-4 p-4 border rounded-md bg-gray-50">
+                                <h3 class="text-lg font-bold text-blue-600 mb-2">ANC/INC/PNC Ward</h3>
+                                <label for="ancIncPncWardIssue" class="block text-gray-700 text-sm font-semibold">Issue</label>
+                                <textarea id="ancIncPncWardIssue" name="ancIncPncWardIssue" minlength="2" maxlength="200" class="form-textarea mt-1 block w-full p-2 border rounded-md" placeholder="Describe the issue"></textarea>
+                                <p id="error-ancIncPncWardIssue" class="text-red-500 text-sm mt-1"></p>
+
+                                <label for="ancIncPncWardAction" class="block text-gray-700 text-sm font-semibold mt-4">Action Plan</label>
+                                <textarea id="ancIncPncWardAction" name="ancIncPncWardAction" minlength="2" maxlength="200" class="form-textarea mt-1 block w-full p-2 border rounded-md" placeholder="Describe the action plan"></textarea>
+                                <p id="error-ancIncPncWardAction" class="text-red-500 text-sm mt-1"></p>
+                            </div>
+                        </div>
+
+                        <!-- Medicines & Supplies -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" id="medicinesSupplies" name="areasOfIssue" value="Medicines & Supplies" class="form-checkbox" onclick="toggleFields('medicinesSuppliesFields', this)">
+                                <span class="ml-2 text-gray-700">Medicines & Supplies</span>
+                            </label>
+                            <div id="medicinesSuppliesFields" class="hidden mt-4 p-4 border rounded-md bg-gray-50">
+                                <h3 class="text-lg font-bold text-blue-600 mb-2">Medicines & Supplies</h3>
+                                <label for="medicinesSuppliesIssue" class="block text-gray-700 text-sm font-semibold">Issue</label>
+                                <textarea id="medicinesSuppliesIssue" name="medicinesSuppliesIssue" minlength="2" maxlength="200" class="form-textarea mt-1 block w-full p-2 border rounded-md" placeholder="Describe the issue"></textarea>
+                                <p id="error-medicinesSuppliesIssue" class="text-red-500 text-sm mt-1"></p>
+
+                                <label for="medicinesSuppliesAction" class="block text-gray-700 text-sm font-semibold mt-4">Action Plan</label>
+                                <textarea id="medicinesSuppliesAction" name="medicinesSuppliesAction" minlength="2" maxlength="200" class="form-textarea mt-1 block w-full p-2 border rounded-md" placeholder="Describe the action plan"></textarea>
+                                <p id="error-medicinesSuppliesAction" class="text-red-500 text-sm mt-1"></p>
+                            </div>
+                        </div>
+
+                        <!-- Laboratory -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" id="laboratory" name="areasOfIssue" value="Laboratory" class="form-checkbox" onclick="toggleFields('laboratoryFields', this)">
+                                <span class="ml-2 text-gray-700">Laboratory</span>
+                            </label>
+                            <div id="laboratoryFields" class="hidden mt-4 p-4 border rounded-md bg-gray-50">
+                                <h3 class="text-lg font-bold text-blue-600 mb-2">Laboratory</h3>
+                                <label for="laboratoryIssue" class="block text-gray-700 text-sm font-semibold">Issue</label>
+                                <textarea id="laboratoryIssue" name="laboratoryIssue" minlength="2" maxlength="200" class="form-textarea mt-1 block w-full p-2 border rounded-md" placeholder="Describe the issue"></textarea>
+                                <p id="error-laboratoryIssue" class="text-red-500 text-sm mt-1"></p>
+
+                                <label for="laboratoryAction" class="block text-gray-700 text-sm font-semibold mt-4">Action Plan</label>
+                                <textarea id="laboratoryAction" name="laboratoryAction" minlength="2" maxlength="200" class="form-textarea mt-1 block w-full p-2 border rounded-md" placeholder="Describe the action plan"></textarea>
+                                <p id="error-laboratoryAction" class="text-red-500 text-sm mt-1"></p>
+                            </div>
+                        </div>
+
+                        <!-- NRC and Management of SAM children -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" id="nrcSamChildren" name="areasOfIssue" value="NRC and Management of SAM children" class="form-checkbox" onclick="toggleFields('nrcSamChildrenFields', this)">
+                                <span class="ml-2 text-gray-700">NRC and Management of SAM children</span>
+                            </label>
+                            <div id="nrcSamChildrenFields" class="hidden mt-4 p-4 border rounded-md bg-gray-50">
+                                <h3 class="text-lg font-bold text-blue-600 mb-2">NRC and Management of SAM children</h3>
+                                <label for="nrcSamChildrenIssue" class="block text-gray-700 text-sm font-semibold">Issue</label>
+                                <textarea id="nrcSamChildrenIssue" name="nrcSamChildrenIssue" minlength="2" maxlength="200" class="form-textarea mt-1 block w-full p-2 border rounded-md" placeholder="Describe the issue"></textarea>
+                                <p id="error-nrcSamChildrenIssue" class="text-red-500 text-sm mt-1"></p>
+
+                                <label for="nrcSamChildrenAction" class="block text-gray-700 text-sm font-semibold mt-4">Action Plan</label>
+                                <textarea id="nrcSamChildrenAction" name="nrcSamChildrenAction" minlength="2" maxlength="200" class="form-textarea mt-1 block w-full p-2 border rounded-md" placeholder="Describe the action plan"></textarea>
+                                <p id="error-nrcSamChildrenAction" class="text-red-500 text-sm mt-1"></p>
+                            </div>
+                        </div>
+
+                        <!-- Referral and Follow-up -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" id="referralFollowUp" name="areasOfIssue" value="Referral and Follow-up" class="form-checkbox" onclick="toggleFields('referralFollowUpFields', this)">
+                                <span class="ml-2 text-gray-700">Referral Management</span>
+                            </label>
+                            <div id="referralFollowUpFields" class="hidden mt-4 p-4 border rounded-md bg-gray-50">
+                                <h3 class="text-lg font-bold text-blue-600 mb-2">Referral and Follow-up</h3>
+                                <label for="referralFollowUpIssue" class="block text-gray-700 text-sm font-semibold">Issue</label>
+                                <textarea id="referralFollowUpIssue" name="referralFollowUpIssue" minlength="2" maxlength="200" class="form-textarea mt-1 block w-full p-2 border rounded-md" placeholder="Describe the issue"></textarea>
+                                <p id="error-referralFollowUpIssue" class="text-red-500 text-sm mt-1"></p>
+
+                                <label for="referralFollowUpAction" class="block text-gray-700 text-sm font-semibold mt-4">Action Plan</label>
+                                <textarea id="referralFollowUpAction" name="referralFollowUpAction" minlength="2" maxlength="200" class="form-textarea mt-1 block w-full p-2 border rounded-md" placeholder="Describe the action plan"></textarea>
+                                <p id="error-referralFollowUpAction" class="text-red-500 text-sm mt-1"></p>
+                            </div>
+                        </div>
+
+                        <!-- Other (Specify) -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" id="other" name="areasOfIssue" value="Other"
+                                    class="form-checkbox" onclick="toggleFields('otherFields', this)">
+                                <span class="ml-2 text-gray-700">Other (Specify)</span>
+                            </label>
+                            <div id="otherFields" class="hidden mt-4 p-4 border rounded-md bg-gray-50">
+                                <h3 class="text-lg font-bold text-blue-600 mb-2">Other (Specify)</h3>
+                                <label for="otherIssue" class="block text-gray-700 text-sm font-semibold">Issue</label>
+                                <textarea id="otherIssue" name="otherIssue" minlength="2" maxlength="200"
+                                    class="form-textarea mt-1 block w-full p-2 border rounded-md"
+                                    placeholder="Describe the issue"></textarea>
+                                <p id="error-otherIssue" class="text-red-500 text-sm mt-1"></p>
+
+                                <label for="otherAction" class="block text-gray-700 text-sm font-semibold mt-4">Action
+                                    Plan</label>
+                                <textarea id="otherAction" name="otherAction" minlength="2" maxlength="200"
+                                    class="form-textarea mt-1 block w-full p-2 border rounded-md"
+                                    placeholder="Describe the action plan"></textarea>
+                                <p id="error-otherAction" class="text-red-500 text-sm mt-1"></p>
+                            </div>
+                        </div>
+
+                        <!-- None -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" id="none" name="areasOfIssue" value="None" class="form-checkbox"
+                                    onclick="toggleNone(this)">
+                                <span class="ml-2 text-gray-700">None</span>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- Submit Button -->
                     <div class="flex justify-end mt-6">
-                        <button type="button"
-                            class="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
-                            onclick="validateAndNext(8)">
-                            Save & Next
+                        <button type="submit"
+                            class="submit bg-green-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-green-600 transition duration-300">
+                            Submit
                         </button>
                     </div>
                 </div>
-             </div>
+            </div>
         </form>
     </div>
 

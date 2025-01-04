@@ -528,6 +528,68 @@ const validations = {
 
         return isValid;
     },
+    section9: () => {
+        let isValid = true;
+
+        // Validate that at least one checkbox is selected
+        const checkboxes = document.querySelectorAll('input[name="areasOfIssue"]');
+        const noneCheckbox = document.getElementById("none");
+        const errorMessages = [];
+
+        if (noneCheckbox.checked) {
+            // Ensure no other checkboxes are selected
+            checkboxes.forEach((checkbox) => {
+                if (checkbox !== noneCheckbox && checkbox.checked) {
+                    errorMessages.push("You cannot select 'None' and other options simultaneously.");
+                    isValid = false;
+                }
+            });
+        } else {
+            // Ensure at least one checkbox is selected
+            const atLeastOneSelected = Array.from(checkboxes).some((checkbox) => checkbox.checked);
+            if (!atLeastOneSelected) {
+                errorMessages.push("Please select at least one area of issue.");
+                isValid = false;
+            }
+
+            // Validate Issue and Action Plan fields for each selected checkbox
+            const fieldValidation = [
+                { id: "serviceDelivery", issueId: "serviceDeliveryIssue", actionId: "serviceDeliveryAction", name: "Service Delivery" },
+                { id: "opd", issueId: "opdIssue", actionId: "opActiond", name: "OPD" },
+                { id: "laborRoomOT", issueId: "laborRoomOTIssue", actionId: "laborRoomOTAction", name: "Labor Room & OT" },
+                { id: "sncuNbsu", issueId: "sncuNbsuIssue", actionId: "sncuNbsuAction", name: "SNCU/NBSU" },
+                { id: "ancIncPncWard", issueId: "ancIncPncWardIssue", actionId: "ancIncPncWardAction", name: "ANC & PNC Ward" },
+                { id: "medicinesSupplies", issueId: "medicinesSuppliesIssue", actionId: "medicinesSuppliesAction", name: "Medicines & Supplies" },
+                { id: "laboratory", issueId: "laboratoryIssue", actionId: "laboratoryAction", name: "Laboratory" },
+                { id: "nrcSamChildren", issueId: "nrcSamChildrenIssue", actionId: "nrcSamChildrenAction", name: "NRC SAM Children" },
+                { id: "referralFollowUp", issueId: "referralFollowUpIssue", actionId: "referralFollowUpAction", name: "Referral Follow-Up" },
+                {id:'other', issueId: 'otherIssue', actionId: 'otherAction', name: 'Other (Specify)'}
+            ];
+
+            fieldValidation.forEach((field) => {
+                if (document.getElementById(field.id).checked) {
+                    const issueValue = document.getElementById(field.issueId).value.trim();
+                    const actionValue = document.getElementById(field.actionId).value.trim();
+
+                    if (!issueValue) {
+                        errorMessages.push(`Please provide an issue for ${field.name}.`);
+                        isValid = false;
+                    }
+                    if (!actionValue) {
+                        errorMessages.push(`Please provide an action plan for ${field.name}.`);
+                        isValid = false;
+                    }
+                }
+            });
+        }
+
+        // Display error messages
+        if (errorMessages.length > 0) {
+            alert(errorMessages.join("\n"));
+        }
+
+        return isValid;
+    }
  };
 
 
@@ -699,6 +761,30 @@ document.querySelectorAll('input, select, textarea, checkbox').forEach(element =
                 staffNurseOtherTrainings: { minLength: 2, maxLength: 100 },
                 dentalOtherTrainings: { minLength: 2, maxLength: 100 },
                 pharmacistsOtherTrainings: { minLength: 2, maxLength: 100 },
+                knowledgeIssue: { minLength: 2, maxLength: 200 },
+                serviceDeliveryIssue: { minLength: 2, maxLength: 200 },
+                serviceDeliveryAction: { minLength: 2, maxLength: 200 },
+                opdIssue: { minLength: 2, maxLength: 200 },
+                opdAction: { minLength: 2, maxLength: 200 },
+                laborRoomOTIssue: { minLength: 2, maxLength: 200 },
+                laborRoomOTAction: { minLength: 2, maxLength: 200 },
+                sncuNbsuIssue: { minLength: 2, maxLength: 200 },
+                sncuNbsuAction: { minLength: 2, maxLength: 200 },
+                ancIncPncWardIssue: { minLength: 2, maxLength: 200 },
+                ancIncPncWardAction: { minLength: 2, maxLength: 200 },
+                medicinesSuppliesIssue: { minLength: 2, maxLength: 200 },
+                medicinesSuppliesAction: { minLength: 2, maxLength: 200 },
+                laboratoryIssue: { minLength: 2, maxLength: 200 },
+                laboratoryAction: { minLength: 2, maxLength: 200 },
+                nrcSamChildrenIssue: { minLength: 2, maxLength: 200 },
+                nrcSamChildrenAction: { minLength: 2, maxLength: 200 },
+                referralFollowUpIssue: { minLength: 2, maxLength: 200 },
+                referralFollowUpAction: { minLength: 2, maxLength: 200 },
+                otherIssue: { minLength: 2, maxLength: 200 },
+                otherAction: { minLength: 2, maxLength: 200 },
+
+
+
             }[event.target.id];
 
             if (textConfig) {
@@ -770,6 +856,30 @@ document.querySelectorAll('input, select, textarea, checkbox').forEach(element =
     });
 });
 
+document.querySelector('.submit').addEventListener('click', event => {
+    event.preventDefault();
+    if (validations.section9()) {
+        const formData = {
+            areasOfIssue: [],
+            details: {
+                serviceDeliveryIssue: document.getElementById('serviceDeliveryIssue')?.value || "",
+                serviceDeliveryAction: document.getElementById('serviceDeliveryAction')?.value || "",
+            }
+        };
+        fetch('https://your-backend-api.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+        })
+            .then(response => response.json())
+            .then(data => alert("Submission Successful"))
+            .catch(error => alert("Submission Failed"));
+    }
+});
+
+
+
+
 
 function validateAndNext(section) {
     if (validations[`section${section}`]()) {
@@ -778,5 +888,37 @@ function validateAndNext(section) {
         if (nextSection) {
             nextSection.classList.remove('hidden');
         }
+    }
+}
+// Toggle VHND Section Visibility
+function toggleVHNDSection(value) {
+    const vhndSection = document.getElementById('vhndSection');
+    if (vhndSection) {
+        if (value === 'Yes') {
+            vhndSection.classList.remove('hidden');
+        } else {
+            vhndSection.classList.add('hidden');
+        }
+    }
+}
+// Function to toggle None Checkbox Behavior
+function toggleNone(noneCheckbox) {
+    const checkboxes = document.querySelectorAll('input[name="areasOfIssue"]:not(#none)');
+    checkboxes.forEach((checkbox) => {
+        checkbox.checked = false;
+        const section = document.getElementById(`${checkbox.id}Fields`);
+        if (section) {
+            section.classList.add("hidden");
+        }
+    });
+}
+
+// Function to toggle fields for each checkbox
+function toggleFields(sectionId, checkbox) {
+    const section = document.getElementById(sectionId);
+    if (checkbox.checked) {
+        section.classList.remove("hidden");
+    } else {
+        section.classList.add("hidden");
     }
 }
