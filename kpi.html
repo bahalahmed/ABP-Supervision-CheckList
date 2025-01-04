@@ -167,8 +167,28 @@
             }
 
             alert('Form submitted successfully!');
-            // Add your submission logic here
+            
         });
+        document.querySelector('.submit').addEventListener('click', event => {
+         event.preventDefault();
+          if (validations.section5()) {
+            const formData = {
+                areasOfIssue: [],
+                details: {
+                    knowledgeIssue: document.getElementById('knowledgeIssue')?.value || "",
+                    knowledgeAction: document.getElementById('knowledgeAction')?.value || ""
+                }
+            };
+            fetch('https://your-backend-api.com/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            })
+                .then(response => response.json())
+                .then(data => alert("Submission Successful"))
+                .catch(error => alert("Submission Failed"));
+        }
+});
     </script>
 </body>
 
