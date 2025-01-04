@@ -31,7 +31,8 @@ const validations = {
                 { id: 'calciumTablets', errorMessage: 'Calcium Tablets selection is required.' },
                 { id: 'pncProvided', errorMessage: 'PNC provided selection is required.' },
                 { id: 'nutritionHealth', errorMessage: 'Nutrition and health promotion is required.' },
-                { id: 'vaccinesCarrier', errorMessage: 'Vaccine carrier availability is required.' }
+                { id: 'vaccinesCarrier', errorMessage: 'Vaccine carrier availability is required.' },
+                {id:'mcpCards', errorMessage: 'MCP Cards availability is required.'},
             ];
             fieldsToValidate.push(...vhndFields);
         }
@@ -158,9 +159,10 @@ const validations = {
             { id: 'cotrimoxazoleSyrup', errorMessage: 'Cotrimoxazole Syrup selection is required.' },
             { id: 'cotrimoxazoleTablets', errorMessage: 'Cotrimoxazole Tablets selection is required.' },
             { id: 'ors', errorMessage: 'ORS selection is required.' },
-            { id: 'calciumTablets', errorMessage: 'Calcium Tablets selection is required.' },
+            { id: 'calciumTablets1', errorMessage: 'Calcium Tablets selection is required.' },
             { id: 'zinc', errorMessage: 'Zinc selection is required.' },
-            { id: 'paracetamol', errorMessage: 'Paracetamol selection is required.' }
+            { id: 'paracetamol', errorMessage: 'Paracetamol selection is required.' },
+
         ];
 
         fieldsToValidate.forEach(field => {
@@ -168,17 +170,14 @@ const validations = {
             const errorElement = document.getElementById(`error-${field.id}`);
 
             if (!inputElement || !inputElement.value.trim()) {
-                console.log(`Validation failed for field: ${field.id}`);
                 if (errorElement) errorElement.textContent = field.errorMessage;
                 inputElement.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
                 inputElement.classList.remove('border-gray-300', 'focus:ring-indigo-500', 'focus:border-indigo-500');
                 isValid = false;
-            } else {
-                console.log(`Validation passed for field: ${field.id}`);
+            } else if (inputElement) {
                 if (errorElement) errorElement.textContent = '';
                 inputElement.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
                 inputElement.classList.add('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
-                isValid = true;
             }
         });
 
