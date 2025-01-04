@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Block Assesment CheckList</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="container mx-auto p-4">
+        <form id="checklistForm">
+
+            <!-- Section 1: General Information -->
+            <div id="section1" class="section bg-white p-6 rounded-lg shadow-md mb-4">
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold mb-6 text-black-600">General Information</h2>
+                    <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
+
+                    <!-- Date of Visit -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="dateOfVisit" class="block text-gray-700 text-lg font-semibold">Date of Visit
+                            <span class="text-red-500">*</span></label>
+                        <input type="date" id="dateOfVisit"
+                            class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                            name="dateOfVisit" required>
+                        <p id="error-dateOfVisit" class="text-red-500 text-sm"></p>
+                    </div>
+
+
+                    <!-- District -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="district" class="block text-gray-700 text-lg font-semibold">District <span
+                                class="text-red-500">*</span></label>
+                        <select id="district"
+                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" name="district"
+                            required>
+                            <option value="" disabled selected>Select District</option>
+                            <option value="District 1">District 1</option>
+                            <option value="District 2">District 2</option>
+                            <option value="District 3">District 3</option>
+                        </select>
+                        <p id="error-district" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Block -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="block" class="block text-gray-700 text-lg font-semibold">Block <span
+                                class="text-red-500">*</span></label>
+                        <select id="block" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                            name="block" required>
+                            <option value="" disabled selected>Select Block</option>
+                            <option value="Block 1">Block 1</option>
+                            <option value="Block 2">Block 2</option>
+                            <option value="Block 3">Block 3</option>
+                        </select>
+                        <p id="error-block" class="text-red-500 text-sm"></p>
+                    </div>
+                </div>
+
+                <!-- Sub-section: Block Development Officer -->
+                <div id="bdo" class="bg-white my-6 p-6 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-bold mb-6 text-blue-600">Block Development Officer</h3>
+
+                    <!-- BDO Details -->
+                    <label for="bdoname" class="block text-gray-700 text-lg font-semibold">Name </label>
+                    <input type="text" id="bdoname"
+                        class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" name="bdoname">
+                    <p id="error-bdoname"></p>
+
+                    <label for="bdocontact" class="block text-gray-700 text-lg font-semibold mt-4">Contact
+                        Number</label>
+                    <input type="tel" id="bdocontact" maxlength="10"
+                        class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" name="bdocontact">
+                    <p id="error-bdocontact">
+
+                        <label for="bdoemail" class="block text-gray-700 text-lg font-semibold mt-4">Email ID</label>
+                        <input type="email" id="bdoemail"
+                            class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" name="bdoemail">
+                    <p id="error-bdoemail"></p>
+
+                </div>
+
+                <!-- Sub-section: Sub District Magistrate -->
+                <div id="sdm" class="bg-white my-6 p-6 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-bold mb-6 text-blue-600">Sub District Magistrate</h3>
+
+                    <!-- SDM Details -->
+                    <label for="sdmname" class="block text-gray-700 text-lg font-semibold">Name </label>
+                    <input type="text" id="sdmname"
+                        class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" name="sdmname">
+                    <p id="error-sdmname"></p>
+
+                    <label for="sdmcontact" class="block text-gray-700 text-lg font-semibold mt-4">Contact
+                        Number</label>
+                    <input type="tel" id="sdmcontact" maxlength="10"
+                        class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" name="sdmcontact">
+                    <p id="error-sdmcontact"></p>
+
+                    <label for="sdmemail" class="block text-gray-700 text-lg font-semibold mt-4">Email ID</label>
+                    <input type="email" id="sdmemail"
+                        class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" name="sdmemail">
+                    <p id="error-sdmemail"></p>
+                </div>
+
+                <!-- Sub-section: Block Medical Officer -->
+                <div id="bmo" class="bg-white my-6 p-6 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-bold mb-6 text-blue-600">Block Medical Officer</h3>
+
+                    <!-- BMO Details -->
+                    <label for="bmoname" class="block text-gray-700 text-lg font-semibold">Name
+                        <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="bmoname" maxlength="10"
+                        class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                        name="bmoname required">
+                    <p id="error-bmoname" class="text-red-500 text-sm"></p>
+
+                    <label for="bmocontact" class="block text-gray-700 text-lg font-semibold mt-4">Contact Number
+                        <span class="text-red-500">*</span>
+                    </label>
+                    <input type="tel" id="bmocontact"
+                        class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" name="bmocontact"
+                        required>
+                    <p id="error-bmocontact" class="text-red-500 text-sm"></p>
+
+                    <label for="bmoemail" class="block text-gray-700 text-lg font-semibold mt-4">Email ID
+                        <span class="text-red-500">*</span>
+                    </label>
+                    <input type="email" id="bmoemail"
+                        class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" name="bmoemail"
+                        required>
+                    <p id="error-bmoemail" class="text-red-500 text-sm"></p>
+                </div>
+
+                <!-- Sub-section: Demographic Details -->
+                <div id="demographicDetails" class="bg-white my-6 p-6 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-bold mb-6 text-blue-600">Demographic Details</h3>
+
+                    <!-- Area Type -->
+                    <label for="areaType" class="block text-gray-700 text-lg font-semibold">Area Type
+                        <span class="text-red-500">*</span></label>
+                    <div class="mt-2 mb-6">
+                        <select id="areaType"
+                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" name="areaType"
+                            required>
+                            <option value="" disabled selected>Select Area Type</option>
+                            <option value="Urban">Urban</option>
+                            <option value="Rural">Rural</option>
+                        </select>
+                        <p id="error-areaType" class="text-red-500 text-sm"></p>
+                    </div>
+
+
+                    <!-- Number of Village/Wards Covered -->
+                    <label for="villagesCovered" class="block text-gray-700 text-lg font-semibold mt-4">No. of
+                        Village/Wards Covered <span class="text-red-500">*</span></label>
+                    <input type="number" id="villagesCovered"
+                        class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                        name="villagesCovered" min="0" max="150" required>
+                    <p id="error-villagesCovered" class="text-red-500 text-sm"></p>
+
+
+                    <!-- Total PHC -->
+                    <label for="totalPHC" class="block text-gray-700 text-lg font-semibold mt-4">Total PHC <span
+                            class="text-red-500">*</span></label>
+                    <input type="number" id="totalPHC"
+                        class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" name="totalPHC"
+                        min="0" max="50" required>
+                    <p id="error-totalPHC" class="text-red-500 text-sm"></p>
+
+
+                    <!-- Total CHC -->
+                    <label for="totalCHC" class="block text-gray-700 text-lg font-semibold mt-4">Total CHC <span
+                            class="text-red-500">*</span></label>
+                    <input type="number" id="totalCHC"
+                        class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" name="totalCHC"
+                        min="0" max="20" required>
+                    <p id="error-totalCHC" class="text-red-500 text-sm"></p>
+
+                    <!-- Total Sub-Center -->
+                    <label for="totalSubCenter" class="block text-gray-700 text-lg font-semibold mt-4">Total Sub-Center
+                        <span class="text-red-500">*</span></label>
+                    <input type="number" id="totalSubCenter"
+                        class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" name="totalSubCenter"
+                        min="0" max="100" required>
+                    <p id="error-totalSubCenter" class="text-red-500 text-sm"></p>
+
+                    <!-- Total Health Facilities (PHC+CHC+SC) -->
+                    <label for="totalHealthFacilities" class="block text-gray-700 text-lg font-semibold mt-4">Total
+                        Health
+                        Facilities (PHC+CHC+SC) <span class="text-red-500">*</span></label>
+                    <input type="number" id="totalHealthFacilities"
+                        class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                        name="totalHealthFacilities" disabled>
+                    <p id="error-totalHealthFacilities" class="text-red-500 text-sm"></p>
+
+                    <!-- Number of Aanganwadi Centres -->
+                    <label for="anganwadiCentres" class="block text-gray-700 text-lg font-semibold mt-4">No. of
+                        Aanganwadi
+                        Centres <span class="text-red-500">*</span></label>
+                    <input type="number" id="anganwadiCentres"
+                        class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                        name="anganwadiCentres" min="0" max="150" required>
+                    <p id="error-anganwadiCentres" class="text-red-500 text-sm"></p>
+
+                    <!-- Population Covered -->
+                    <label for="populationCovered" class="block text-gray-700 text-lg font-semibold mt-4">Population
+                        Covered
+                        <span class="text-red-500">*</span></label>
+                    <input type="number" id="populationCovered"
+                        class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                        name="populationCovered" min="50000" max="1000000" required>
+                    <p id="error-populationCovered" class="text-red-500 text-sm"></p>
+
+                    <!-- Total Eligible Couple -->
+                    <label for="totalEligibleCouple" class="block text-gray-700 text-lg font-semibold mt-4">Total
+                        Eligible
+                        Couple <span class="text-red-500">*</span></label>
+                    <input type="number" id="totalEligibleCouple"
+                        class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                        name="totalEligibleCouple" min="0" max="100000" required>
+                    <p id="error-totalEligibleCouple" class="text-red-500 text-sm"></p>
+
+                    <!-- Total Pregnant Women -->
+                    <label for="totalPregnantWomen" class="block text-gray-700 text-lg font-semibold mt-4">Total
+                        Pregnant
+                        Women <span class="text-red-500">*</span></label>
+                    <input type="number" id="totalPregnantWomen"
+                        class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                        name="totalPregnantWomen" min="0" max="99999" required>
+                    <p id="error-totalPregnantWomen" class="text-red-500 text-sm"></p>
+
+                    <!-- Total Live Birth -->
+                    <label for="totalLiveBirth" class="block text-gray-700 text-lg font-semibold mt-4">Total Live Birth
+                        <span class="text-red-500">*</span></label>
+                    <input type="number" id="totalLiveBirth"
+                        class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" name="totalLiveBirth"
+                        min="0" max="99999" required>
+                    <p id="error-totalLiveBirth" class="text-red-500 text-sm"></p>
+
+                    <!-- Estimated Children 0-1 Years of Age -->
+                    <label for="children0to1" class="block text-gray-700 text-lg font-semibold mt-4">Estimated Children
+                        0-1
+                        Years of Age <span class="text-red-500">*</span></label>
+                    <input type="number" id="children0to1"
+                        class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" name="children0to1"
+                        min="0" max="99999" required>
+                    <p id="error-children0to1" class="text-red-500 text-sm"></p>
+
+                    <!-- Total Population Above 30 Years -->
+                    <label for="populationAbove30" class="block text-gray-700 text-lg font-semibold  mt-4">Total
+                        Population
+                        Above 30 Years <span class="text-red-500">*</span></label>
+                    <input type="number" id="populationAbove30"
+                        class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                        name="populationAbove30" min="0" max="99999" required>
+                    <p id="error-populationAbove30" class="text-red-500 text-sm"></p>
+
+                    <!-- PMJAY Card Issued -->
+                    <label for="pmjayCardIssued" class="block text-gray-700 text-lg font-semibold mt-4">PMJAY Card
+                        Issued
+                        (till date) <span class="text-red-500">*</span></label>
+                    <input type="number" id="pmjayCardIssued"
+                        class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                        name="pmjayCardIssued" min="0" max="1000000" required>
+                    <p id="error-pmjayCardIssued" class="text-red-500 text-sm"></p>
+
+                    <!-- Number of ABHA ID card generated (till date) -->
+                    <label for="abhaCardGenerated" class="block text-gray-700 text-lg font-semibold mt-4">Number of ABHA
+                        ID
+                        card generated (till date) <span class="text-red-500">*</span></label>
+                    <input type="number" id="abhaCardGenerated"
+                        class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                        name="abhaCardGenerated" min="0" max="1000000" required>
+                    <p id="error-abhaCardGenerated" class="text-red-500 text-sm"></p>
+                </div>
+
+
+
+                <!-- Save & Next Button -->
+                <div class="flex justify-end mt-6">
+                    <button type="button"
+                        class="save-next bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
+                        onclick="validateAndNext(1)">
+                        Save & Next
+                    </button>
+                </div>
+
+            </div>
+            <!-- Infrastructure Section -->
+            <div id="section2" class="section bg-white p-6 rounded-lg shadow-md mb-4 hidden">
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold mb-6 text-black-600">Infrastructure</h2>
+                    <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
+
+                    <!-- Building -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="building" class="block text-gray-700 text-lg font-semibold">Building <span
+                                class="text-red-500">*</span></label>
+                        <select id="building" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                            name="building" required>
+                            <option value="" disabled selected>Select Building Type</option>
+                            <option value="Government">Government</option>
+                            <option value="Rented">Rented</option>
+                        </select>
+                        <p id="error-building" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Road Accessibility -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="roadAccessibility" class="block text-gray-700 text-lg font-semibold">Road
+                            Accessibility <span class="text-red-500">*</span></label>
+                        <select id="roadAccessibility"
+                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" name="roadAccessibility"
+                            required>
+                            <option value="" disabled selected>Select Option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-roadAccessibility" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- 24X7 Power Backup -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="powerBackup" class="block text-gray-700 text-lg font-semibold">24X7 Power Backup
+                            <span class="text-red-500">*</span></label>
+                        <select id="powerBackup" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                            name="powerBackup" required>
+                            <option value="" disabled selected>Select Option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-powerBackup" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Patient Waiting Area -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="waitingArea" class="block text-gray-700 text-lg font-semibold">Patient Waiting Area
+                            (20-25 chairs) <span class="text-red-500">*</span></label>
+                        <select id="waitingArea" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                            name="waitingArea" required>
+                            <option value="" disabled selected>Select Option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-waitingArea" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Separate Toilets -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="separateToilets" class="block text-gray-700 text-lg font-semibold">Separate Toilets
+                            for Males and Females <span class="text-red-500">*</span></label>
+                        <select id="separateToilets" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                            name="separateToilets" required>
+                            <option value="" disabled selected>Select Option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-separateToilets" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Total Number of Beds -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="totalBeds" class="block text-gray-700 text-lg font-semibold">Total Number of Beds
+                            <span class="text-red-500">*</span></label>
+                        <input type="number" id="totalBeds"
+                            class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" name="totalBeds" min="0"
+                            max="50" required>
+                        <p id="error-totalBeds" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Total Number of Labor Tables -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="totalLaborTables" class="block text-gray-700 text-lg font-semibold">Total Number of
+                            Labor Tables <span class="text-red-500">*</span></label>
+                        <input type="number" id="totalLaborTables"
+                            class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" name="totalLaborTables"
+                            min="0" max="10" required>
+                        <p id="error-totalLaborTables" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Functional Labor Room -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="laborRoom" class="block text-gray-700 text-lg font-semibold">Functional Labor Room
+                            Available <span class="text-red-500">*</span></label>
+                        <select id="laborRoom" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                            name="laborRoom" required>
+                            <option value="" disabled selected>Select Option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-laborRoom" class="text-red-500 text-sm"></p>
+                    </div>
+                    <!-- Internet Connectivity -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="internetConnectivity" class="block text-gray-700 text-lg font-semibold">Internet
+                            Connectivity <span class="text-red-500">*</span></label>
+                        <select id="internetConnectivity"
+                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                            name="internetConnectivity" required>
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-internetConnectivity" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- 24X7 Running water facility -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="runningWater" class="block text-gray-700 text-lg font-semibold">24X7 Running water
+                            facility <span class="text-red-500">*</span></label>
+                        <select id="runningWater" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                            name="runningWater" required>
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-runningWater" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Space for yoga/ health promotion -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="yogaSpace" class="block text-gray-700 text-lg font-semibold">Space for yoga/ health
+                            promotion <span class="text-red-500">*</span></label>
+                        <select id="yogaSpace" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                            name="yogaSpace" required>
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-yogaSpace" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Functional Radiant warmer -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="radiantWarmer" class="block text-gray-700 text-lg font-semibold">Functional Radiant
+                            warmer <span class="text-red-500">*</span></label>
+                        <select id="radiantWarmer" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                            name="radiantWarmer" required>
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-radiantWarmer" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Operational RCH portal -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="rchPortal" class="block text-gray-700 text-lg font-semibold">Operational RCH portal
+                            <span class="text-red-500">*</span></label>
+                        <select id="rchPortal" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                            name="rchPortal" required>
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-rchPortal" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Operational ANMOL App -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="anmolApp" class="block text-gray-700 text-lg font-semibold">Operational ANMOL App
+                            <span class="text-red-500">*</span></label>
+                        <select id="anmolApp" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                            name="anmolApp" required>
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-anmolApp" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Branding completed -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="brandingCompleted" class="block text-gray-700 text-lg font-semibold">Branding
+                            completed <span class="text-red-500">*</span></label>
+                        <select id="brandingCompleted"
+                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" name="brandingCompleted"
+                            required>
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-brandingCompleted" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Residential Facility -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="residentialFacility" class="block text-gray-700 text-lg font-semibold">
+                            Residential Facility for staff as per IPHS norms <span class="text-red-500">*</span>
+                        </label>
+                        <select id="residentialFacility" name="residentialFacility"
+                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-residentialFacility" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Privacy During Patient Examination -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="privacyDuringExamination" class="block text-gray-700 text-lg font-semibold">
+                            Privacy ensured during Patient Examination <span class="text-red-500">*</span>
+                        </label>
+                        <select id="privacyDuringExamination" name="privacyDuringExamination"
+                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-privacyDuringExamination" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Desktop/Laptop/Tablet -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="desktopAvailable" class="block text-gray-700 text-lg font-semibold">
+                            Desktop/Laptop/Tablet available <span class="text-red-500">*</span>
+                        </label>
+                        <select id="desktopAvailable" name="desktopAvailable"
+                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-desktopAvailable" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Linkages with Higher Facilities -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="linkagesFacilities" class="block text-gray-700 text-lg font-semibold">
+                            Linkages with higher facilities <span class="text-red-500">*</span>
+                        </label>
+                        <select id="linkagesFacilities" name="linkagesFacilities"
+                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-linkagesFacilities" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- AFHC Available -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="afhcAvailable" class="block text-gray-700 text-lg font-semibold">
+                            AFHC available <span class="text-red-500">*</span>
+                        </label>
+                        <select id="afhcAvailable" name="afhcAvailable"
+                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-afhcAvailable" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Biomedical Waste Management -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="biomedicalWaste" class="block text-gray-700 text-lg font-semibold">
+                            Provision for biomedical waste management <span class="text-red-500">*</span>
+                        </label>
+                        <select id="biomedicalWaste" name="biomedicalWaste"
+                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-biomedicalWaste" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Space for Drug Storage -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="drugStorage" class="block text-gray-700 text-lg font-semibold">
+                            Space for drug storage available <span class="text-red-500">*</span>
+                        </label>
+                        <select id="drugStorage" name="drugStorage"
+                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-drugStorage" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- DOTS Center Available -->
+                    <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                        <label for="dotsCenter" class="block text-gray-700 text-lg font-semibold">
+                            DOTS center available in facility <span class="text-red-500">*</span>
+                        </label>
+                        <select id="dotsCenter" name="dotsCenter"
+                            class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <p id="error-dotsCenter" class="text-red-500 text-sm"></p>
+                    </div>
+
+                    <!-- Save & Next Button -->
+                    <div class="flex justify-end mt-6">
+                        <button type="button"
+                            class="save-next bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
+                            onclick="validateAndNext(2)">
+                            Save & Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+    </form>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
