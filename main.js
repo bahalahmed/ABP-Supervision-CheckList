@@ -485,6 +485,49 @@ const validations = {
 
         return isValid;
     },
+    section8: () => {
+        let isValid = true;
+        const section8Fields = [
+            {id: 'anmAwarenessRCH', errorMessage: 'ANM Awareness on RCH selection is required.'},
+            {id: 'anmAwarenessHighRisk', errorMessage: 'ANM Awareness on High Risk Pregnancy selection is required.'},
+            {id: 'anmMeetingLbwBabies', errorMessage: 'ANM Meeting with LBW Babies selection is required.'},
+            {id: 'staffAwarenessTBSchemes', errorMessage: 'Staff Awareness on TB Schemes selection is required.'},
+            {id: 'orientationNQAS', errorMessage: 'Orientation on NQAS selection is required.'},
+            {id:'nqasAssessments', errorMessage: 'NQAS Assessments selection is required.'},
+            {id:'serviceProvidersQualityTools', errorMessage: 'Service Providers Quality Tools selection is required.'},
+            {id:'qualityImprovementMeetings', errorMessage: 'Quality Improvement Meetings selection is required.'},
+            {id:'staffAwarenessEmergency', errorMessage: 'Staff Awareness on Emergency Care selection is required.'},
+            {id:'staffAwarenessNCD', errorMessage: 'Staff Awareness on NCD selection is required.'},
+            {id:'serviceProvidersAwareness', errorMessage: 'Service Providers Awareness on NQAS selection is required.'},
+            {id:'reviewMeeting', errorMessage: 'Review Meeting selection is required.'},            
+        ];
+
+        // Validate each field dynamically
+        section8Fields.forEach(field => {
+            const inputElement = document.getElementById(field.id);
+            const errorElement = document.getElementById(`error-${field.id}`);
+
+            if (!inputElement || inputElement.value.trim() === "") {
+                if (errorElement) errorElement.textContent = field.errorMessage;
+                if (inputElement) {
+                    inputElement.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                    inputElement.classList.remove('border-gray-300', 'focus:ring-blue-500', 'focus:border-blue-500');
+                }
+                isValid = false;
+            } else {
+                if (errorElement) errorElement.textContent = '';
+                if (inputElement) {
+                    inputElement.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                    inputElement.classList.add('border-gray-300', 'focus:ring-blue-500', 'focus:border-blue-500');
+                }
+            }
+        });
+        if (!isValid) {
+            alert('Please fill out all required fields correctly before proceeding.');
+        }
+
+        return isValid;
+    },
  };
 
 

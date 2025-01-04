@@ -2675,7 +2675,7 @@
             </div>
 
             <!-- Documentation and supplies -->
-            <div id="section7" class="section bg-white p-6 rounded-lg shadow-md mb-4 ">
+            <div id="section7" class="section bg-white p-6 rounded-lg shadow-md mb-4 hidden">
                 <h2 class="text-3xl font-bold mb-4 text-black-600">Documentation and Supplies</h2>
                 <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
 
@@ -3177,6 +3177,155 @@
                     </button>
                 </div>
             </div>
+
+            <!-- Knowledge and Practice Assessment -->
+            <div id="section8" class="section bg-white p-6 rounded-lg shadow-md mb-4 ">
+                <h2 class="text-3xl font-bold mb-4 text-black-600">Knowledge and Practice Assessment</h2>
+                <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
+
+                    <div id="documents" class="bg-white p-6 rounded-lg shadow-md">
+                        <!-- ANM Awareness about RCH Service Delivery -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label for="anmAwarenessRCH" class="block text-gray-700 text-lg font-semibold">ANM is aware about RCH service delivery <span class="text-red-500">*</span></label>
+                            <select id="anmAwarenessRCH" name="anmAwarenessRCH" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-anmAwarenessRCH" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- ANM Awareness about High Risk Pregnancies -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label for="anmAwarenessHighRisk" class="block text-gray-700 text-lg font-semibold">ANM is aware about High Risk Pregnancies, complications and management <span class="text-red-500">*</span></label>
+                            <select id="anmAwarenessHighRisk" name="anmAwarenessHighRisk" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-anmAwarenessHighRisk" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- ANM Meeting with ASHAs on Tracking and Management of LBW Babies -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label for="anmMeetingLbwBabies" class="block text-gray-700 text-lg font-semibold">ANM meeting with ASHAs on tracking and management of LBW babies in community (Less than 2500 gms) <span class="text-red-500">*</span></label>
+                            <select id="anmMeetingLbwBabies" name="anmMeetingLbwBabies" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-anmMeetingLbwBabies" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- Staff Awareness about Central/State Government Schemes on TB -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label for="staffAwarenessTBSchemes" class="block text-gray-700 text-lg font-semibold">Is Staff aware about the Central/State government schemes on TB and its components? <span class="text-red-500">*</span></label>
+                            <select id="staffAwarenessTBSchemes" name="staffAwarenessTBSchemes" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-staffAwarenessTBSchemes" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- Orientation on NQAS for Facility Staff -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label for="orientationNQAS" class="block text-gray-700 text-lg font-semibold">Orientation on NQAS for Facility Staff <span class="text-red-500">*</span></label>
+                            <select id="orientationNQAS" name="orientationNQAS" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-orientationNQAS" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- Baseline and State/National assessments for NQAS completed -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label for="nqasAssessments" class="block text-gray-700 text-lg font-semibold">Baseline and State/National assessments for NQAS completed <span class="text-red-500">*</span></label>
+                            <select id="nqasAssessments" name="nqasAssessments" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-nqasAssessments" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- Service Providers Awareness about Quality Tools -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label for="serviceProvidersQualityTools" class="block text-gray-700 text-lg font-semibold">Are Service providers aware about quality tools? <span class="text-red-500">*</span></label>
+                            <select id="serviceProvidersQualityTools" name="serviceProvidersQualityTools" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-serviceProvidersQualityTools" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- Quality Improvement Meetings for NQAS -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label for="qualityImprovementMeetings" class="block text-gray-700 text-lg font-semibold">Quality improvement meetings conducted for NQAS at facility <span class="text-red-500">*</span></label>
+                            <select id="qualityImprovementMeetings" name="qualityImprovementMeetings" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-qualityImprovementMeetings" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- Staff Awareness about Emergency Preparedness/Referral -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label for="staffAwarenessEmergency" class="block text-gray-700 text-lg font-semibold">Is staff aware about emergency preparedness/referral? <span class="text-red-500">*</span></label>
+                            <select id="staffAwarenessEmergency" name="staffAwarenessEmergency" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-staffAwarenessEmergency" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- Staff Awareness about NCD Management and Portal -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label for="staffAwarenessNCD" class="block text-gray-700 text-lg font-semibold">Is staff aware about NCD management and portal? <span class="text-red-500">*</span></label>
+                            <select id="staffAwarenessNCD" name="staffAwarenessNCD" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-staffAwarenessNCD" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- Service Providers Awareness about AMTSL, Emergency Complications, Essential Newborn Care, and Newborn Resuscitation -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label for="serviceProvidersAwareness" class="block text-gray-700 text-lg font-semibold">Are service providers in Labour room, aware of AMTSL, Emergency complications (PPH, Eclampsia), Essential newborn care, Newborn Resuscitation? <span class="text-red-500">*</span></label>
+                            <select id="serviceProvidersAwareness" name="serviceProvidersAwareness" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-serviceProvidersAwareness" class="text-red-500 text-sm"></p>
+                        </div>
+
+
+                        <!-- Review Meeting by Facility In-charge -->
+                        <div class="mb-6 bg-white p-6 rounded-lg shadow-md">
+                            <label for="reviewMeeting" class="block text-gray-700 text-lg font-semibold">Review meeting by facility in-charge conducted last month for improving the quality-of-service deliveries in all departments <span class="text-red-500">*</span></label>
+                            <select id="reviewMeeting" name="reviewMeeting" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" required>
+                                <option value="" disabled selected>Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p id="error-reviewMeeting" class="text-red-500 text-sm"></p>
+                        </div>
+                    <!-- Save & Next Button -->
+                    <div class="flex justify-end mt-6">
+                        <button type="button"
+                            class="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
+                            onclick="validateAndNext(8)">
+                            Save & Next
+                        </button>
+                    </div>
+                </div>
+             </div>
         </form>
     </div>
 
