@@ -10,7 +10,7 @@ const validations = {
             {id: 'facilityType', errorMessage: 'Facility Type is required.' },
             {id: 'facilityName', errorMessage: 'Facility Name is required.' },
             {id:'facilityLevel', errorMessage: 'Facility Level is required.'},
-            {id: 'facilityIncharge', errorMessage: 'Facility In-charge is required.'},
+            {id: 'facilityInCharge', errorMessage: 'Facility In-charge is required.'},
             {id: 'designation', errorMessage: 'Facility In-charge Designation is required.'},
             {id: 'populationCovered', errorMessage: 'Population Covered must be between 50,000 and 1,000,000.'},
             {id:'nqasCommittee', errorMessage: 'NQAS Committee is required.'},
@@ -33,7 +33,7 @@ const validations = {
             }
         }); 
         const numberInputs = [
-                { id: 'populationCovered', min: 4000, max: 500000, errorMessage: 'Population Covered must be between 500000 and 100000.' },
+                { id: 'populationCovered', min: 4000, max: 500000, errorMessage: 'Population Covered must be between 50000 and 100000.' },
         ];
 
         numberInputs.forEach(input => {
@@ -67,8 +67,8 @@ const validations = {
             { id: 'powerBackup', errorMessage: '24X7 Power Backup selection is required.' },
             { id: 'waitingArea', errorMessage: 'Patient Waiting Area selection is required.' },
             { id: 'separateToilets', errorMessage: 'Separate Toilets selection is required.' },
-            { id: 'totalBeds', min: 0, max: 50, errorMessage: 'Total Number of Beds must be between 0 and 50.' },
-            { id: 'totalLaborTables', min: 0, max: 10, errorMessage: 'Total Number of Labor Tables must be between 0 and 10.' },
+            { id: 'totalBeds', min: 15, max: 500, errorMessage: 'Total Number of Beds must be between 15 and 500.' },
+            { id: 'totalLaborTables', min: 0, max: 50, errorMessage: 'Total Number of Labor Tables must be between 0 and 50.' },
             { id: 'laborRoom', errorMessage: 'Functional Labor Room selection is required.' },
             { id: 'internetConnectivity', errorMessage: 'Internet Connectivity selection is required.' },
             { id: 'runningWater', errorMessage: '24X7 Running Water Facility selection is required.' },
@@ -84,7 +84,14 @@ const validations = {
             { id: 'afhcAvailable', errorMessage: 'AFHC Availability selection is required.' },
             { id: 'biomedicalWaste', errorMessage: 'Biomedical Waste Management selection is required.' },
             { id: 'drugStorage', errorMessage: 'Space for Drug Storage selection is required.' },
-            { id: 'dotsCenter', errorMessage: 'DOTS Center selection is required.' }
+            { id: 'dotsCenter', errorMessage: 'DOTS Center selection is required.' },
+            {id:'mchBeds', errorMessage: 'MCH Beds selection is required.' },
+            {id:'bloodBank', errorMessage: 'Blood Bank selection is required.' },
+            {id:'sncuNbsuAvailable', errorMessage: 'SNCU/NBSU Available selection is required.' },
+            {id:'totalBedsSncuNbsu', errorMessage: 'Total Beds in SNCU/NBSU must be between 0 and 50.' },
+            {id:'nrcMtcCentre', errorMessage: 'NRC/MTC Centre selection is required.' },
+            {id:'nrcMtcBeds', errorMessage: 'Total Beds in NRC/MTC Centre must be between 0 and 100.' },
+            {id:'functionalLab', errorMessage: 'Functional Lab selection is required.' },
         ];
 
         fieldsToValidate.forEach(field => {
@@ -128,13 +135,9 @@ const validations = {
 
         // Get all sanctioned and available fields
         const sanctionedFields = document.querySelectorAll('input[id$="-sanctioned"]');
-        //console.log('sanctionedFields:', sanctionedFields);
-
         const availableFields = document.querySelectorAll('input[id$="-available"]');
-
+        
         sanctionedFields.forEach((sanctionedInput) => {
-
-
             const idParts = sanctionedInput.id.split('-'); // Extract type and role
             const type = idParts[0]; // e.g., "regular" or "contractual"
             const role = idParts[1]; // e.g., "MO", "DentalMO", etc.
@@ -142,54 +145,63 @@ const validations = {
             const trainingContainer = document.getElementById(`${role.toLowerCase()}TrainingsContainer`);
             const errorSanctioned = document.getElementById(`error-${sanctionedInput.id}`);
             const errorAvailable = document.getElementById(`error-${availableInput.id}`);
-
+        
             // Validation for sanctioned field
             const sanctionedValue = parseInt(sanctionedInput.value, 10);
-            if (isNaN(sanctionedValue) || sanctionedValue <= 0) {
-                isValid = false;
+            const availableValue = parseInt(availableInput.value, 10);
+        
+            let hasValidSanctioned = false;
+            let hasValidAvailable = false;
+        
+            if (sanctionedValue > 0) {
+                errorSanctioned.textContent = '';
+                sanctionedInput.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                sanctionedInput.classList.add('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
+                availableInput.removeAttribute('disabled'); // Enable the available input
+                hasValidSanctioned = true;
+            } else {
                 errorSanctioned.textContent = 'Sanctioned value must be greater than 0.';
                 sanctionedInput.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
                 sanctionedInput.classList.remove('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
                 availableInput.setAttribute('disabled', true);
                 availableInput.value = ''; // Clear the available field
-                if (trainingContainer) {
-                    trainingContainer.style.display = 'none'; // Hide the training container
-                } // Hide the training container
-            } else {
-                errorSanctioned.textContent = '';
-                sanctionedInput.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
-                sanctionedInput.classList.add('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
-                availableInput.removeAttribute('disabled'); // Enable the available input
             }
-
-            // // Validation for available field
-            const availableValue = parseInt(availableInput.value, 10);
-            if (
-                sanctionedValue > 0 &&
-                (!availableValue || isNaN(availableValue) || availableValue <= 0 || availableValue > sanctionedValue)
-            ) {
-                isValid = false;
-                errorAvailable.textContent = `Available value must be between 1 and ${sanctionedValue}.`;
+        
+            // Validation for available field
+            if (availableValue > 0 && availableValue <= sanctionedValue) {
+                errorAvailable.textContent = '';
+                availableInput.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                availableInput.classList.add('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
+                hasValidAvailable = true;
+        
+                // Show training container if available > 0
+                if (trainingContainer) {
+                    trainingContainer.style.display = 'block';
+                }
+            } else if (sanctionedValue > 0) {
+                errorAvailable.textContent = `Available value must be greater than 0 and less than or equal to ${sanctionedValue}.`;
                 availableInput.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
                 availableInput.classList.remove('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
                 if (trainingContainer) {
                     trainingContainer.style.display = 'none'; // Hide the training container
-                } // Hide the training container
-            } else if (sanctionedValue > 0) {
-                errorAvailable.textContent = '';
-                availableInput.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
-                availableInput.classList.add('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
+                }
+            }
+        
+            // If neither field is valid, mark the form as invalid
+            if (!hasValidSanctioned && !hasValidAvailable) {
+                isValid = false;
                 if (trainingContainer) {
-                    trainingContainer.style.display = 'block'; // Show the training container
-                }// Show the training container
+                    trainingContainer.style.display = 'none'; // Hide the training container
+                }
             }
         });
-
+        
         if (!isValid) {
             alert('Please correct the errors in Section 3 before proceeding.');
         }
-
+        
         return isValid;
+        
     },
     section4: () => {
         let isValid = true;
@@ -197,39 +209,39 @@ const validations = {
         // List of fields to validate
         const fieldsToValidate = [
             // OPD and IPD load
-            { id: 'opdLoad', min: 0, max: 500, errorMessage: 'OPD Load must be between 0 and 500.' },
-            { id: 'ipdLoad', min: 0, max: 500, errorMessage: 'IPD Load must be between 0 and 500.' },
-            { id: 'teleConsultations', min: 0, max: 2000, errorMessage: 'Tele Consultations must be between 0 and 2000.' },
+            { id: 'opdLoad', min: 10, max: 1000, errorMessage: 'OPD Load must be between 10 and 10000.' },
+            { id: 'ipdLoad', min: 10, max: 5000, errorMessage: 'IPD Load must be between 10 and 5000.' },
+            { id: 'teleConsultations', min: 0, max: 50000, errorMessage: 'Tele Consultations must be between 0 and 50000.' },
 
             // Maternal Child Health
-            { id: 'pregnantFirstTrimester', min: 0, max: 1000, errorMessage: 'Pregnant Women Registered in First Trimester must be between 0 and 1000.' },
+            { id: 'pregnantFirstTrimester', min: 0, max: 500, errorMessage: 'Pregnant Women Registered in First Trimester must be between 0 and 1000.' },
             { id: 'pregnant4ANC', min: 0, max: 1000, errorMessage: 'Pregnant Women Received 4 ANC Check-ups must be between 0 and 1000.' },
-            { id: 'ifaTablets', min: 0, max: 500, errorMessage: 'Pregnant Women Given IFA Tablets must be between 0 and 500.' },
-            { id: 'calciumTablets', min: 0, max: 500, errorMessage: 'Pregnant Women Given Calcium Tablets must be between 0 and 500.' },
-            { id: 'albendazoleTablets', min: 0, max: 500, errorMessage: 'Pregnant Women Given Albendazole Tablets must be between 0 and 500.' },
-            { id: 'highRiskPregnancies', min: 0, max: 250, errorMessage: 'High Risk Pregnancies Identified must be between 0 and 250.' },
-            { id: 'totalANCRegistered', min: 0, max: 500, errorMessage: 'Total ANC Registered must be between 0 and 500.' },
-            { id: 'highRiskReferred', min: 0, max: 500, errorMessage: 'High Risk Pregnancies Referred Out must be between 0 and 500.' },
+            { id: 'ifaTablets', min: 0, max: 1000, errorMessage: 'Pregnant Women Given IFA Tablets must be between 0 and 1000.' },
+            { id: 'calciumTablets', min: 0, max: 1000, errorMessage: 'Pregnant Women Given Calcium Tablets must be between 0 and 1000.' },
+            { id: 'albendazoleTablets', min: 0, max: 1000, errorMessage: 'Pregnant Women Given Albendazole Tablets must be between 0 and 1000.' },
+            { id: 'highRiskPregnancies', min: 0, max: 1000, errorMessage: 'High Risk Pregnancies Identified must be between 0 and 1000.' },
+            { id: 'totalANCRegistered', min: 0, max: 500, errorMessage: 'C section must be between 0 and 500.' },
+            { id: 'highRiskReferred', min: 0, max: 1000, errorMessage: 'High Risk Pregnancies Referred Out must be between 0 and 500.' },
             { id: 'deliveriesConducted', min: 0, max: 1000, errorMessage: 'Deliveries Conducted must be between 0 and 1000.' },
             { id: 'liveBirths', min: 0, max: 300, errorMessage: 'Live Births must be between 0 and 300.' },
             { id: 'stillBirths', min: 0, max: 300, errorMessage: 'Still Births must be between 0 and 300.' },
             { id: 'lowBirthWeightBabies', min: 0, max: 250, errorMessage: 'Low Birth Weight Babies must be between 0 and 250.' },
-            { id: 'sickNewbornsReferred', min: 0, max: 500, errorMessage: 'Sick Newborns Referred must be between 0 and 500.' },
-            { id: 'iucdInsertions', min: 0, max: 250, errorMessage: 'IUCD Insertions must be between 0 and 250.' },
-            { id: 'ppiucdInsertions', min: 0, max: 500, errorMessage: 'PPIUCD Insertions must be between 0 and 500.' },
-            { id: 'adolescentsCounseled', min: 0, max: 1000, errorMessage: 'Adolescents Counseled/Treated must be between 0 and 1000.' },
-            { id: 'hepatitisVaccines', min: 0, max: 1000, errorMessage: 'Hepatitis B, OPV, BCG  must be between 0 and 1000.' },
+            { id: 'sickNewbornsReferred', min: 0, max: 500, errorMessage: 'Newborns Provided must be between 0 and 500.' },
+            { id: 'iucdInsertions', min: 0, max: 250, errorMessage: 'Inborn Admission must be between 0 and 250.' },
+            { id: 'ppiucdInsertions', min: 0, max: 500, errorMessage: 'Outburn Admission must be between 0 and 500.' },
+            { id: 'adolescentsCounseled', min: 0, max: 1000, errorMessage: 'Deaths in out must be between 0 and 1000.' },
+            { id: 'hepatitisVaccines', min: 0, max: 1000, errorMessage: 'Abortions  must be between 0 and 1000.' },
 
-            { id: 'childrenDiarrhea', min: 0, max: 1000, errorMessage: 'Under 5 Children Diagnosed with Diarrhoea must be between 0 and 1000.' },
-            { id: 'injectableContraceptive', min: 0, max: 1000, errorMessage: 'Injectable Contraceptive (Antara) must be between 0 and 1000.' },
-            { id: 'earlyBreastfeeding', min: 0, max: 500, errorMessage: 'Neonates Received Early Breastfeeding must be between 0 and 500.' },
+            { id: 'childrenDiarrhea', min: 0, max: 1000, errorMessage: 'Post Abortion must be between 0 and 1000.' },
+            { id: 'injectableContraceptiveAntara', min: 0, max: 1000, errorMessage: 'Injectable Contraceptive (Antara) must be between 0 and 1000.' },
+            { id: 'earlyBreastfeeding', min: 0, max: 500, errorMessage: 'PPIUCD must be between 0 and 500.' },
             { id: 'childrenARI', min: 0, max: 500, errorMessage: 'Under 5 Children Diagnosed with ARI must be between 0 and 500.' },
             { id: 'treatedDiarrhea', min: 0, max: 500, errorMessage: 'Under 5 Children Treated for Diarrhoea with ORS and Zinc must be between 0 and 500.' },
 
             // NCDs 
-            { id: 'targetPopulationNCD', min: 0, max: 2000, errorMessage: 'People Diagnosed with NCD (Hypertension) must be between 0 and 2000.' },
-            { id: 'ncdScreeningCompleted', min: 0, max: 2000, errorMessage: 'People Diagnosed with NCD (Diabetes) must be between 0 and 2000.' },
-            { id: 'cbacFilled', min: 0, max: 2000, errorMessage: 'People Diagnosed with CBAC must be between 0 and 2000.' },
+            { id: 'targetPopulationNCD', min: 0, max: 2000, errorMessage: 'Target for population must be between 0 and 2000.' },
+            { id: 'ncdScreeningCompleted', min: 0, max: 2000, errorMessage: 'OPD must be between 0 and 2000.' },
+            { id: 'cbacFilled', min: 0, max: 2000, errorMessage: 'value must be between 0 and 2000.' },
             { id: 'ncdScreenedPositive', min: 0, max: 2000, errorMessage: 'Patients on NCD(Screened Positive) must be between 0 and 2000.' },
             { id: 'ncdDiagnosedHypertension', min: 0, max: 2000, errorMessage: ' Value must be between 0 and 2000.' },
             { id: 'ncdDiagnosedDiabetes', min: 0, max: 2000, errorMessage: 'Value must be between 0 and 2000.' },
@@ -240,6 +252,12 @@ const validations = {
             { id : 'ncdReferredHypertension', min: 0, max: 2000, errorMessage: 'Value must be between 0 and 2000.' },
             { id: 'ncdReferredDiabetes', min: 0, max: 2000, errorMessage: 'Value must be between 0 and 2000.' }, 
             { id: 'ncdReferredCancer', min: 0, max: 2000, errorMessage: 'Value must be between 0 and 2000.' },
+            {id:'highRiskManaged', min: 0, max: 1000, errorMessage: 'Value must be between 0 and 2000.' },
+            {id:'highRiskLaborReferred', min: 0, max: 2000, errorMessage: 'Value must be between 0 and 2000.' },
+          //  {id:'deliveriesConducted', min: 0, max: 2000, errorMessage: 'Value must be between 0 and 2000.' },
+            {id:'postPartumSterilization', min: 0, max: 2000, errorMessage: 'Value must be between 0 and 2000.' },
+            {id:'childrenAdmittedNRC', min: 0, max: 2000, errorMessage: 'Value must be between 0 and 2000.' },
+            {id:'adolescentsCounseledAFHC', min: 0, max: 1000, errorMessage: 'Value must be between 0 and 2000'},
 
             //NTEP
             {id:'cbnaatTests', min: 0, max: 2000, errorMessage: 'CBNAAT Tests must be between 0 and 2000.'},
@@ -362,7 +380,7 @@ const validations = {
          //   { id: 'esr', errorMessage: 'ESR selection is required.' },
            // { id: 'sickleCellTesting', errorMessage: 'Sickle Cell testing selection is required.' },
             //{ id: 'tlcDlc', errorMessage: 'TLC, DLC selection is required.' },
-            { id: 'serumBilirubin', errorMessage: 'Ultrasound selection is required.' }
+            { id: 'serumBilirubin', errorMessage: 'X-Ray selection is required.' }
         ];
 
         diagnosticFields.forEach(field => {
@@ -413,18 +431,18 @@ const validations = {
             {id: 'rchRegister', errorMessage: 'RCH register selection is required.' },
             { id: 'eligibleCoupleRegister', errorMessage: 'Eligible couple/ RCH register selection is required.' },
             { id: 'iucdServiceRegister', errorMessage: 'IUCD service delivery register selection is required.' },
-            { id: 'injectableMPARegister', errorMessage: 'Injectable MPA register and cards selection is required.' },
+            { id: 'injectableMPARegister', errorMessage: 'Laboratory register selection is required.' },
             { id: 'ncdRegisters', errorMessage: 'NCD registers selection is required.' },
             {id:  'mtpRegister', errorMessage: 'MTP register selection is required.' },
             {id:'ncuNbsuRegister', errorMessage: 'NCU/NBSU register selection is required.' },
-            { id: 'telemedicineRegister', errorMessage: 'Telemedicine register selection is required.' },
+            { id: 'telemedicineRegister', errorMessage: 'CBNAAT register selection is required.' },
             {id:'tbReferralSlips', errorMessage: 'TB referral slips selection is required.' },
-            { id: 'notificationRegister', errorMessage: 'Notification register selection is required.' },
+            { id: 'notificationRegister', errorMessage: 'OPD register selection is required.' },
             { id: 'stockRegister', errorMessage: 'Stock register selection is required.' },
             { id: 'dueList', errorMessage: 'Due list (from MCTS portal or manual) selection is required.' },
             { id: 'vhndMicroPlans', errorMessage: 'VHND micro plans selection is required.' },
             { id: 'heightChart', errorMessage: 'Height chart selection is required.' },
-            { id: 'iucdTray', errorMessage: 'IUCD tray selection is required.' },
+            { id: 'iucdTray', errorMessage: 'MVA Kit selection is required.' },
             { id: 'sterilizedTrays', errorMessage: 'Sterilized trays selection is required.' },
             { id: 'ambuBag', errorMessage: 'Ambu Bag with mask selection is required.' },
             { id: 'bpApparatus', errorMessage: 'BP apparatus selection is required.' },
@@ -434,7 +452,7 @@ const validations = {
             { id: 'fetoscope', errorMessage: 'Fetoscope selection is required.' },
             { id: 'thermometer', errorMessage: 'Thermometer selection is required.' },
             { id: 'mucusExtractor', errorMessage: 'Mucus Extractor selection is required.' },
-            { id: 'ppiucdForceps', errorMessage: 'PPIUCD forceps selection is required.' },
+            { id: 'ppiucdForceps', errorMessage: 'PC selection is required.' },
             { id: 'oxygenCylinder', errorMessage: 'Functional Oxygen Cylinder selection is required.' },
             { id: 'bmwBins', errorMessage: 'BMW Colour coded bins selection is required.' },
             {id:'partograph', errorMessage: 'Partograph selection is required.' },
@@ -607,8 +625,8 @@ document.querySelectorAll('input, select, textarea, checkbox').forEach(element =
                 diagnosticsTestConducted1: { min: 0, max: 250 },
                 nonFunctionalTests:{ min: 0, max: 250 },
                 diagnosticsTestConducted: { min: 0, max: 250 },
-                totalBeds: { min: 0, max: 50 },
-                totalLaborTables: { min: 0, max: 10 },
+                totalBeds: { min: 15, max: 500 },
+                totalLaborTables: { min: 0, max: 50 },
                 "regular-MO-sanctioned": {min: 0, max: 5},
                 "regular-MO-available": {min: 0, max: 5},
                 "contractual-MO-sanctioned": {min: 0, max: 5},
@@ -685,17 +703,17 @@ document.querySelectorAll('input, select, textarea, checkbox').forEach(element =
                 "tbTraining-MPWFemale": { min: 0, max: 10 },
                 "nqasTraining-MPWFemale": { min: 0, max: 10 },
                 "ncdTraining-MPWFemale": { min: 0, max: 10 },
-                opdLoad: { min: 0, max: 500 },
-                ipdLoad: { min: 0, max: 500 },
-                teleConsultations: { min: 0, max: 2000 },
-                pregnantFirstTrimester: { min: 0, max: 1000 },
+                opdLoad: { min: 10, max: 1000 },
+                ipdLoad: { min: 10, max: 5000 },
+                teleConsultations: { min: 0, max: 50000 },
+                pregnantFirstTrimester: { min: 0, max: 500 },
                 pregnant4ANC: { min: 0, max: 1000 },
-                ifaTablets: { min: 0, max: 500 },
-                calciumTablets: { min: 0, max: 500 },
-                albendazoleTablets: { min: 0, max: 500 },
-                highRiskPregnancies: { min: 0, max: 250 },
+                ifaTablets: { min: 0, max: 1000 },
+                calciumTablets: { min: 0, max: 1000 },
+                albendazoleTablets: { min: 0, max: 1000 },
+                highRiskPregnancies: { min: 0, max: 1000 },
                 totalANCRegistered: { min: 0, max: 500 },
-                highRiskReferred: { min: 0, max: 500 },
+                highRiskReferred: { min: 0, max: 1000 },
                 deliveriesConducted: { min: 0, max: 1000 },
                 liveBirths: { min: 0, max: 300 },
                 stillBirths: { min: 0, max: 300 },
@@ -728,7 +746,15 @@ document.querySelectorAll('input, select, textarea, checkbox').forEach(element =
                 tbDrugRegimePatients: { min: 0, max: 2000 },
                 ncdScreenedPositive: { min: 0, max: 2000 },
                 nqasDepartments: { min: 0, max: 50 },
-                
+                mchBeds: { min: 0, max: 150 },
+                totalBedsSncuNbsu: { min: 0, max: 100 },
+                nrcMtcBeds: { min: 0, max: 100 },
+               // deliveriesConducted: { min: 0, max: 1000 },
+                highRiskManaged: { min: 0, max: 1000 },
+                postPartumSterilization: {min: 0,max:2000},
+                childrenAdmittedNRC:{min: 0,max:2000},
+                injectableContraceptiveAntara:{min:0, max:1000},
+                adolescentsCounseledAFHC:{min:0,max:2000}
                
 
             }[event.target.id];
@@ -826,8 +852,6 @@ document.querySelectorAll('input, select, textarea, checkbox').forEach(element =
             const availableInput = document.getElementById(`${type}-${role}-available`);
             //const trainingContainer = document.getElementById(`trainingsContainer-${role}`);
             const trainingContainer = document.getElementById(`trainingsContainer-${role}`);
-            console.log('Training Container:', trainingContainer);
-
 
 
             if (fieldType === 'sanctioned') {
