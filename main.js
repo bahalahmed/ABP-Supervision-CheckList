@@ -1,6 +1,3 @@
-function navigateTo(url) {
-    window.location.href = url;
-}
 const validations = {
     section1: () => {
         let isValid = true;
@@ -8,7 +5,6 @@ const validations = {
         // General Details Validation
         const fieldsToValidate = [
             { id: 'dateOfVisit', errorMessage: 'Date of Visit is required.' },
-            { id: 'state', errorMessage: 'State selection is required.' },
             { id: 'district', errorMessage: 'District selection is required.' },
             { id: 'block', errorMessage: 'Block selection is required.' },
             { id: 'facilityType', errorMessage: 'Facility Type selection is required.' },
@@ -234,7 +230,7 @@ const validations = {
             { id: 'targetPopulationNCD', min: 0, max: 2000, errorMessage: 'People Diagnosed with NCD (Hypertension) must be between 0 and 2000.' },
             { id: 'ncdScreeningCompleted', min: 0, max: 2000, errorMessage: 'People Diagnosed with NCD (Diabetes) must be between 0 and 2000.' },
             { id: 'cbacFilled', min: 0, max: 2000, errorMessage: 'People Diagnosed with CBAC must be between 0 and 2000.' },
-            { id: 'ncdScreenedPositive', min: 0, max: 2000, errorMessage: 'Patients on NCD(Screened Positive) must be between 0 and 2000.' },
+             {id:'ncdScreenedPositive', min: 0, max: 2000, errorMessage: 'People Screened Positive for NCD must be between 0 and 2000.' },
             { id: 'ncdDiagnosedHypertension', min: 0, max: 2000, errorMessage: ' Value must be between 0 and 2000.' },
             { id: 'ncdDiagnosedDiabetes', min: 0, max: 2000, errorMessage: 'Value must be between 0 and 2000.' },
             { id: 'ncdDiagnosedCancer', min: 0, max: 2000, errorMessage: 'Value must be between 0 and 2000.' },
@@ -399,7 +395,79 @@ const validations = {
 
         return isValid;
     },
-   
+    section7: () => {
+        let isValid = true;
+        const section7Fields = [
+            { id: 'deliveryRegister', errorMessage: 'Delivery register selection is required.' },
+            { id: 'referralRegister', errorMessage: 'Referral Register selection is required.' },
+            { id: 'ancRegister', errorMessage: 'ANC register selection is required.' },
+            { id: 'highRiskPregnancyRegister', errorMessage: 'High Risk Pregnancy register selection is required.' },
+            {id: 'rchRegister', errorMessage: 'RCH register selection is required.' },
+            { id: 'eligibleCoupleRegister', errorMessage: 'Eligible couple/ RCH register selection is required.' },
+            { id: 'iucdServiceRegister', errorMessage: 'IUCD service delivery register selection is required.' },
+            { id: 'injectableMPARegister', errorMessage: 'Injectable MPA register and cards selection is required.' },
+            { id: 'ncdRegisters', errorMessage: 'NCD registers selection is required.' },
+            { id: 'telemedicineRegister', errorMessage: 'Telemedicine register selection is required.' },
+            { id: 'notificationRegister', errorMessage: 'Notification register selection is required.' },
+            { id: 'stockRegister', errorMessage: 'Stock register selection is required.' },
+            { id: 'dueList', errorMessage: 'Due list (from MCTS portal or manual) selection is required.' },
+            { id: 'vhndMicroPlans', errorMessage: 'VHND micro plans selection is required.' },
+            { id: 'heightChart', errorMessage: 'Height chart selection is required.' },
+            { id: 'iucdTray', errorMessage: 'IUCD tray selection is required.' },
+            { id: 'sterilizedTrays', errorMessage: 'Sterilized trays selection is required.' },
+            { id: 'ambuBag', errorMessage: 'Ambu Bag with mask selection is required.' },
+            { id: 'bpApparatus', errorMessage: 'BP apparatus selection is required.' },
+            { id: 'stethoscope', errorMessage: 'Stethoscope selection is required.' },
+            { id: 'weighingScale', errorMessage: 'Weighing machine selection is required.' },
+            { id: 'babyWeighingMachine', errorMessage: 'Baby Weighing machine selection is required.' },
+            { id: 'fetoscope', errorMessage: 'Fetoscope selection is required.' },
+            { id: 'thermometer', errorMessage: 'Thermometer selection is required.' },
+            { id: 'mucusExtractor', errorMessage: 'Mucus Extractor selection is required.' },
+            { id: 'ppiucdForceps', errorMessage: 'PPIUCD forceps selection is required.' },
+            { id: 'oxygenCylinder', errorMessage: 'Functional Oxygen Cylinder selection is required.' },
+            { id: 'bmwBins', errorMessage: 'BMW Colour coded bins selection is required.' }
+        ];
+
+        // Validate each field dynamically
+        section7Fields.forEach(field => {
+            const inputElement = document.getElementById(field.id);
+            const errorElement = document.getElementById(`error-${field.id}`);
+
+            if (!inputElement || inputElement.value.trim() === "") {
+                if (errorElement) errorElement.textContent = field.errorMessage;
+                if (inputElement) {
+                    inputElement.classList.add('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                    inputElement.classList.remove('border-gray-300', 'focus:ring-blue-500', 'focus:border-blue-500');
+                }
+                isValid = false;
+            } else {
+                if (errorElement) errorElement.textContent = '';
+                if (inputElement) {
+                    inputElement.classList.remove('border-red-500', 'focus:ring-red-500', 'focus:border-red-500');
+                    inputElement.classList.add('border-gray-300', 'focus:ring-blue-500', 'focus:border-blue-500');
+                }
+            }
+        });
+
+        // Validate the checkboxes for Certification Available
+        const certifications = ['kayakalp', 'laqshya', 'nqas', 'musqan', 'suman'];
+        const isAnyCertificationChecked = certifications.some(cert => document.getElementById(cert).checked);
+        const errorCertification = document.getElementById('error-certificationAvailable');
+
+        if (!isAnyCertificationChecked) {
+            errorCertification.textContent = 'At least one certification must be selected.';
+            isValid = false;
+        } else {
+            errorCertification.textContent = '';
+            isValid = true;
+        }
+
+        if (!isValid) {
+            alert('Please fill out all required fields correctly before proceeding.');
+        }
+
+        return isValid;
+    },
     };
 
 
@@ -536,7 +604,8 @@ document.querySelectorAll('input, select, textarea, checkbox').forEach(element =
                 "rchTraining-ASHA": { min: 0, max: 10 },
                 "tbTraining-ASHA": { min: 0, max: 10 },
                 "nqasTraining-ASHA": { min: 0, max: 10 },
-                "ncdTraining-ASHA": { min: 0, max: 10 },                
+                "ncdTraining-ASHA": { min: 0, max: 10 },  
+                ncdScreenedPositive: { min: 0, max: 2000 },              
             }[event.target.id];
 
             const value = parseInt(event.target.value, 10);
@@ -654,5 +723,4 @@ function validateAndNext(section) {
         }
     }
 }
-
 
