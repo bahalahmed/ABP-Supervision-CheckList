@@ -6,13 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checklist Form</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uuid@9.0.0/dist/uuidv4.min.js"></script>
+
 </head>
 
 <body class="bg-gray-100 min-h-screen flex items-center justify-center">
     <div class="container mx-auto p-4">
-        <form id="checklistForm">
+        <form id="communityCheckList">
             <!-- Section 1: General Information -->
-            <div id="section1" class="section bg-white p-6 rounded-lg shadow-md mb-4">
+            <div id="section1" class="section bg-white p-6 rounded-lg shadow-md mb-4 " data-section="1">
                 <div class="mb-6">
                     <h2 class="text-3xl font-bold mb-6 text-black-600">General Information</h2>
                     <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
@@ -333,8 +335,11 @@
 
                             <!-- MCP Cards -->
                             <div class="mb-6">
-                                <label for="mcpCards" class="block text-gray-700 text-lg font-semibold">MCP Cards <span class="text-red-500">*</span></label>
-                                <select id="mcpCards" class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md" name="mcpCards" required>
+                                <label for="mcpCards" class="block text-gray-700 text-lg font-semibold">MCP Cards <span
+                                        class="text-red-500">*</span></label>
+                                <select id="mcpCards"
+                                    class="form-select mt-2 block w-full p-3 border border-gray-300 rounded-md"
+                                    name="mcpCards" required>
                                     <option value="" disabled selected>Select an option</option>
                                     <option value="Yes">Yes</option>
                                     <option value="No">No</option>
@@ -357,7 +362,7 @@
                 </div>
             </div>
             <!-- Section 2: ASHA Details -->
-            <div id="section2" class="section bg-white p-6 rounded-lg shadow-md mb-4 hidden ">
+            <div id="section2" class="section bg-white p-6 rounded-lg shadow-md mb-4 hidden " data-section="2">
                 <div class="mb-6">
                     <h2 class="text-3xl font-bold mb-6 text-black-600">ASHA Details</h2>
                     <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
@@ -524,7 +529,7 @@
                             <p id="error-fpIndenting" class="text-red-500 text-sm"></p>
                         </div>
 
-                        <!-- Newborns Visited for HBNC -->
+                        <!-- Newborns Vi sited for HBNC -->
                         <div class="mb-6">
                             <label for="newbornsHBNC" class="block text-gray-700 text-lg font-semibold">
                                 Newborns visited for HBNC in last three months
@@ -535,8 +540,8 @@
                                 placeholder="Enter a number" required>
                             <p id="error-newbornsHBNC" class="text-red-500 text-sm"></p>
                         </div>
-                         <!-- Sick Newborn Referred -->
-                         <div class="mb-6">
+                        <!-- Sick Newborn Referred -->
+                        <div class="mb-6">
                             <label for="sickNewbornReferred" class="block text-gray-700 text-lg font-semibold">
                                 Sick newborns with danger signs referred to higher facilities in last three months
                                 <span class="text-red-500">*</span>
@@ -595,7 +600,7 @@
             </div>
 
             <!-- Section 3: Essential Supplies Checklist -->
-            <div id="section3" class="section bg-white p-6 rounded-lg shadow-md mb-4 hidden ">
+            <div id="section3" class="section bg-white p-6 rounded-lg shadow-md mb-4 hidden" data-section="3">
                 <div class="mb-6">
                     <h2 class="text-3xl font-bold mb-6 text-black-600">Essential Commodities</h2>
                     <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
@@ -870,7 +875,7 @@
                 </div>
             </div>
             <!-- Section 4: Interaction Summary -->
-            <div id="section4" class="section bg-white p-6 rounded-lg shadow-md mb-4 hidden">
+            <div id="section4" class="section bg-white p-6 rounded-lg shadow-md mb-4 hidden" data-section="4">
                 <div class="mb-6">
                     <h2 class="text-3xl font-bold mb-6 text-black-600">Interaction Summary</h2>
                     <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
@@ -976,7 +981,7 @@
 
 
             <!-- Section 5: Key Programmatic Issues -->
-            <div id="section5" class="section bg-white p-6 rounded-lg shadow-md mb-4 hidden">
+            <div id="section5" class="section bg-white p-6 rounded-lg shadow-md mb-4 hidden" data-section="5">
                 <div class="mb-6">
                     <h2 class="text-3xl font-bold mb-6 text-black-600">Key Programmatic Issues</h2>
                     <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
@@ -1099,8 +1104,20 @@
                         </button>
                     </div>
                 </div>
-            </div>
+            </div> 
         </form>
+            <div id="successMessage" class="hidden bg-green-100 border border-green-400 text-green-700 px-6 py-4 rounded-lg shadow-lg text-center">
+                <h2 class="text-2xl font-bold mb-2">Form Submitted Successfully!</h2>
+                <p class="mb-4">Your data has been submitted. Here is your reference link:</p>
+                <a id="apiLink" href="#" target="_blank" class="text-blue-500 underline font-semibold hover:text-blue-700">
+                    Click here to view your submission
+                </a>
+                <button onclick="restartForm()" class="mt-4 bg-blue-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-600 transition duration-300">
+                    Fill Another Form
+                </button>
+            </div>
+            
+        
     </div>
     <script src="main.js"></script>
 </body>

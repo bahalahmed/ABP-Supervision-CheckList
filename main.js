@@ -1,3 +1,37 @@
+const baseApiUrl = 'http://localhost:3000/checklistapi/';
+
+// Function to generate a unique ID
+function generateUniqueId() {
+    return crypto.randomUUID(); // Using modern UUID generation
+}
+
+// Initialize or retrieve form data from localStorage
+let formData = JSON.parse(localStorage.getItem('formData')) || {};
+
+// Save data for the current section in localStorage
+function saveSectionData(section) {
+    const sectionElement = document.getElementById(`section${section}`);
+    const inputs = sectionElement.querySelectorAll('input, select, textarea');
+
+    if (!formData.id) {
+        formData.id = generateUniqueId();
+        formData.apiUrl = `${baseApiUrl}${formData.id}`; // Create the API link dynamically
+    }
+
+    formData[`section${section}`] = formData[`section${section}`] || {};
+
+    inputs.forEach(input => {
+        if (input.type === 'checkbox') {
+            formData[`section${section}`][input.id] = input.checked;
+        } else {
+            formData[`section${section}`][input.id] = input.value;
+        }
+    });
+
+    // Save updated formData to localStorage
+    localStorage.setItem('formData', JSON.stringify(formData));
+    console.log(`Section ${section} data saved:`, formData[`section${section}`]);
+}
 const validations = {
     section1: () => {
         let isValid = true;
@@ -180,7 +214,6 @@ const validations = {
                 inputElement.classList.add('border-gray-300', 'focus:ring-indigo-500', 'focus:border-gray-300');
             }
         });
-
         if (!isValid) {
             alert('Please fill out all required fields correctly before proceeding.');
         }
@@ -306,8 +339,10 @@ const validations = {
     }
 
 };
+// Save & Next button handler
 function validateAndNext(section) {
     if (validations[`section${section}`]()) {
+        saveSectionData(section);
         document.getElementById(`section${section}`).classList.add('hidden');
         const nextSection = document.getElementById(`section${section + 1}`);
         if (nextSection) {
@@ -403,30 +438,103 @@ document.querySelectorAll('select, input, textarea').forEach(element => {
     });
 });
 
+
+
+
+// Toggle VHND Section Visibility
+
+// document.querySelector('.submit').addEventListener('click', event => {
+//     event.preventDefault();
+
+//     // Validate the last section (Section 5 in this case)
+//     if (validations.section5()) {
+//         // Save data for the last section
+//         saveSectionData(5);
+
+//         // Collect all the saved data from localStorage
+//         const savedData = JSON.parse(localStorage.getItem('formData')) || {};
+
+//         // Simulate submission by printing all data to the console
+//         console.log("Submitting the following data:", savedData);
+
+//         console.log('API Link:', savedData.apiUrl);
+
+
+
+//         // Optionally send data to the backend
+//         fetch(savedData.apiUrl, {
+//             method: 'POST',
+//             headers: { 'Content-Type': 'application/json' },
+//             body: JSON.stringify(savedData),
+//         })
+//             .then(response => {
+//                 if (response.ok) {
+//                     console.log('Form submitted successfully:', savedData);
+//                     // Hide the form and show the success message
+//                     document.getElementById('communityCheckList').classList.add('hidden');
+//                     document.getElementById('successMessage').classList.remove('hidden');
+
+
+//                     const apiLinkElement = document.getElementById('apiLink');
+//                     apiLinkElement.textContent = savedData.apiUrl;
+//                     apiLinkElement.href = savedData.apiUrl;
+//                     // Clear the localStorage after submission
+//                     localStorage.removeItem('formData');
+//                 } else {
+//                     throw new Error('Submission failed');
+//                     alert('Failed to submit the form. Please try again.');
+//                 }
+//             })
+//             .catch(error => console.error('Error submitting form:', error));
+//     }
+
+//         // // Hide the form and show the success message
+//         // document.getElementById('communityCheckList').classList.add('hidden');
+//         // document.getElementById('successMessage').classList.remove('hidden');
+
+//         // // Clear the localStorage after submission
+//         // localStorage.removeItem('formData');
+//         // console.log("Local storage cleared for testing.");
+//     }
+
+// );
+
 document.querySelector('.submit').addEventListener('click', event => {
     event.preventDefault();
+
+    // Validate the last section (Section 5 in this case)
     if (validations.section5()) {
-        const formData = {
-            areasOfIssue: [],
-            details: {
-                knowledgeIssue: document.getElementById('knowledgeIssue')?.value || "",
-                knowledgeAction: document.getElementById('knowledgeAction')?.value || ""
-            }
-        };
-        fetch('https://your-backend-api.com/submit', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formData)
-        })
-            .then(response => response.json())
-            .then(data => alert("Submission Successful"))
-            .catch(error => alert("Submission Failed"));
+        // Save data for the last section
+        saveSectionData(5);
+
+        // Collect all the saved data from localStorage
+        const savedData = JSON.parse(localStorage.getItem('formData')) || {};
+
+        // Simulate submission by storing the data in local storage
+        console.log("Simulated submission:", savedData);
+
+        // Generate a fake API URL for testing
+        const fakeApiUrl = `http://localhost:3000/checklistapi/${savedData.id}`;
+        console.log("Simulated API URL:", fakeApiUrl);
+
+        // Update the success message with the fake API URL
+        const successMessage = document.getElementById('successMessage');
+        const apiLink = document.getElementById('apiLink');
+        apiLink.textContent = fakeApiUrl;
+        apiLink.href = fakeApiUrl;
+
+        // Show the success message
+        document.getElementById('communityCheckList').classList.add('hidden');
+        successMessage.classList.remove('hidden');
+
+        // Clear the localStorage after submission
+        localStorage.removeItem('formData');
+        console.log("Local storage cleared after testing.");
     }
 });
 
 
 
-// Toggle VHND Section Visibility
 function toggleVHNDSection(value) {
     const vhndSection = document.getElementById('vhndSection');
     if (vhndSection) {
@@ -459,6 +567,33 @@ function toggleFields(sectionId, checkbox) {
     }
 }
 
+// document.querySelector('.submit').addEventListener('click', event => {
+//     event.preventDefault();
 
+//     // Validate the last section (Section 5 in this case)
+//     if (validations.section5()) {
+//         // Collect all the saved data from localStorage
+//         const savedData = JSON.parse(localStorage.getItem('formData')) || {};
+
+//         // Simulate submission by printing all data to the console
+//         console.log("Submitting the following data:", savedData);
+
+//         // Show an alert to the user for confirmation
+//         alert("Form submission simulated successfully. Check the console for submitted data.");
+
+//         // Optionally, clear the localStorage for the next test run
+//         localStorage.removeItem('formData');
+//         console.log("Local storage cleared for testing.");
+//     }
+// });
+  // Restart form functionality
+  function restartForm() {
+    document.getElementById('successMessage').classList.add('hidden');
+    document.getElementById('communityCheckList').reset();
+    document.getElementById('communityCheckList').classList.remove('hidden');
+
+    document.querySelectorAll('.section').forEach(section => section.classList.add('hidden'));
+    document.getElementById('section1').classList.remove('hidden');
+}
 
 
