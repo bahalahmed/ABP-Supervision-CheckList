@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Health and Welness Checklist</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uuid@9.0.0/dist/uuidv4.min.js"></script>
 </head>
 
 <body class="bg-gray-100 min-h-screen flex items-center justify-center">
@@ -13,7 +14,7 @@
         <form id="checklistForm">
 
             <!-- Section 1: General Information -->
-            <div id="section1" class="section bg-white p-6 rounded-lg shadow-md mb-4">
+            <div id="section1" class="section bg-white p-6 rounded-lg shadow-md mb-4" data-section="1">
                 <div class="mb-6">
                     <h2 class="text-3xl font-bold mb-6 text-black-600">General Information</h2>
                     <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
@@ -175,7 +176,7 @@
                 </div>
             </div>
             <!-- Infrastructure Section -->
-            <div id="section2" class="section bg-white p-6 rounded-lg shadow-md mb-4 hidden">
+            <div id="section2" class="section bg-white p-6 rounded-lg shadow-md mb-4 hidden" data-section="2" >
                 <div class="mb-6">
                     <h2 class="text-3xl font-bold mb-6 text-black-600">Infrastructure</h2>
                     <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
@@ -505,7 +506,7 @@
             </div>
 
             <!--Medical Officers Section -->
-            <div id="section3" class="bg-white p-6 rounded shadow-md mb-4 hidden">
+            <div id="section3" class="bg-white p-6 rounded shadow-md mb-4 hidden" data-section="3">
                 <h2 class="text-3xl font-bold mb-6 text-black-600">Human Resource for Health</h2>
                 <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
 
@@ -1659,7 +1660,7 @@
                 </div>
             </div>
 
-            <div id="section4" class="section bg-white p-6 rounded-lg shadow-md mb-4 hidden">
+            <div id="section4" class="section bg-white p-6 rounded-lg shadow-md mb-4 hidden " data-section="4">
                 <div class="mb-6">
                     <h2 class="text-3xl font-bold mb-6 text-black-600">Service Delivery </h2>
                     <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
@@ -2052,7 +2053,7 @@
                 </div>
             </div>
 
-            <div id="section5" class="section bg-white p-6 rounded-lg shadow-md mb-4 hidden">
+            <div id="section5" class="section bg-white p-6 rounded-lg shadow-md mb-4 hidden" data-section="5">
                 <div class="mb-6">
                     <h2 class="text-3xl font-bold mb-6 text-black-600"> Medicines</h2>
                     <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
@@ -2577,7 +2578,7 @@
                 </div>
             </div>
 
-            <div id="section6" class="section bg-white p-6 rounded-lg shadow-md mb-4 hidden">
+            <div id="section6" class="section bg-white p-6 rounded-lg shadow-md mb-4 hidden" data-section="6">
                 <div class="mb-6">
 
                     <h2 class="text-3xl font-bold mb-4 text-black-600">Diagnostics</h2>
@@ -2847,7 +2848,7 @@
                 </div>
             </div>
 
-            <div id="section7" class="section bg-white p-6 rounded-lg shadow-md mb-4 hidden">
+            <div id="section7" class="section bg-white p-6 rounded-lg shadow-md mb-4 hidden" data-section="7">
                 <h2 class="text-3xl font-bold mb-4 text-black-600">Documentation and Supplies</h2>
                 <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
 
@@ -3254,7 +3255,7 @@
                 </div>
             </div>
 
-            <div id="section8" class="section bg-white p-8 rounded-lg shadow-md mb-6 hidden">
+            <div id="section8" class="section bg-white p-8 rounded-lg shadow-md mb-6 hidden" data-section="8">
                 <div class="text-center">
                     <h2 class="text-3xl font-bold mb-4 text-gray-800">Key Programmatic Issues</h2>
                     <p class="text-base text-gray-600 mb-6"> 

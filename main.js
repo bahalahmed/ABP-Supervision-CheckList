@@ -1,3 +1,48 @@
+//const baseApiUrl = 'http://localhost:3000/checklistapi/';
+
+// Function to generate a unique ID
+function generateUniqueId() {
+    return crypto.randomUUID(); // Using modern UUID generation
+}
+
+// Initialize or retrieve form data from localStorage
+let formData = JSON.parse(localStorage.getItem('formData')) || {};
+
+// Save data for the current section in localStorage
+
+// Ensure UUID exists in localStorage
+if (!formData.id) {
+    formData.id = generateUniqueId();
+    formData.apiUrl = `http://localhost:3000/checklistapi/${formData.id}`; // Simulated API link
+    localStorage.setItem('formData', JSON.stringify(formData));
+}
+
+// Retrieve current section from localStorage or default to Section 1
+let currentSection = parseInt(localStorage.getItem('currentSection') || '1', 10);
+showSection(currentSection);
+
+// Save data for the current section in localStorage
+function saveSectionData(section) {
+    const sectionElement = document.getElementById(`section${section}`);
+    const inputs = sectionElement.querySelectorAll('input, select, textarea');
+
+    formData[`section${section}`] = formData[`section${section}`] || {};
+
+    inputs.forEach(input => {
+        
+        if (input.type === 'checkbox') {
+            formData[`section${section}`][input.id] = input.checked;
+        } else {
+            formData[`section${section}`][input.id] = input.value;
+        }
+    });
+
+    // Save updated formData to localStorage
+    localStorage.setItem('formData', JSON.stringify(formData));
+    console.log(`Section ${section} data saved:`, formData[`section${section}`]);
+    console.log(`Section ${section} data saved. UID: ${formData.id}`);
+}
+
 const validations = {
     section1: () => {
         let isValid = true;
@@ -468,6 +513,14 @@ const validations = {
 
         return isValid;
     },
+    section8:()=>{
+        let isValid = true;
+        if (!isValid) {
+            alert('Please fill out all required fields correctly before proceeding.');
+        }
+
+        return isValid;
+    }
     };
 
 
@@ -682,7 +735,7 @@ document.querySelectorAll('input, select, textarea, checkbox').forEach(element =
             const availableInput = document.getElementById(`${type}-${role}-available`);
             //const trainingContainer = document.getElementById(`trainingsContainer-${role}`);
             const trainingContainer = document.getElementById(`trainingsContainer-${role}`);
-            console.log('Training Container:', trainingContainer);
+          //  console.log('Training Container:', trainingContainer);
 
 
 
@@ -716,11 +769,54 @@ document.querySelectorAll('input, select, textarea, checkbox').forEach(element =
 
 function validateAndNext(section) {
     if (validations[`section${section}`]()) {
+        saveSectionData(section);
+
+         // Uncomment below to enable API calls
+        // fetch(formData.apiUrl, {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify(formData[`section${section}`]),
+        // })
+        // .then(response => {
+        //     if (response.ok) {
+        //         console.log(`Section ${section} data successfully sent to the API`);
+        //     } else {
+        //         console.error(`Failed to save Section ${section} data`);
+        //     }
+        // })
+        // .catch(error => console.error('Error while saving section data:', error));
+
+        // Simulate saving to "server" (localStorage in this case)
+        console.log(`Simulated API call: Section ${section} data saved to localStorage.`);
+
+        // Move to the next section
         document.getElementById(`section${section}`).classList.add('hidden');
         const nextSection = document.getElementById(`section${section + 1}`);
         if (nextSection) {
             nextSection.classList.remove('hidden');
+            currentSection = section + 1;
+            localStorage.setItem('currentSection', currentSection); // Save current section
+        } else {
+            alert('No more sections!');
         }
     }
 }
 
+// Show a specific section based on the current state
+function showSection(section) {
+    document.querySelectorAll('.section').forEach(sec => sec.classList.add('hidden'));
+    const sectionElement = document.getElementById(`section${section}`);
+    if (sectionElement) {
+        sectionElement.classList.remove('hidden');
+    }
+}
+
+// function validateAndNext(section) {
+//     if (validations[`section${section}`]()) {
+//         document.getElementById(`section${section}`).classList.add('hidden');
+//         const nextSection = document.getElementById(`section${section + 1}`);
+//         if (nextSection) {
+//             nextSection.classList.remove('hidden');
+//         }
+//     }
+// }
