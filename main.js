@@ -1,4 +1,4 @@
-const baseApiUrl = 'http://localhost:3000/checklistapi/';
+//const baseApiUrl = 'http://localhost:3000/checklistapi/';
 
 // Function to generate a unique ID
 function generateUniqueId() {
@@ -9,14 +9,22 @@ function generateUniqueId() {
 let formData = JSON.parse(localStorage.getItem('formData')) || {};
 
 // Save data for the current section in localStorage
+
+// Ensure UUID exists in localStorage
+if (!formData.id) {
+    formData.id = generateUniqueId();
+    formData.apiUrl = `http://localhost:3000/checklistapi/${formData.id}`; // Simulated API link
+    localStorage.setItem('formData', JSON.stringify(formData));
+}
+
+// Retrieve current section from localStorage or default to Section 1
+let currentSection = parseInt(localStorage.getItem('currentSection') || '1', 10);
+showSection(currentSection);
+
+// Save data for the current section in localStorage
 function saveSectionData(section) {
     const sectionElement = document.getElementById(`section${section}`);
     const inputs = sectionElement.querySelectorAll('input, select, textarea');
-
-    if (!formData.id) {
-        formData.id = generateUniqueId();
-        formData.apiUrl = `${baseApiUrl}${formData.id}`; // Create the API link dynamically
-    }
 
     formData[`section${section}`] = formData[`section${section}`] || {};
 
@@ -31,7 +39,33 @@ function saveSectionData(section) {
     // Save updated formData to localStorage
     localStorage.setItem('formData', JSON.stringify(formData));
     console.log(`Section ${section} data saved:`, formData[`section${section}`]);
+    console.log(`Section ${section} data saved. UID: ${formData.id}`);
+
 }
+
+// function saveSectionData(section) {
+//     const sectionElement = document.getElementById(`section${section}`);
+//     const inputs = sectionElement.querySelectorAll('input, select, textarea');
+
+//     if (!formData.id) {
+//         formData.id = generateUniqueId();
+//         formData.apiUrl = `${baseApiUrl}${formData.id}`; // Create the API link dynamically
+//     }
+
+//     formData[`section${section}`] = formData[`section${section}`] || {};
+
+//     inputs.forEach(input => {
+//         if (input.type === 'checkbox') {
+//             formData[`section${section}`][input.id] = input.checked;
+//         } else {
+//             formData[`section${section}`][input.id] = input.value;
+//         }
+//     });
+
+//     // Save updated formData to localStorage
+//     localStorage.setItem('formData', JSON.stringify(formData));
+//     console.log(`Section ${section} data saved:`, formData[`section${section}`]);
+// }
 const validations = {
     section1: () => {
         let isValid = true;
@@ -339,17 +373,62 @@ const validations = {
     }
 
 };
-// Save & Next button handler
+
+
 function validateAndNext(section) {
     if (validations[`section${section}`]()) {
         saveSectionData(section);
+
+         // Uncomment below to enable API calls
+        // fetch(formData.apiUrl, {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify(formData[`section${section}`]),
+        // })
+        // .then(response => {
+        //     if (response.ok) {
+        //         console.log(`Section ${section} data successfully sent to the API`);
+        //     } else {
+        //         console.error(`Failed to save Section ${section} data`);
+        //     }
+        // })
+        // .catch(error => console.error('Error while saving section data:', error));
+
+        // Simulate saving to "server" (localStorage in this case)
+        console.log(`Simulated API call: Section ${section} data saved to localStorage.`);
+
+        // Move to the next section
         document.getElementById(`section${section}`).classList.add('hidden');
         const nextSection = document.getElementById(`section${section + 1}`);
         if (nextSection) {
             nextSection.classList.remove('hidden');
+            currentSection = section + 1;
+            localStorage.setItem('currentSection', currentSection); // Save current section
+        } else {
+            alert('No more sections!');
         }
     }
 }
+
+// Show a specific section based on the current state
+function showSection(section) {
+    document.querySelectorAll('.section').forEach(sec => sec.classList.add('hidden'));
+    const sectionElement = document.getElementById(`section${section}`);
+    if (sectionElement) {
+        sectionElement.classList.remove('hidden');
+    }
+}
+// // Save & Next button handler
+// function validateAndNext(section) {
+//     if (validations[`section${section}`]()) {
+//         saveSectionData(section);
+//         document.getElementById(`section${section}`).classList.add('hidden');
+//         const nextSection = document.getElementById(`section${section + 1}`);
+//         if (nextSection) {
+//             nextSection.classList.remove('hidden');
+//         }
+//     }
+// }
 
 document.querySelectorAll('select, input, textarea').forEach(element => {
     // Listen for both `input` and `change` events
@@ -499,39 +578,88 @@ document.querySelectorAll('select, input, textarea').forEach(element => {
 
 // );
 
+// Simulate form submission
 document.querySelector('.submit').addEventListener('click', event => {
     event.preventDefault();
 
-    // Validate the last section (Section 5 in this case)
     if (validations.section5()) {
-        // Save data for the last section
         saveSectionData(5);
 
-        // Collect all the saved data from localStorage
-        const savedData = JSON.parse(localStorage.getItem('formData')) || {};
 
-        // Simulate submission by storing the data in local storage
-        console.log("Simulated submission:", savedData);
+        // Uncomment below to enable API calls
+        // fetch(formData.apiUrl, {
+        //     method: 'POST', 
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify(formData),
+        // })
+        // .then(response => {
+        //     if (response.ok) {
+        //         console.log('Form successfully submitted to the API');
+        //         // Clear localStorage and show success message
+        //         localStorage.removeItem('formData');
+        //         localStorage.removeItem('currentSection');
+        //         document.getElementById('communityCheckList').classList.add('hidden');
+        //         document.getElementById('successMessage').classList.remove('hidden');
+        //     } else {
+        //         console.error('Failed to submit form data');
+        //     }
+        // })
+        // .catch(error => console.error('Error while submitting form data:', error));
 
-        // Generate a fake API URL for testing
-        const fakeApiUrl = `http://localhost:3000/checklistapi/${savedData.id}`;
-        console.log("Simulated API URL:", fakeApiUrl);
 
-        // Update the success message with the fake API URL
+        // Simulate saving the full form data locally
+        console.log("Simulated form submission:", formData);
+
+        // Update the success message
         const successMessage = document.getElementById('successMessage');
-        const apiLink = document.getElementById('apiLink');
-        apiLink.textContent = fakeApiUrl;
-        apiLink.href = fakeApiUrl;
+        // const apiLink = document.getElementById('apiLink');
+        // apiLink.textContent = formData.apiUrl;
+        // apiLink.href = formData.apiUrl;
 
-        // Show the success message
+        // Show success message and reset the form
         document.getElementById('communityCheckList').classList.add('hidden');
         successMessage.classList.remove('hidden');
 
-        // Clear the localStorage after submission
+        // Clear localStorage after submission
         localStorage.removeItem('formData');
+        localStorage.removeItem('currentSection');
         console.log("Local storage cleared after testing.");
     }
 });
+
+// document.querySelector('.submit').addEventListener('click', event => {
+//     event.preventDefault();
+
+//     // Validate the last section (Section 5 in this case)
+//     if (validations.section5()) {
+//         // Save data for the last section
+//         saveSectionData(5);
+
+//         // Collect all the saved data from localStorage
+//         const savedData = JSON.parse(localStorage.getItem('formData')) || {};
+
+//         // Simulate submission by storing the data in local storage
+//         console.log("Simulated submission:", savedData);
+
+//         // Generate a fake API URL for testing
+//         const fakeApiUrl = `http://localhost:3000/checklistapi/${savedData.id}`;
+//         console.log("Simulated API URL:", fakeApiUrl);
+
+//         // Update the success message with the fake API URL
+//         const successMessage = document.getElementById('successMessage');
+//         const apiLink = document.getElementById('apiLink');
+//         apiLink.textContent = fakeApiUrl;
+//         apiLink.href = fakeApiUrl;
+
+//         // Show the success message
+//         document.getElementById('communityCheckList').classList.add('hidden');
+//         successMessage.classList.remove('hidden');
+
+//         // Clear the localStorage after submission
+//         localStorage.removeItem('formData');
+//         console.log("Local storage cleared after testing.");
+//     }
+// });
 
 
 
@@ -587,13 +715,27 @@ function toggleFields(sectionId, checkbox) {
 //     }
 // });
   // Restart form functionality
-  function restartForm() {
+//   function restartForm() {
+//     document.getElementById('successMessage').classList.add('hidden');
+//     document.getElementById('communityCheckList').reset();
+//     document.getElementById('communityCheckList').classList.remove('hidden');
+
+//     document.querySelectorAll('.section').forEach(section => section.classList.add('hidden'));
+//     document.getElementById('section1').classList.remove('hidden');
+// }
+
+
+function restartForm() {
     document.getElementById('successMessage').classList.add('hidden');
     document.getElementById('communityCheckList').reset();
     document.getElementById('communityCheckList').classList.remove('hidden');
-
     document.querySelectorAll('.section').forEach(section => section.classList.add('hidden'));
     document.getElementById('section1').classList.remove('hidden');
+
+    // Reset localStorage
+    localStorage.removeItem('formData');
+    localStorage.removeItem('currentSection');
+    formData = { id: generateUniqueId(), apiUrl: `http://localhost:3000/checklistapi/${formData.id}` };
+    localStorage.setItem('formData', JSON.stringify(formData));
+    currentSection = 1;
 }
-
-
