@@ -1,5 +1,47 @@
 //const baseApiUrl = 'http://localhost:3000/checklistapi/';
 
+const SESSION_TIMEOUT = 30 * 60 * 1000; // Set session timeout (30 minutes in milliseconds)
+let sessionTimestamp = localStorage.getItem('sessionTimestamp');
+function showFlashMessage(message) {
+    const flashMessage = document.getElementById('flashMessage');
+    if (flashMessage) {
+        flashMessage.querySelector('p').textContent = message;
+        flashMessage.classList.remove('hidden');
+    }
+}
+
+// Check if session is valid
+function isSessionExpired() {
+    const currentTime = Date.now();
+    if (!sessionTimestamp || currentTime - parseInt(sessionTimestamp, 10) > SESSION_TIMEOUT) {
+        return true;
+    }
+    return false;
+}
+
+// Handle session expiry
+function handleSession() {
+    if (isSessionExpired()) {
+        // Clear localStorage and show flash message
+        localStorage.removeItem('formData');
+        localStorage.removeItem('currentSection');
+        localStorage.removeItem('sessionTimestamp');
+        showFlashMessage("Session got expired");
+        return false;
+    }
+
+    // Update session timestamp
+    localStorage.setItem('sessionTimestamp', Date.now().toString());
+    return true;
+}
+
+// Ensure session is valid on page load
+if (!handleSession()) {
+    // Optionally redirect to the start page or show an expired state
+    console.warn("Session expired");
+    // Redirect or disable form interactions if needed
+    // window.location.href = "index.html";
+}
 // Function to generate a unique ID
 function generateUniqueId() {
     return crypto.randomUUID(); // Using modern UUID generation
@@ -42,6 +84,11 @@ function saveSectionData(section) {
     console.log(`Section ${section} data saved. UID: ${formData.id}`);
 
 }
+if (!sessionTimestamp) {
+    localStorage.setItem('sessionTimestamp', Date.now().toString());
+    console.log("New session started");
+}
+
 
 // function saveSectionData(section) {
 //     const sectionElement = document.getElementById(`section${section}`);
