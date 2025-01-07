@@ -10,7 +10,7 @@
 
   <body class="bg-gray-100 min-h-screen flex items-center justify-center">
     <div class="container mx-auto p-4">
-      \
+      
 
       <!-- Section 8: Key Programmatic Issues -->
       <div id="section9" class="section bg-white p-6 rounded-lg shadow-md mb-4">
@@ -38,121 +38,119 @@
         </div>
 
         <!-- Issue Form -->
-        <form
-          id="issue-form"
-          class="hidden bg-gray-50 p-4 rounded-md border border-gray-300 mb-6"
-        >
-          <h4 class="text-lg font-semibold mb-4 text-blue-600">
-            Add New Issue
-          </h4>
-          <label class="block mb-2">
-            Major Findings:
-            <input
-              type="text"
-              id="majorFindings"
-              name="majorFindings"
-              class="w-full p-3 border rounded-md"
-              minlength="2"
-              maxlength="200"
-              required
-            />
-          </label>
-          <label class="block mb-2">
-            Interventions/Activities Identified:
-            <input
-              type="text"
-              id="interventions"
-              name="interventions"
-              class="w-full p-3 border rounded-md"
-              minlength="2"
-              maxlength="200"
-              required
-            />
-          </label>
-          <label class="block mb-2">
-            Level of Intervention:
-            <input
-              type="text"
-              id="interventionLevel"
-              name="interventionLevel"
-              class="w-full p-3 border rounded-md"
-              minlength="2"
-              maxlength="200"
-              required
-            />
-          </label>
-          <label class="block mb-2">
-            Responsibility:
-            <input
-              type="text"
-              id="responsibility"
-              name="responsibility"
-              class="w-full p-3 border rounded-md"
-              minlength="2"
-              maxlength="200"
-              required
-            />
-          </label>
-          <label class="block mb-2">
-            Timeline:
-            <input
-              type="text"
-              id="timeline"
-              name="timeline"
-              class="w-full p-3 border rounded-md"
-              minlength="2"
-              maxlength="200"
-              required
-            />
-          </label>
-          <div class="flex justify-end space-x-4 mt-4">
-            <button
-              type="button"
-              id="cancel-btn"
-              class="px-4 py-2 bg-gray-100 rounded hover:bg-gray-200"
+             <form
+                  id="issue-form"
+                  class="hidden bg-gray-50 p-4 rounded-md border border-gray-300 mb-6">
+                  <h4 class="text-lg font-semibold mb-4 text-blue-600">
+                    Add New Issue
+                  </h4>
+                  <label class="block mb-2">
+                    Major Findings:
+                    <input
+                      type="text"
+                      id="majorFindings"
+                      name="majorFindings"
+                      class="w-full p-3 border rounded-md"
+                      minlength="2"
+                      maxlength="200"
+                      required
+                    />
+                  </label>
+                  <label class="block mb-2">
+                    Interventions/Activities Identified:
+                    <input
+                      type="text"
+                      id="interventions"
+                      name="interventions"
+                      class="w-full p-3 border rounded-md"
+                      minlength="2"
+                      maxlength="200"
+                      required
+                    />
+                  </label>
+                  <label class="block mb-2">
+                    Level of Intervention:
+                    <input
+                      type="text"
+                      id="interventionLevel"
+                      name="interventionLevel"
+                      class="w-full p-3 border rounded-md"
+                      minlength="2"
+                      maxlength="200"
+                      required
+                    />
+                  </label>
+                  <label class="block mb-2">
+                    Responsibility:
+                    <input
+                      type="text"
+                      id="responsibility"
+                      name="responsibility"
+                      class="w-full p-3 border rounded-md"
+                      minlength="2"
+                      maxlength="200"
+                      required
+                    />
+                  </label>
+                  <label class="block mb-2">
+                    Timeline:
+                    <input
+                      type="text"
+                      id="timeline"
+                      name="timeline"
+                      class="w-full p-3 border rounded-md"
+                      minlength="2"
+                      maxlength="200"
+                      required
+                    />
+                  </label>
+                  <div class="flex justify-end space-x-4 mt-4">
+                    <button
+                      type="button"
+                      id="cancel-btn"
+                      class="px-4 py-2 bg-gray-100 rounded hover:bg-gray-200"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                    >
+                      Add Issue
+                    </button>
+                  </div>
+            </form>
+
+            <!-- Add Another Issue Button -->
+            <div
+              id="add-another-issue-btn-container"
+              class="hidden text-center mb-6"
             >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-            >
-              Add Issue
-            </button>
-          </div>
-        </form>
+              <button
+                id="add-another-issue-btn"
+                class="px-6 py-2 bg-blue-100 text-blue-600 font-semibold rounded hover:bg-blue-200"
+              >
+                + Add Another Issue
+              </button>
+            </div>
 
-        <!-- Add Another Issue Button -->
-        <div
-          id="add-another-issue-btn-container"
-          class="hidden text-center mb-6"
-        >
-          <button
-            id="add-another-issue-btn"
-            class="px-6 py-2 bg-blue-100 text-blue-600 font-semibold rounded hover:bg-blue-200"
-          >
-            + Add Another Issue
-          </button>
-        </div>
+            <!-- Issues List -->
+            <ul id="issue-list" class="space-y-4"></ul>
 
-        <!-- Issues List -->
-        <ul id="issue-list" class="space-y-4"></ul>
-
-        <!-- Submit Button -->
-        <div class="flex justify-end mt-6">
-          <button
-            type="submit"
-            class="submit bg-green-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-green-600 transition duration-300"
-          >
-            Submit
-          </button>
-        </div>
+            <!-- Submit Button -->
+            <div class="flex justify-end mt-6">
+              <button
+                type="submit"
+                class="submit bg-green-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-green-600 transition duration-300"
+              >
+                Submit
+              </button>
+            </div>
       </div>
 
       <div
         id="successMessage"
-        class="hidden bg-green-100 border border-green-400 text-green-700 px-6 py-4 rounded-lg shadow-lg text-center"
-      >
+        class="hidden bg-green-100 border border-green-400 text-green-700 px-6 py-4 rounded-lg shadow-lg text-center">
         <h2 class="text-2xl font-bold mb-2">Form Submitted Successfully!</h2>
         <p class="mb-4">Your data has been submitted.</p>
       </div>
@@ -164,7 +162,7 @@
 
       // Check if UID exists
       if (!formData.id) {
-        alert("UID is missing. Redirecting to the first page.");
+        alert("Session Expired");
         window.location.href = "index.html"; // Redirect to the first page if UID is missing
       } else {
         console.log(`UID found: ${formData.id}`);
@@ -173,7 +171,8 @@
 
       // Ensure UUID exists in localStorage
 
-      let issueCount = 0;
+      let issueCount = formData.section9 ? formData.section9.length : 0;
+
       const maxIssues = 3;
 
       document.getElementById("add-issue-btn").addEventListener("click", () => {
@@ -189,19 +188,12 @@
         .addEventListener("submit", (event) => {
           event.preventDefault();
 
-          var majorFindings = document
-            .getElementById("majorFindings")
-            .value.trim();
-          var interventions = document
-            .getElementById("interventions")
-            .value.trim();
-          var interventionLevel = document
-            .getElementById("interventionLevel")
-            .value.trim();
-          var responsibility = document
-            .getElementById("responsibility")
-            .value.trim();
+          const majorFindings = document.getElementById("majorFindings").value.trim();
+          const interventions = document.getElementById("interventions").value.trim();
+          const interventionLevel = document.getElementById("interventionLevel").value.trim();
+          const responsibility = document.getElementById("responsibility").value.trim();
           const timeline = document.getElementById("timeline").value.trim();
+
 
           console.log("Form Input Values:", {
             majorFindings,
@@ -221,6 +213,15 @@
             return;
           }
 
+                const issue = {
+              majorFindings,
+              interventions,
+              interventionLevel,
+              responsibility,
+              timeline,
+          };
+
+         
           const issueList = document.getElementById("issue-list");
           const listItem = document.createElement("li");
           listItem.className =
@@ -239,6 +240,8 @@
 
           issueList.appendChild(listItem);
           issueCount++;
+          saveSectionData(9, issue); // Save the issue to section9
+          console.log("New Issue Saved:", issue);
 
           // Reset and hide the form
 
@@ -267,8 +270,7 @@
         }
       });
 
-      document.getElementById("add-another-issue-btn")
-        .addEventListener("click", () => {
+      document.getElementById("add-another-issue-btn").addEventListener("click", () => {
           document.getElementById("issue-form").reset();
           if (issueCount >= maxIssues) {
             alert("You can only add up to 3 issues.");
@@ -345,50 +347,99 @@
         }
       });
 
-   
+      
+      function saveSectionData(section, issue) {
+    console.log(`Saving data for section: ${section}`);
 
-      function saveSectionData(section) {
-        console.log(`Saving data for section: ${section}`); // Debug log
-        console.log(`Sfomr data: ${formData}`); // Debug log
+    // Fetch the latest formData from localStorage
+    const storedFormData = JSON.parse(localStorage.getItem("formData")) || {};
+    formData = { ...storedFormData }; // Merge with the current formData in memory
 
-        const sectionElement = document.getElementById(`section${section}`);
-        console.log(sectionElement + "dfg");
-        if (!sectionElement) {
-          console.error(`Section ${section} not found!`);
-          return;
-        }
+    // Ensure section9 is initialized as an array
+    if (!Array.isArray(formData[`section${section}`])) {
+        formData[`section${section}`] = [];
+    }
 
-        const inputs = sectionElement.querySelectorAll(
-          "input, select, textarea"
-        );
-        formData[`section${section}`] = formData[`section${section}`] || {};
-        //console.log("inputs: ", inputs);
-        inputs.forEach((input) => {
-          console.log("inputs ttpw: ", input.type);
-          if (input.type === "text") {
-            console.log("inputs Vlue: ", formData[`section${section}`]);
-            formData[`section${section}`][input.id] = input.value;
-          } else {
-            console.log("inputs Vlue: else", input.value);
-            formData[`section${section}`][input.id] = input.value;
-          }
-        });
+    // Append the new issue
+    formData[`section${section}`].push(issue);
 
-        try {
-          console.log("Before saving:", formData);
-          localStorage.setItem("formData", JSON.stringify(formData));
-          console.log(
+    console.log("Before saving:", formData);
+
+    // Save updated formData to localStorage
+    try {
+        localStorage.setItem("formData", JSON.stringify(formData));
+        console.log(
             "Data saved to localStorage:",
             JSON.parse(localStorage.getItem("formData"))
-          );
-        } catch (error) {
-          console.error("Error saving to localStorage:", error);
-        }
-        // Save updated formData to localStorage
-        // console.log('Before saving:', formData);
-        // localStorage.setItem('formData', JSON.stringify(formData));
-        // console.log(`Section ${section} data saved:`, formData[`section${section}`]);
-      }
+        );
+    } catch (error) {
+        console.error("Error saving to localStorage:", error);
+    }
+}
+
+
+      // function saveSectionData(section) {
+      //   console.log(`Saving data for section: ${section}`); // Debug log
+      //   //console.log(`Sfomr data: ${formData}`); // Debug log
+
+      //   const sectionElement = document.getElementById(`section${section}`);
+      //   console.log(sectionElement + "dfg");
+      //   if (!sectionElement) {
+      //     console.error(`Section ${section} not found!`);
+      //     return;
+      //   }
+
+      //   const inputs = sectionElement.querySelectorAll(
+      //     "input, select, textarea"
+      //   );
+
+      //    // Ensure section is initialized as an array to store multiple issues
+      //     if (!Array.isArray(formData[`section${section}`])) {
+      //       formData[`section${section}`] = [];
+      //     }
+
+      //     const issue = {};
+
+      //             // Collect data from all inputs in the section
+      //             inputs.forEach((input) => {
+      //           if (input.type === "text" || input.type === "select" || input.type === "textarea") {
+      //               issue[input.id] = input.value.trim(); 
+      //           }
+      //       });
+                  
+      //       console.log("Before appending issue:", formData[`section${section}`]);
+      //       console.log("New Issue:", issue);
+
+      //             formData[`section${section}`].push(issue);
+
+      //           // formData[`section${section}`] = formData[`section${section}`] || {};
+      //           // //console.log("inputs: ", inputs);
+      //           // inputs.forEach((input) => {
+      //           //   console.log("inputs ttpw: ", input.type);
+      //           //   if (input.type === "text") {
+      //           //     console.log("inputs Vlue: ", formData[`section${section}`]);
+      //           //     formData[`section${section}`][input.id] = input.value;
+      //           //   } else {
+      //           //     console.log("inputs Vlue: else", input.value);
+      //           //     formData[`section${section}`][input.id] = input.value;
+      //           //   }
+      //           // });
+
+      //           try {
+      //             console.log("Before saving:", formData);
+      //             localStorage.setItem("formData", JSON.stringify(formData));
+      //             console.log(
+      //               "Data saved to localStorage:",
+      //               JSON.parse(localStorage.getItem("formData"))
+      //             );
+      //           } catch (error) {
+      //             console.error("Error saving to localStorage:", error);
+      //           }
+      //           // Save updated formData to localStorage
+      //   // console.log('Before saving:', formData);
+      //   // localStorage.setItem('formData', JSON.stringify(formData));
+      //   // console.log(`Section ${section} data saved:`, formData[`section${section}`]);
+      // }
 
       // document.getElementById('submit').addEventListener('click', () => {
       //     if (issueCount === 0) {
