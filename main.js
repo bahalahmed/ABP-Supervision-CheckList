@@ -55,7 +55,7 @@ let formData = JSON.parse(localStorage.getItem('formData')) || {};
 // Ensure UUID exists in localStorage
 if (!formData.id) {
     formData.id = generateUniqueId();
-    formData.apiUrl = `http://localhost:3000/checklistapi/${formData.id}`; // Simulated API link
+    formData.apiUrl = `http://192.168.1.36:3002/abp/Communitychecklist/${formData.id}`; // Simulated API link
     localStorage.setItem('formData', JSON.stringify(formData));
 }
 
@@ -426,20 +426,21 @@ function validateAndNext(section) {
     if (validations[`section${section}`]()) {
         saveSectionData(section);
 
-         // Uncomment below to enable API calls
-        // fetch(formData.apiUrl, {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify(formData[`section${section}`]),
-        // })
-        // .then(response => {
-        //     if (response.ok) {
-        //         console.log(`Section ${section} data successfully sent to the API`);
-        //     } else {
-        //         console.error(`Failed to save Section ${section} data`);
-        //     }
-        // })
-        // .catch(error => console.error('Error while saving section data:', error));
+
+         //Uncomment below to enable API calls
+        fetch(formData.apiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData[`section${section}`]),
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log(`Section ${section} data successfully sent to the API`);
+            } else {
+                console.error(`Failed to save Section ${section} data`);
+            }
+        })
+        .catch(error => console.error('Error while saving section data:', error));
 
         // Simulate saving to "server" (localStorage in this case)
         console.log(`Simulated API call: Section ${section} data saved to localStorage.`);
@@ -634,24 +635,24 @@ document.querySelector('.submit').addEventListener('click', event => {
 
 
         // Uncomment below to enable API calls
-        // fetch(formData.apiUrl, {
-        //     method: 'POST', 
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify(formData),
-        // })
-        // .then(response => {
-        //     if (response.ok) {
-        //         console.log('Form successfully submitted to the API');
-        //         // Clear localStorage and show success message
-        //         localStorage.removeItem('formData');
-        //         localStorage.removeItem('currentSection');
-        //         document.getElementById('communityCheckList').classList.add('hidden');
-        //         document.getElementById('successMessage').classList.remove('hidden');
-        //     } else {
-        //         console.error('Failed to submit form data');
-        //     }
-        // })
-        // .catch(error => console.error('Error while submitting form data:', error));
+        fetch(formData.apiUrl, {
+            method: 'POST', 
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData),
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('Form successfully submitted to the API');
+                // Clear localStorage and show success message
+                localStorage.removeItem('formData');
+                localStorage.removeItem('currentSection');
+                document.getElementById('communityCheckList').classList.add('hidden');
+                document.getElementById('successMessage').classList.remove('hidden');
+            } else {
+                console.error('Failed to submit form data');
+            }
+        })
+        .catch(error => console.error('Error while submitting form data:', error));
 
 
         // Simulate saving the full form data locally
