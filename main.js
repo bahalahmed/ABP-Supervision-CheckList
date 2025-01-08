@@ -1,3 +1,43 @@
+// Function to generate a unique ID
+function generateUniqueId() {
+    return crypto.randomUUID(); // Using modern UUID generation
+}
+
+// Initialize or retrieve form data from localStorage
+let formData = JSON.parse(localStorage.getItem('formData')) || {};
+
+// Ensure UUID exists in localStorage
+if (!formData.id) {
+    formData.id = generateUniqueId();
+    formData.apiUrl = `http://127.0.0.1:3000//abp/FacilityChecklist/${formData.id}`; // Simulated API link
+    localStorage.setItem('formData', JSON.stringify(formData));
+}
+
+// Retrieve current section from localStorage or default to Section 1
+let currentSection = parseInt(localStorage.getItem('currentSection') || '1', 10);
+showSection(currentSection);
+
+// Save data for the current section in localStorage
+function saveSectionData(section) {
+    const sectionElement = document.getElementById(`section${section}`);
+    const inputs = sectionElement.querySelectorAll('input, select, textarea');
+
+    formData[`section${section}`] = formData[`section${section}`] || {};
+
+    inputs.forEach(input => {
+        if (input.type === 'checkbox') {
+            formData[`section${section}`][input.id] = input.checked;
+        } else {
+            formData[`section${section}`][input.id] = input.value;
+        }
+    });
+
+    // Save updated formData to localStorage
+    localStorage.setItem('formData', JSON.stringify(formData));
+    console.log(`Section ${section} data saved:`, formData[`section${section}`]);
+}
+
+
 const validations = {
     section1: () => {
         let isValid = true;
@@ -220,28 +260,28 @@ const validations = {
             { id: 'calciumTablets', min: 0, max: 1000, errorMessage: 'Pregnant Women Given Calcium Tablets must be between 0 and 1000.' },
             { id: 'albendazoleTablets', min: 0, max: 1000, errorMessage: 'Pregnant Women Given Albendazole Tablets must be between 0 and 1000.' },
             { id: 'highRiskPregnancies', min: 0, max: 1000, errorMessage: 'High Risk Pregnancies Identified must be between 0 and 1000.' },
-            { id: 'totalANCRegistered', min: 0, max: 500, errorMessage: 'C section must be between 0 and 500.' },
+            { id: 'cSection', min: 0, max: 500, errorMessage: 'C section must be between 0 and 500.' },
             { id: 'highRiskReferred', min: 0, max: 1000, errorMessage: 'High Risk Pregnancies Referred Out must be between 0 and 500.' },
             { id: 'deliveriesConducted', min: 0, max: 1000, errorMessage: 'Deliveries Conducted must be between 0 and 1000.' },
             { id: 'liveBirths', min: 0, max: 300, errorMessage: 'Live Births must be between 0 and 300.' },
             { id: 'stillBirths', min: 0, max: 300, errorMessage: 'Still Births must be between 0 and 300.' },
             { id: 'lowBirthWeightBabies', min: 0, max: 250, errorMessage: 'Low Birth Weight Babies must be between 0 and 250.' },
-            { id: 'sickNewbornsReferred', min: 0, max: 500, errorMessage: 'Newborns Provided must be between 0 and 500.' },
-            { id: 'iucdInsertions', min: 0, max: 250, errorMessage: 'Inborn Admission must be between 0 and 250.' },
-            { id: 'ppiucdInsertions', min: 0, max: 500, errorMessage: 'Outburn Admission must be between 0 and 500.' },
-            { id: 'adolescentsCounseled', min: 0, max: 1000, errorMessage: 'Deaths in out must be between 0 and 1000.' },
-            { id: 'hepatitisVaccines', min: 0, max: 1000, errorMessage: 'Abortions  must be between 0 and 1000.' },
+            { id: 'newbornsBirthDoses', min: 0, max: 500, errorMessage: 'Newborns Provided must be between 0 and 500.' },
+            { id: 'inbornAdmissionsSNCU', min: 0, max: 250, errorMessage: 'Inborn Admission must be between 0 and 250.' },
+            { id: 'outbornAdmissionsSNCU', min: 0, max: 500, errorMessage: 'Outburn Admission must be between 0 and 500.' },
+            { id: 'deathsOutbornAdmissionsSNCU', min: 0, max: 1000, errorMessage: 'Deaths in out must be between 0 and 1000.' },
+            { id: 'abortionsMTP', min: 0, max: 1000, errorMessage: 'Abortions  must be between 0 and 1000.' },
 
-            { id: 'childrenDiarrhea', min: 0, max: 1000, errorMessage: 'Post Abortion must be between 0 and 1000.' },
+            { id: 'postAbortionFamilyPlanning', min: 0, max: 1000, errorMessage: 'Post Abortion must be between 0 and 1000.' },
             { id: 'injectableContraceptiveAntara', min: 0, max: 1000, errorMessage: 'Injectable Contraceptive (Antara) must be between 0 and 1000.' },
-            { id: 'earlyBreastfeeding', min: 0, max: 500, errorMessage: 'PPIUCD must be between 0 and 500.' },
+            { id: 'ppiucd', min: 0, max: 500, errorMessage: 'PPIUCD must be between 0 and 500.' },
             { id: 'childrenARI', min: 0, max: 500, errorMessage: 'Under 5 Children Diagnosed with ARI must be between 0 and 500.' },
             { id: 'treatedDiarrhea', min: 0, max: 500, errorMessage: 'Under 5 Children Treated for Diarrhoea with ORS and Zinc must be between 0 and 500.' },
 
             // NCDs 
             { id: 'targetPopulationNCD', min: 0, max: 2000, errorMessage: 'Target for population must be between 0 and 2000.' },
-            { id: 'ncdScreeningCompleted', min: 0, max: 2000, errorMessage: 'OPD must be between 0 and 2000.' },
-            { id: 'cbacFilled', min: 0, max: 2000, errorMessage: 'value must be between 0 and 2000.' },
+            { id: 'opdScreened30Plus', min: 0, max: 2000, errorMessage: 'OPD must be between 0 and 2000.' },
+            { id: 'ncdPopulationScreened', min: 0, max: 2000, errorMessage: 'value must be between 0 and 2000.' },
             { id: 'ncdScreenedPositive', min: 0, max: 2000, errorMessage: 'Patients on NCD(Screened Positive) must be between 0 and 2000.' },
             { id: 'ncdDiagnosedHypertension', min: 0, max: 2000, errorMessage: ' Value must be between 0 and 2000.' },
             { id: 'ncdDiagnosedDiabetes', min: 0, max: 2000, errorMessage: 'Value must be between 0 and 2000.' },
@@ -292,26 +332,26 @@ const validations = {
 
         // List all field IDs in Section 5
         const fieldsToValidate = [
-            { id: 'diagnosticsTestConducted', min: 0, max: 250, errorMessage: 'Diagnostics test conducted in facility must be between 0 and 250.' },
+            { id: 'totalDrugsAvailable', min: 0, max: 250, errorMessage: 'Diagnostics test conducted in facility must be between 0 and 250.' },
             {id: 'injTd',errorMessage: 'Inj. TD selection is required.'},
             {id: 'injMgSulph', errorMessage: 'Inj. Mg Sulphate selection is required.'},
-            {id: 'injectableMPA', errorMessage: 'Inj. Labetalol selection is required.'},
+            {id: 'injLabetalol', errorMessage: 'Inj. Labetalol selection is required.'},
             {id:'injOxytocin', errorMessage: 'Inj. Oxytocin selection is required.'},
             {id: 'injIronSucrose', errorMessage: 'Inj. Iron Sucrose selection is required.'},
             {id: 'injDexamethasone', errorMessage: 'Inj. Dexamethasone selection is required.'},
-            {id: 'tabCalcium', errorMessage: ' Tab. Alpha Methyldopa selection is required.'},
+            {id: 'tabAlphaMethyldopa', errorMessage: ' Tab. Alpha Methyldopa selection is required.'},
             {id: 'tabIFA', errorMessage: 'Tab. IFA selection is required.'},
-            {id: 'antihistamines', errorMessage: 'Syp. Nevirapine selection is required.'},
+            {id: 'sypNevirapine', errorMessage: 'Syp. Nevirapine selection is required.'},
             {id:  'vitaminK1', errorMessage: 'Vitamin K1 selection is required.'},
-            {id: 'antiseptics', errorMessage: 'Dual testing kit for HIV/syphilis selection is required.'},
+            {id: 'dualTestingKit', errorMessage: 'Dual testing kit for HIV/syphilis selection is required.'},
             {id: 'antihypertensives', errorMessage: 'Antihypertensives selection is required.'},
             {id: 'antidiabetics', errorMessage: 'Antidiabetics selection is required.'},
-            {id :'ecPills', errorMessage: 'Adrenaline selection is required.'},
+            {id :'injAdrenaline', errorMessage: 'Adrenaline selection is required.'},
             {id :'tabMisoprostol', errorMessage: 'Tab. Misoprostol selection is required.'},
             {id :'antiTbDrugs', errorMessage: 'Dual testing kit for HIV/syphilis selection is required.'},
-            {id: 'zincTablets', errorMessage: ' Are drugs available under Mukhyamantri nishulk Dava yojana? selection is required.'},
-            {id: 'paracetamol', errorMessage: 'Injectable Contraceptive (Antara Programme selection is required).'},
-            {id: 'tabAlbendazole', errorMessage: 'Tab. Nifedipine selection is required.'},
+            {id: 'mukhyamantriDrugsAvailable', errorMessage: ' Are drugs available under Mukhyamantri nishulk Dava yojana? selection is required.'},
+            {id: 'injectableContraceptive', errorMessage: 'Injectable Contraceptive (Antara Programme selection is required).'},
+            {id: 'tabNifedipine', errorMessage: 'Tab. Nifedipine selection is required.'},
            // {id: 'antibiotics', errorMessage: 'Antibiotics selection is required.'},
            // {id: 'orsSachets', errorMessage: 'ORS Sachets selection is required.'},
             {id: 'ipv',  errorMessage: 'IPV selection is required.'},
@@ -364,15 +404,15 @@ const validations = {
             { id: 'nonFunctionalTests', min: 0, max: 250, errorMessage: 'Non-functional / Missing diagnostic tests must be between 0 and 250.' },
             { id: 'haemoglobin', errorMessage: 'Haemoglobin selection is required.' },
             { id: 'bloodSugar', errorMessage: 'Blood Sugar selection is required.' },
-            { id: 'malariaSmear', errorMessage: 'VDRL selection is required.' },
+            { id: 'vdrlTest', errorMessage: 'VDRL selection is required.' },
             { id: 'urinePregnancyTest', errorMessage: 'Urine Pregnancy Test selection is required.' },
             { id: 'ogtt', errorMessage: 'OGTT selection is required.' },
             { id: 'urineAlbuminSugar', errorMessage: 'Urine Albumin & Sugar selection is required.' },
             { id: 'hivTesting', errorMessage: 'HIV Testing (WBFPT) selection is required.' },
             { id: 'microscopicSputumExamination', errorMessage: 'Microscopic Sputum Examination selection is required.' },
-            { id: 'rapidSyphilisTest', errorMessage: 'CBNAAT Machine Test selection is required.' },
+            { id: 'cbnaatMachine', errorMessage: 'CBNAAT Machine Test selection is required.' },
             { id: 'bloodGrouping', errorMessage: 'Blood Grouping selection is required.' },
-            { id: 'stoolOvaCyst', errorMessage: ' Ultrasound selection is required.' },
+            { id: 'ultrasound', errorMessage: ' Ultrasound selection is required.' },
            // { id: 'waterQualityTesting', errorMessage: 'Water Quality Testing selection is required.' },
           //  { id: 'wetMount', errorMessage: 'Wet mount- Direct Microscopy selection is required.' },
             //{ id: 'typhoidSerology', errorMessage: 'Typhoid serology selection is required.' },
@@ -380,7 +420,7 @@ const validations = {
          //   { id: 'esr', errorMessage: 'ESR selection is required.' },
            // { id: 'sickleCellTesting', errorMessage: 'Sickle Cell testing selection is required.' },
             //{ id: 'tlcDlc', errorMessage: 'TLC, DLC selection is required.' },
-            { id: 'serumBilirubin', errorMessage: 'X-Ray selection is required.' }
+            { id: 'xray', errorMessage: 'X-Ray selection is required.' }
         ];
 
         diagnosticFields.forEach(field => {
@@ -431,18 +471,18 @@ const validations = {
             {id: 'rchRegister', errorMessage: 'RCH register selection is required.' },
             { id: 'eligibleCoupleRegister', errorMessage: 'Eligible couple/ RCH register selection is required.' },
             { id: 'iucdServiceRegister', errorMessage: 'IUCD service delivery register selection is required.' },
-            { id: 'injectableMPARegister', errorMessage: 'Laboratory register selection is required.' },
+            { id: 'aboratoryRegister', errorMessage: 'Laboratory register selection is required.' },
             { id: 'ncdRegisters', errorMessage: 'NCD registers selection is required.' },
             {id:  'mtpRegister', errorMessage: 'MTP register selection is required.' },
             {id:'ncuNbsuRegister', errorMessage: 'NCU/NBSU register selection is required.' },
-            { id: 'telemedicineRegister', errorMessage: 'CBNAAT register selection is required.' },
+            { id: 'cbnaatRegister', errorMessage: 'CBNAAT register selection is required.' },
             {id:'tbReferralSlips', errorMessage: 'TB referral slips selection is required.' },
-            { id: 'notificationRegister', errorMessage: 'OPD register selection is required.' },
+            { id: 'opdRegister', errorMessage: 'OPD register selection is required.' },
             { id: 'stockRegister', errorMessage: 'Stock register selection is required.' },
             { id: 'dueList', errorMessage: 'Due list (from MCTS portal or manual) selection is required.' },
             { id: 'vhndMicroPlans', errorMessage: 'VHND micro plans selection is required.' },
             { id: 'heightChart', errorMessage: 'Height chart selection is required.' },
-            { id: 'iucdTray', errorMessage: 'MVA Kit selection is required.' },
+            { id: 'mvaKit', errorMessage: 'MVA Kit selection is required.' },
             { id: 'sterilizedTrays', errorMessage: 'Sterilized trays selection is required.' },
             { id: 'ambuBag', errorMessage: 'Ambu Bag with mask selection is required.' },
             { id: 'bpApparatus', errorMessage: 'BP apparatus selection is required.' },
@@ -450,9 +490,9 @@ const validations = {
             { id: 'weighingScale', errorMessage: 'Weighing machine selection is required.' },
             { id: 'babyWeighingMachine', errorMessage: 'Baby Weighing machine selection is required.' },
             { id: 'fetoscope', errorMessage: 'Fetoscope selection is required.' },
-            { id: 'thermometer', errorMessage: 'Thermometer selection is required.' },
+            { id: 'fireNOC', errorMessage: 'Fire noc selection is required.' },
             { id: 'mucusExtractor', errorMessage: 'Mucus Extractor selection is required.' },
-            { id: 'ppiucdForceps', errorMessage: 'PC selection is required.' },
+            { id: 'pollutionCertificate', errorMessage: 'PC selection is required.' },
             { id: 'oxygenCylinder', errorMessage: 'Functional Oxygen Cylinder selection is required.' },
             { id: 'bmwBins', errorMessage: 'BMW Colour coded bins selection is required.' },
             {id:'partograph', errorMessage: 'Partograph selection is required.' },
@@ -573,7 +613,7 @@ const validations = {
             // Validate Issue and Action Plan fields for each selected checkbox
             const fieldValidation = [
                 { id: "serviceDelivery", issueId: "serviceDeliveryIssue", actionId: "serviceDeliveryAction", name: "Service Delivery" },
-                { id: "opd", issueId: "opdIssue", actionId: "opActiond", name: "OPD" },
+                { id: "opd", issueId: "opdIssue", actionId: "opAction", name: "OPD" },
                 { id: "laborRoomOT", issueId: "laborRoomOTIssue", actionId: "laborRoomOTAction", name: "Labor Room & OT" },
                 { id: "sncuNbsu", issueId: "sncuNbsuIssue", actionId: "sncuNbsuAction", name: "SNCU/NBSU" },
                 { id: "ancIncPncWard", issueId: "ancIncPncWardIssue", actionId: "ancIncPncWardAction", name: "ANC & PNC Ward" },
@@ -610,6 +650,50 @@ const validations = {
     }
  };
 
+ function validateAndNext(section) {
+    if (validations[`section${section}`]()) {
+        saveSectionData(section);
+
+         // Uncomment below to enable API calls
+        // fetch(formData.apiUrl, {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify(formData[`section${section}`]),
+        // })
+        // .then(response => {
+        //     if (response.ok) {
+        //         console.log(`Section ${section} data successfully sent to the API`);
+        //     } else {
+        //         console.error(`Failed to save Section ${section} data`);
+        //     }
+        // })
+        // .catch(error => console.error('Error while saving section data:', error));
+
+        // Simulate saving to "server" (localStorage in this case)
+        console.log(`Simulated API call: Section ${section} data saved to localStorage.`);
+
+        // Move to the next section
+        document.getElementById(`section${section}`).classList.add('hidden');
+        const nextSection = document.getElementById(`section${section + 1}`);
+        if (nextSection) {
+            nextSection.classList.remove('hidden');
+            currentSection = section + 1;
+            localStorage.setItem('currentSection', currentSection); // Save current section
+        } else {
+            alert('No more sections!');
+        }
+    }
+}
+
+// Show a specific section based on the current state
+function showSection(section) {
+    document.querySelectorAll('.section').forEach(sec => sec.classList.add('hidden'));
+    const sectionElement = document.getElementById(`section${section}`);
+    if (sectionElement) {
+        sectionElement.classList.remove('hidden');
+    }
+}
+
 
 document.querySelectorAll('input, select, textarea, checkbox').forEach(element => {
     element.addEventListener('input', event => {
@@ -624,45 +708,45 @@ document.querySelectorAll('input, select, textarea, checkbox').forEach(element =
                 populationCovered: { min: 50000, max: 100000 },  
                 diagnosticsTestConducted1: { min: 0, max: 250 },
                 nonFunctionalTests:{ min: 0, max: 250 },
-                diagnosticsTestConducted: { min: 0, max: 250 },
+                totalDrugsAvailable: { min: 0, max: 250 },
                 totalBeds: { min: 15, max: 500 },
                 totalLaborTables: { min: 0, max: 50 },
                 "regular-MO-sanctioned": {min: 0, max: 5},
                 "regular-MO-available": {min: 0, max: 5},
                 "contractual-MO-sanctioned": {min: 0, max: 5},
                 "contractual-MO-available": {min: 0, max: 5},
-                "regular-DentalMO-sanctioned": {min: 0, max: 5},
-                "regular-DentalMO-available": {min: 0, max: 5},
-                "contractual-DentalMO-sanctioned": {min: 0, max: 5},
-                "contractual-DentalMO-available": {min: 0, max: 5},
+                "regular-ANM-sanctioned": {min: 0, max: 5},
+                "regular-ANM-available": {min: 0, max: 5},
+                "contractual-ANM-sanctioned": {min: 0, max: 5},
+                "contractual-ANM-available": {min: 0, max: 5},
                 "regular-StaffNurse-sanctioned": {min: 0, max: 5},
                 "regular-StaffNurse-available": {min: 0, max: 5},
                 "contractual-StaffNurse-sanctioned": {min: 0, max: 5},
                 "contractual-StaffNurse-available": {min: 0, max: 5},
-                "regular-Pharmacists-sanctioned": {min: 0, max: 5},
-                "regular-Pharmacists-available": {min: 0, max: 5},
-                "contractual-Pharmacists-sanctioned": {min: 0, max: 5},
-                "contractual-Pharmacists-available": {min: 0, max: 5},
+                "regular-GeneralSurgeon-sanctioned": {min: 0, max: 5},
+                "regular-GeneralSurgeon-available": {min: 0, max: 5},
+                "contractual-GeneralSurgeon-sanctioned": {min: 0, max: 5},
+                "contractual-GeneralSurgeon-available": {min: 0, max: 5},
                 "regular-LabTechnician-sanctioned": {min: 0, max: 5},
                 "regular-LabTechnician-available": {min: 0, max: 5},
                 "contractual-LabTechnician-sanctioned": {min: 0, max: 5},
                 "contractual-LabTechnician-available": {min: 0, max: 5},
-                "regular-LHV-sanctioned": {min: 0, max: 5},
-                "regular-LHV-available": {min: 0, max: 5},
-                "contractual-LHV-sanctioned": {min: 0, max: 5},
-                "contractual-LHV-available": {min: 0, max: 5},
-                "regular-CHO-sanctioned": {min: 0, max: 5},
-                "regular-CHO-available": {min: 0, max: 5},
-                "contractual-CHO-sanctioned": {min: 0, max: 5},
-                "contractual-CHO-available": {min: 0, max: 5},
-                "regular-MPWMale-sanctioned": {min: 0, max: 5},
-                "regular-MPWMale-available": {min: 0, max: 5},
-                "contractual-MPWMale-sanctioned": {min: 0, max: 5},
-                "contractual-MPWMale-available": {min: 0, max: 5},
-                "regular-MPWFemale-sanctioned": {min: 0, max: 5},
-                "regular-MPWFemale-available": {min: 0, max: 5},
-                "contractual-MPWFemale-sanctioned": {min: 0, max: 5},
-                "contractual-MPWFemale-available": {min: 0, max: 5},
+                "regular-Gynaecologist-sanctioned": {min: 0, max: 5},
+                "regular-Gynaecologist-available": {min: 0, max: 5},
+                "contractual-Gynaecologist-sanctioned": {min: 0, max: 5},
+                "contractual-Gynaecologist-available": {min: 0, max: 5},
+                "regular-Anaesthetist-sanctioned": {min: 0, max: 5},
+                "regular-Anaesthetist-available": {min: 0, max: 5},
+                "contractual-Anaesthetist-sanctioned": {min: 0, max: 5},
+                "contractual-Anaesthetist-available": {min: 0, max: 5},
+                "regular-Paediatricians-sanctioned": {min: 0, max: 5},
+                "regular-Paediatricians-available": {min: 0, max: 5},
+                "contractual-Paediatricians-sanctioned": {min: 0, max: 5},
+                "contractual-Paediatricians-available": {min: 0, max: 5},
+                "regular-DOTSProvider-sanctioned": {min: 0, max: 5},
+                "regular-DOTSProvider-available": {min: 0, max: 5},
+                "contractual-DOTSProvider-sanctioned": {min: 0, max: 5},
+                "contractual-DOTSProvider-available": {min: 0, max: 5},
                 "regular-ASHA-sanctioned": {min: 0, max: 5},
                 "regular-ASHA-available": {min: 0, max: 5},
                 "contractual-ASHA-sanctioned": {min: 0, max: 5},
@@ -671,38 +755,38 @@ document.querySelectorAll('input, select, textarea, checkbox').forEach(element =
                 "tbTraining-MO" : {min: 0, max: 10},
                 "nqasTraining-MO" : {min: 0, max: 10},
                 "ncdTraining-MO" : {min: 0, max: 10},
-                "rchTraining-DentalMO" : {min: 0, max: 10},
-                "tbTraining-DentalMO" : {min: 0, max: 10},
-                "nqasTraining-DentalMO" : {min: 0, max: 10},
-                "ncdTraining-DentalMO" : {min: 0, max: 10},
+                "rchTraining-ANM" : {min: 0, max: 10},
+                "tbTraining-ANM" : {min: 0, max: 10},
+                "nqasTraining-ANM" : {min: 0, max: 10},
+                "ncdTraining-ANM" : {min: 0, max: 10},
                 "rchTraining-StaffNurse" : {min: 0, max: 10},
                 "tbTraining-StaffNurse" : {min: 0, max: 10},
                 "nqasTraining-StaffNurse" : {min: 0, max: 10},
                 "ncdTraining-StaffNurse" : {min: 0, max: 10},
-                "rchTraining-Pharmacists": { min: 0, max: 10 },
-                "tbTraining-Pharmacists": { min: 0, max: 10 },
-                "nqasTraining-Pharmacists": { min: 0, max: 10 },
-                "ncdTraining-Pharmacists": { min: 0, max: 10 },
+                "rchTraining-GeneralSurgeon": { min: 0, max: 10 },
+                "tbTraining-GeneralSurgeon": { min: 0, max: 10 },
+                "nqasTraining-GeneralSurgeon": { min: 0, max: 10 },
+                "ncdTraining-GeneralSurgeon": { min: 0, max: 10 },
                 "rchTraining-LabTechnician": { min: 0, max: 10 },
                 "tbTraining-LabTechnician": { min: 0, max: 10 },
                 "nqasTraining-LabTechnician": { min: 0, max: 10 },
                 "ncdTraining-LabTechnician": { min: 0, max: 10 },
-                "rchTraining-LHV": { min: 0, max: 10 },
-                "tbTraining-LHV": { min: 0, max: 10 },
-                "nqasTraining-LHV": { min: 0, max: 10 },
-                "ncdTraining-LHV": { min: 0, max: 10 },
-                "rchTraining-CHO": { min: 0, max: 10 },
-                "tbTraining-CHO": { min: 0, max: 10 },
-                "nqasTraining-CHO": { min: 0, max: 10 },
-                "ncdTraining-CHO": { min: 0, max: 10 },
-                "rchTraining-MPWMale": { min: 0, max: 10 },
-                "tbTraining-MPWMale": { min: 0, max: 10 },
-                "nqasTraining-MPWMale": { min: 0, max: 10 },
-                "ncdTraining-MPWMale": { min: 0, max: 10 },
-                "rchTraining-MPWFemale": { min: 0, max: 10 },
-                "tbTraining-MPWFemale": { min: 0, max: 10 },
-                "nqasTraining-MPWFemale": { min: 0, max: 10 },
-                "ncdTraining-MPWFemale": { min: 0, max: 10 },
+                "rchTraining-Gynaecologist": { min: 0, max: 10 },
+                "tbTraining-Gynaecologist": { min: 0, max: 10 },
+                "nqasTraining-Gynaecologist": { min: 0, max: 10 },
+                "ncdTraining-Gynaecologist": { min: 0, max: 10 },
+                "rchTraining-Anaesthetist": { min: 0, max: 10 },
+                "tbTraining-Anaesthetist": { min: 0, max: 10 },
+                "nqasTraining-Anaesthetist": { min: 0, max: 10 },
+                "ncdTraining-Anaesthetist": { min: 0, max: 10 },
+                "rchTraining-Paediatricians": { min: 0, max: 10 },
+                "tbTraining-Paediatricians": { min: 0, max: 10 },
+                "nqasTraining-Paediatricians": { min: 0, max: 10 },
+                "ncdTraining-Paediatricians": { min: 0, max: 10 },
+                "rchTraining-DOTSProvider": { min: 0, max: 10 },
+                "tbTraining-DOTSProvider": { min: 0, max: 10 },
+                "nqasTraining-DOTSProvider": { min: 0, max: 10 },
+                "ncdTraining-DOTSProvider": { min: 0, max: 10 },
                 opdLoad: { min: 10, max: 1000 },
                 ipdLoad: { min: 10, max: 5000 },
                 teleConsultations: { min: 0, max: 50000 },
@@ -712,25 +796,25 @@ document.querySelectorAll('input, select, textarea, checkbox').forEach(element =
                 calciumTablets: { min: 0, max: 1000 },
                 albendazoleTablets: { min: 0, max: 1000 },
                 highRiskPregnancies: { min: 0, max: 1000 },
-                totalANCRegistered: { min: 0, max: 500 },
+                cSection: { min: 0, max: 500 },
                 highRiskReferred: { min: 0, max: 1000 },
                 deliveriesConducted: { min: 0, max: 1000 },
                 liveBirths: { min: 0, max: 300 },
                 stillBirths: { min: 0, max: 300 },
                 lowBirthWeightBabies: { min: 0, max: 250 },
-                sickNewbornsReferred: { min: 0, max: 500 },
-                iucdInsertions: { min: 0, max: 250 },
-                ppiucdInsertions: { min: 0, max: 500 },
-                adolescentsCounseled: { min: 0, max: 1000 },
-                hepatitisVaccines: { min: 0, max: 1000 },
-                childrenDiarrhea: { min: 0, max: 1000 },
+                newbornsBirthDoses: { min: 0, max: 500 },
+                inbornAdmissionsSNCU: { min: 0, max: 250 },
+                outbornAdmissionsSNCU: { min: 0, max: 500 },
+                deathsOutbornAdmissionsSNCU: { min: 0, max: 1000 },
+                abortionsMTP: { min: 0, max: 1000 },
+                postAbortionFamilyPlanning: { min: 0, max: 1000 },
                 injectableContraceptive: { min: 0, max: 1000 },
-                earlyBreastfeeding: { min: 0, max: 500 },
+                ppiucd: { min: 0, max: 500 },
                 childrenARI: { min: 0, max: 500 },
                 treatedDiarrhea: { min: 0, max: 500 },
                 targetPopulationNCD: { min: 0, max: 2000 },
-                ncdScreeningCompleted: { min: 0, max: 2000 },
-                cbacFilled: { min: 0, max: 2000 },
+                opdScreened30Plus: { min: 0, max: 2000 },
+                ncdPopulationScreened: { min: 0, max: 2000 },
                 ncdDiagnosedHypertension: { min: 0, max: 2000 },
                 ncdDiagnosedDiabetes: { min: 0, max: 2000 },
                 ncdDiagnosedCancer: { min: 0, max: 2000 },
@@ -775,18 +859,19 @@ document.querySelectorAll('input, select, textarea, checkbox').forEach(element =
         else if (event.target.type === 'text' || event.target.tagName === 'TEXTAREA') {
             const textConfig = {
                 facilityInCharge: { minLength: 2, maxLength: 40 },
+                facilityName: { minLength: 2, maxLength: 40 },
                 stockOutMedicines: { minLength: 2, maxLength: 250 },
                 designation: { minLength: 2, maxLength: 40 },
-                mpwFemaleOtherTrainings: { minLength: 2, maxLength: 100 },
-                mpwMaleOtherTrainings: { minLength: 2, maxLength: 100 },
+                dotsProviderOtherTrainings: { minLength: 2, maxLength: 100 },
+                paediatriciansOtherTrainings: { minLength: 2, maxLength: 100 },
                 moOtherTrainings : { minLength: 2, maxLength: 100 },
-                choOtherTrainings: { minLength: 2, maxLength: 100 },
-                lhvOtherTrainings: { minLength: 2, maxLength: 100 },
+                anaesthetistOtherTrainings: { minLength: 2, maxLength: 100 },
+                gynaecologistOtherTrainings: { minLength: 2, maxLength: 100 },
                 labTechnicianOtherTrainings: { minLength: 2, maxLength: 100 },
                 pharmacistOtherTrainings: { minLength: 2, maxLength: 100 },
                 staffNurseOtherTrainings: { minLength: 2, maxLength: 100 },
-                dentalOtherTrainings: { minLength: 2, maxLength: 100 },
-                pharmacistsOtherTrainings: { minLength: 2, maxLength: 100 },
+                anmOtherTrainings: { minLength: 2, maxLength: 100 },
+                generalSurgeonOtherTrainings: { minLength: 2, maxLength: 100 },
                 knowledgeIssue: { minLength: 2, maxLength: 200 },
                 serviceDeliveryIssue: { minLength: 2, maxLength: 200 },
                 serviceDeliveryAction: { minLength: 2, maxLength: 200 },
@@ -880,40 +965,87 @@ document.querySelectorAll('input, select, textarea, checkbox').forEach(element =
     });
 });
 
+// document.querySelector('.submit').addEventListener('click', event => {
+//     event.preventDefault();
+//     if (validations.section9()) {
+//         const formData = {
+//             areasOfIssue: [],
+//             details: {
+//                 serviceDeliveryIssue: document.getElementById('serviceDeliveryIssue')?.value || "",
+//                 serviceDeliveryAction: document.getElementById('serviceDeliveryAction')?.value || "",
+//             }
+//         };
+//         fetch('https://your-backend-api.com/submit', {
+//             method: 'POST',
+//             headers: { 'Content-Type': 'application/json' },
+//             body: JSON.stringify(formData)
+//         })
+//             .then(response => response.json())
+//             .then(data => alert("Submission Successful"))
+//             .catch(error => alert("Submission Failed"));
+//     }
+// });
+
+
+// Simulate form submission
 document.querySelector('.submit').addEventListener('click', event => {
     event.preventDefault();
+
     if (validations.section9()) {
-        const formData = {
-            areasOfIssue: [],
-            details: {
-                serviceDeliveryIssue: document.getElementById('serviceDeliveryIssue')?.value || "",
-                serviceDeliveryAction: document.getElementById('serviceDeliveryAction')?.value || "",
-            }
-        };
-        fetch('https://your-backend-api.com/submit', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formData)
-        })
-            .then(response => response.json())
-            .then(data => alert("Submission Successful"))
-            .catch(error => alert("Submission Failed"));
+        saveSectionData(9);
+
+
+        // Uncomment below to enable API calls
+        // fetch(formData.apiUrl, {
+        //     method: 'POST', 
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify(formData),
+        // })
+        // .then(response => {
+        //     if (response.ok) {
+        //         console.log('Form successfully submitted to the API');
+        //         // Clear localStorage and show success message
+        //         localStorage.removeItem('formData');
+        //         localStorage.removeItem('currentSection');
+        //         document.getElementById('communityCheckList').classList.add('hidden');
+        //         document.getElementById('successMessage').classList.remove('hidden');
+        //     } else {
+        //         console.error('Failed to submit form data');
+        //     }
+        // })
+        // .catch(error => console.error('Error while submitting form data:', error));
+
+
+        // Simulate saving the full form data locally
+        console.log("Simulated form submission:", formData);
+
+        // Update the success message
+        const successMessage = document.getElementById('successMessage');
+        const apiLink = document.getElementById('apiLink');
+        // apiLink.textContent = formData.apiUrl;
+        // apiLink.href = formData.apiUrl;
+
+        // Show success message and reset the form
+        document.getElementById('checklistForm').classList.add('hidden');
+        successMessage.classList.remove('hidden');
+
+        // Clear localStorage after submission
+        localStorage.removeItem('formData');
+        localStorage.removeItem('currentSection');
+        console.log("Local storage cleared after testing.");
     }
 });
 
 
-
-
-
-function validateAndNext(section) {
-    if (validations[`section${section}`]()) {
-        document.getElementById(`section${section}`).classList.add('hidden');
-        const nextSection = document.getElementById(`section${section + 1}`);
-        if (nextSection) {
-            nextSection.classList.remove('hidden');
-        }
-    }
-}
+// function validateAndNext(section) {
+//     if (validations[`section${section}`]()) {
+//         document.getElementById(`section${section}`).classList.add('hidden');
+//         const nextSection = document.getElementById(`section${section + 1}`);
+//         if (nextSection) {
+//             nextSection.classList.remove('hidden');
+//         }
+//     }
+// }
 // Toggle VHND Section Visibility
 function toggleVHNDSection(value) {
     const vhndSection = document.getElementById('vhndSection');
@@ -946,3 +1078,18 @@ function toggleFields(sectionId, checkbox) {
         section.classList.add("hidden");
     }
 }
+
+// function restartForm() {
+//     document.getElementById('successMessage').classList.add('hidden');
+//     document.getElementById('communityCheckList').reset();
+//     document.getElementById('communityCheckList').classList.remove('hidden');
+//     document.querySelectorAll('.section').forEach(section => section.classList.add('hidden'));
+//     document.getElementById('section1').classList.remove('hidden');
+
+//     // Reset localStorage
+//     localStorage.removeItem('formData');
+//     localStorage.removeItem('currentSection');
+//     formData = { id: generateUniqueId(), apiUrl: `http://localhost:3000/checklistapi/${formData.id}` };
+//     localStorage.setItem('formData', JSON.stringify(formData));
+//     currentSection = 1;
+// }
