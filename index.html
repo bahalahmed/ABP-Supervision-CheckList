@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Block Assesment CheckList</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uuid@9.0.0/dist/uuidv4.min.js"></script>
     <style>
         /* Floating label effect */
         .input-container {
@@ -55,7 +56,7 @@
         <form id="checklistForm">
 
             <!-- Section 1: General Information -->
-            <div id="section1" class="section bg-white p-6 rounded-lg shadow-md mb-4">
+            <div id="section1" class="section bg-white  p-6 rounded-lg shadow-md mb-4">
                 <div class="mb-6">
                     <h2 class="text-3xl font-bold mb-6 text-black-600">General Information</h2>
                     <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
@@ -109,18 +110,18 @@
                     <label for="bdoname" class="block text-gray-700 text-lg font-semibold">Name </label>
                     <input type="text" id="bdoname"
                         class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" name="bdoname">
-                    <p id="error-bdoname"></p>
+                    <p id="error-bdoname" class="text-red-500 text-sm"></p>
 
                     <label for="bdocontact" class="block text-gray-700 text-lg font-semibold mt-4">Contact
                         Number</label>
                     <input type="tel" id="bdocontact" maxlength="10"
                         class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" name="bdocontact">
-                    <p id="error-bdocontact">
+                    <p id="error-bdocontact" class="text-red-500 text-sm"></p>
 
-                        <label for="bdoemail" class="block text-gray-700 text-lg font-semibold mt-4">Email ID</label>
+                    <label for="bdoemail" class="block text-gray-700 text-lg font-semibold mt-4">Email ID</label>
                         <input type="email" id="bdoemail"
                             class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" name="bdoemail">
-                    <p id="error-bdoemail"></p>
+                    <p id="error-bdoemail" class="text-red-500 text-sm"></p>
 
                 </div>
 
@@ -132,18 +133,18 @@
                     <label for="sdmname" class="block text-gray-700 text-lg font-semibold">Name </label>
                     <input type="text" id="sdmname"
                         class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" name="sdmname">
-                    <p id="error-sdmname"></p>
+                    <p id="error-sdmname" class="text-red-500 text-sm"></p>
 
                     <label for="sdmcontact" class="block text-gray-700 text-lg font-semibold mt-4">Contact
                         Number</label>
                     <input type="tel" id="sdmcontact" maxlength="10"
                         class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" name="sdmcontact">
-                    <p id="error-sdmcontact"></p>
+                    <p id="error-sdmcontact" class="text-red-500 text-sm"></p>
 
                     <label for="sdmemail" class="block text-gray-700 text-lg font-semibold mt-4">Email ID</label>
                     <input type="email" id="sdmemail"
                         class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" name="sdmemail">
-                    <p id="error-sdmemail"></p>
+                    <p id="error-sdmemail" class="text-red-500 text-sm"></p>
                 </div>
 
                 <!-- Sub-section: Block Medical Officer -->
@@ -870,6 +871,7 @@
                             </label>
                             <p id="error-medical-college-functional" class="text-red-500 text-sm mt-1"></p>
                         </div>
+                        
                     </div>
 
                     <!-- Non-Functional Container (displayed below Functional) -->
@@ -882,6 +884,8 @@
                             </label>
                         </div>
                     </div>
+                    <input type="hidden" id="medical-college-non-functional" name="medical-college-non-functional" value="0">
+
                 </div>
 
                 <!-- District Hospital Section -->
@@ -922,6 +926,9 @@
                             </label>
                         </div>
                     </div>
+
+                    <input type="hidden" id="district-hospital-non-functional" name="district-hospital-non-functional" value="0">
+
                 </div>
 
                 <!-- Sub-District Hospital Section -->
@@ -962,6 +969,7 @@
                             </label>
                         </div>
                     </div>
+                    <input type="hidden" id="sub-district-hospital-non-functional" name="sub-district-hospital-non-functional" value="0">
                 </div>
 
                 <!-- Community Health Centre (CHC) Section -->
@@ -1002,6 +1010,7 @@
                             </label>
                         </div>
                     </div>
+                    <input type="hidden" id="community-health-centre-non-functional" name="community-health-centre-non-functional" value="0">
                 </div>
 
                 <!-- FRUs Community Health Centre (FRU CHC) Section -->
@@ -1042,6 +1051,7 @@
                             </label>
                         </div>
                     </div>
+                    <input type="hidden" id="fru-community-health-centre-non-functional" name="fru-community-health-centre-non-functional" value="0">
                 </div>
 
                 <!-- PHC Section -->
@@ -1081,6 +1091,7 @@
                             </label>
                         </div>
                     </div>
+                    <input type="hidden" id="phc-non-functional-container" name="phc-non-functional-container" value="0">
                 </div>
 
                 <!-- 24*7 PHC Section -->
@@ -1121,6 +1132,7 @@
                             </label>
                         </div>
                     </div>
+                    <input type="hidden" id="twenty-four-seven-phc-non-functional" name="twenty-four-seven-phc-non-functional" value="0">
                 </div>
 
 
@@ -1162,6 +1174,7 @@
                             </label>
                         </div>
                     </div>
+                    <input type="hidden" id="aam-phc-non-functional" name="aam-phc-non-functional-container" value="0">
                 </div>
 
                 <!-- 24*7 AAM-PHC Section -->
@@ -1202,6 +1215,7 @@
                             </label>
                         </div>
                     </div>
+                    <input type="hidden" id="twenty-four-seven-aam-phc-non-functional" name="twenty-four-seven-aam-phc-non-functional" value="0">
                 </div>
 
                 <!-- Urban Primary Health Centre (U-PHC) Section -->
@@ -1242,6 +1256,7 @@
                             </label>
                         </div>
                     </div>
+                    <input type="hidden" id="urban-primary-health-centre-non-functional" name="urban-primary-health-centre-non-functional" value="0">
                 </div>
 
 
@@ -1285,6 +1300,7 @@
                             </label>
                         </div>
                     </div>
+                    <input type="hidden" id="urban-primary-health-centre-aam-non-functional" name="urban-primary-health-centre-aam-non-functional" value="0">
                 </div>
 
                 <!-- Sub-Centre Section -->
@@ -1325,6 +1341,8 @@
                             </label>
                         </div>
                     </div>
+
+                    <input type="hidden" id="sub-centre-non-functional" name="sub-centre-non-functional" value="0">
                 </div>
 
                 <!-- AAM Sub-Centre Section -->
@@ -1365,6 +1383,7 @@
                             </label>
                         </div>
                     </div>
+                    <input type="hidden" id="aam-sub-centre-non-functional" name="aam-sub-centre-non-functional" value="0">
                 </div>
 
                 <!-- AAM-Urban Health Centre Section -->
@@ -1405,6 +1424,7 @@
                             </label>
                         </div>
                     </div>
+                    <input type="hidden" id="aam-urban-health-centre-non-functional" name="aam-urban-health-centre-non-functional" value="0">
                 </div>
 
 
@@ -1449,10 +1469,11 @@
                         </div>
                         <p id="error-mch-wings-non-functional" class="text-red-500 text-sm"></p>
                     </div>
+                    <input type="hidden" id="mch-wings-non-functional" name="mch-wings-non-functional" value="0">
                 </div>
+            
 
-
-                <!-- SNCUs Section -->
+               
                 <!-- SNCUs Section -->
                 <div id="sncus" class="bg-white rounded-lg shadow-md p-6 mb-4">
                     <h3 class="text-2xl font-semibold text-blue-600 mb-4">SNCUs</h3>
@@ -1492,6 +1513,7 @@
                         </div>
                         <p id="error-sncus-non-functional" class="text-red-500 text-sm"></p>
                     </div>
+                    <input type="hidden" id="sncus-non-functional" name="sncus-non-functional" value="0">
                 </div>
 
                 <!-- NBSUs Section -->
@@ -1533,6 +1555,7 @@
                         </div>
                         <p id="error-nbsus-non-functional" class="text-red-500 text-sm"></p>
                     </div>
+                    <input type="hidden" id="nbsus-non-functional" name="nbsus-non-functional" value="0">
                 </div>
 
                 <!-- Nutritional Rehabilitation Centres Section -->
@@ -1579,6 +1602,7 @@
                         <p id="error-nutritional-rehabilitation-centres-non-functional" class="text-red-500 text-sm">
                         </p>
                     </div>
+                    <input type="hidden" id="nutritional-rehabilitation-centres-non-functional" name="nutritional-rehabilitation-centres-non-functional" value="0">
                 </div>
                 <!-- Adolescent Friendly Health Clinics (AFHCs) Section -->
                 <div id="afhcs" class="bg-white rounded-lg shadow-md p-6 mb-4">
@@ -1620,6 +1644,7 @@
                         </div>
                         <p id="error-afhcs-non-functional" class="text-red-500 text-sm"></p>
                     </div>
+                    <input type="hidden" id="afhcs-non-functional" name="afhcs-non-functional" value="0">
                 </div>
                 <!-- Blood Storage Unit (BSU) / Blood Bank (BB) Section -->
                 <div id="bsu-bb" class="bg-white rounded-lg shadow-md p-6 mb-4">
@@ -1661,6 +1686,7 @@
                         </div>
                         <p id="error-bsu-bb-non-functional" class="text-red-500 text-sm"></p>
                     </div>
+                    <input type="hidden" id="bsu-bb-non-functional" name="bsu-bb-non-functional" value="0">
                 </div>
 
 
@@ -1703,25 +1729,20 @@
                         class="form-input mt-2 block w-full p-3 border border-gray-300 rounded-md" placeholder="">
                     <p id="error-coldchainpoints" class="text-red-500 text-sm"></p>
                 </div>
-
-               <!-- Save & Next Button -->
-               <div class="flex justify-end mt-6">
-                <button type="button"
-                    class="save-next bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
-                    onclick="validateAndNext(4)">
-                    Save & Next
-                </button>
+                <div class="flex justify-end mt-6">
+                    <button type="button"
+                        class="save-next bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
+                        onclick="validateAndNext(4)">
+                        Save & Next
+                    </button>
+                </div>
             </div>
-            </div>
-
 
              <!--Medical Officers Section -->
             <div id="section5" class=" section bg-white p-6 rounded shadow-md mb-4 hidden ">
                     <h2 class="text-3xl font-bold mb-6 text-black-600">Human Resource for Health</h2>
                     <p class="text-sm text-red-500 mb-4">* indicates a required question</p>
     
-
-
                     <!-- Gynaecologists/Obstetricians -->
                     <div id="section-gynaecologists" class="bg-white p-4 rounded-lg shadow-md mb-6">
                         <h3 class="text-2xl font-semibold text-blue-600 mb-4">Gynaecologists/Obstetricians</h3>
@@ -2160,66 +2181,66 @@
                     
                     </div>
 
-                        <!-- Pharmacists -->
-                <div id="section-pharmacists" class="bg-white p-4 rounded-lg shadow-md mb-6">
-                    <h3 class="text-2xl font-semibold text-blue-600 mb-4">Pharmacists</h3>
+                            <!-- Pharmacists -->
+                    <div id="section-pharmacists" class="bg-white p-4 rounded-lg shadow-md mb-6">
+                        <h3 class="text-2xl font-semibold text-blue-600 mb-4">Pharmacists</h3>
 
-                    <!-- Regular Section -->
-                    <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
-                        <label for="regular-Pharmacists-sanctioned"
-                            class="block text-gray-700 text-lg font-semibold col-span-1">Regular</label>
-                        <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
-                            <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
-                                <input type="number" id="regular-Pharmacists-sanctioned"
-                                    class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                    name="regular-Pharmacists-sanctioned" placeholder=" " min="0" max="5" required>
-                                <label for="regular-Pharmacists-sanctioned"
-                                    class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
-                                    Sanctioned
-                                </label>
-                                <p id="error-regular-Pharmacists-sanctioned" class="text-red-500 text-sm"></p>
+                        <!-- Regular Section -->
+                        <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
+                            <label for="regular-Pharmacists-sanctioned"
+                                class="block text-gray-700 text-lg font-semibold col-span-1">Regular</label>
+                            <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
+                                <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
+                                    <input type="number" id="regular-Pharmacists-sanctioned"
+                                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        name="regular-Pharmacists-sanctioned" placeholder=" " min="0" max="5" required>
+                                    <label for="regular-Pharmacists-sanctioned"
+                                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                                        Sanctioned
+                                    </label>
+                                    <p id="error-regular-Pharmacists-sanctioned" class="text-red-500 text-sm"></p>
+                                </div>
+                                <div class="relative w-full sm:w-1/2">
+                                    <input type="number" id="regular-Pharmacists-available"
+                                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        name="regular-Pharmacists-available" min="0" placeholder=" " disabled>
+                                    <label for="regular-Pharmacists-available"
+                                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                                        Available
+                                    </label>
+                                    <p id="error-regular-Pharmacists-available" class="text-red-500 text-sm"></p>
+                                </div>
                             </div>
-                            <div class="relative w-full sm:w-1/2">
-                                <input type="number" id="regular-Pharmacists-available"
-                                    class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                    name="regular-Pharmacists-available" min="0" placeholder=" " disabled>
-                                <label for="regular-Pharmacists-available"
-                                    class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
-                                    Available
-                                </label>
-                                <p id="error-regular-Pharmacists-available" class="text-red-500 text-sm"></p>
+                        </div>
+
+                        <!-- Contractual Section -->
+                        <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
+                            <label for="contractual-Pharmacists-sanctioned"
+                                class="block text-gray-700 text-lg font-semibold col-span-1">Contractual</label>
+                            <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
+                                <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
+                                    <input type="number" id="contractual-Pharmacists-sanctioned"
+                                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        name="contractual-Pharmacists-sanctioned" placeholder=" " min="0" max="5" required>
+                                    <label for="contractual-Pharmacists-sanctioned"
+                                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                                        Sanctioned
+                                    </label>
+                                    <p id="error-contractual-Pharmacists-sanctioned" class="text-red-500 text-sm"></p>
+                                </div>
+                                <div class="relative w-full sm:w-1/2">
+                                    <input type="number" id="contractual-Pharmacists-available"
+                                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        name="contractual-Pharmacists-available" min="0" placeholder=" " disabled>
+                                    <label for="contractual-Pharmacists-available"
+                                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                                        Available
+                                    </label>
+                                    <p id="error-contractual-Pharmacists-available" class="text-red-500 text-sm"></p>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Contractual Section -->
-                    <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
-                        <label for="contractual-Pharmacists-sanctioned"
-                            class="block text-gray-700 text-lg font-semibold col-span-1">Contractual</label>
-                        <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
-                            <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
-                                <input type="number" id="contractual-Pharmacists-sanctioned"
-                                    class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                    name="contractual-Pharmacists-sanctioned" placeholder=" " min="0" max="5" required>
-                                <label for="contractual-Pharmacists-sanctioned"
-                                    class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
-                                    Sanctioned
-                                </label>
-                                <p id="error-contractual-Pharmacists-sanctioned" class="text-red-500 text-sm"></p>
-                            </div>
-                            <div class="relative w-full sm:w-1/2">
-                                <input type="number" id="contractual-Pharmacists-available"
-                                    class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                    name="contractual-Pharmacists-available" min="0" placeholder=" " disabled>
-                                <label for="contractual-Pharmacists-available"
-                                    class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
-                                    Available
-                                </label>
-                                <p id="error-contractual-Pharmacists-available" class="text-red-500 text-sm"></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
 
                     <!-- Lab Technician -->
@@ -2533,139 +2554,141 @@
                             </div>
                         </div>
 
-                            
-                    <!-- Staff Nurse -->
-                    <div id="section-staffNurse" class="bg-white p-4 rounded-lg shadow-md mb-6">
-                        <h3 class="text-2xl font-semibold text-blue-600 mb-4">Staff Nurse</h3>
-    
-                        <!-- Regular Section -->
-                        <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
-                            <label for="regular-StaffNurse-sanctioned"
-                                class="block text-gray-700 text-lg font-semibold col-span-1">Regular</label>
-                            <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
-                                <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
-                                    <input type="number" id="regular-StaffNurse-sanctioned"
-                                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                        name="regular-StaffNurse-sanctioned" placeholder=" " min="0" max="5" required>
-                                    <label for="regular-StaffNurse-sanctioned"
-                                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
-                                        Sanctioned
-                                    </label>
-                                    <p id="error-regular-StaffNurse-sanctioned" class="text-red-500 text-sm"></p>
-                                </div>
-                                <div class="relative w-full sm:w-1/2">
-                                    <input type="number" id="regular-StaffNurse-available"
-                                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                        name="regular-StaffNurse-available" min="0" placeholder=" " disabled>
-                                    <label for="regular-StaffNurse-available"
-                                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
-                                        Available
-                                    </label>
-                                    <p id="error-regular-StaffNurse-available" class="text-red-500 text-sm"></p>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <!-- Contractual Section -->
-                        <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
-                            <label for="contractual-StaffNurse-sanctioned"
-                                class="block text-gray-700 text-lg font-semibold col-span-1">Contractual</label>
-                            <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
-                                <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
-                                    <input type="number" id="contractual-StaffNurse-sanctioned"
-                                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                        name="contractual-StaffNurse-sanctioned" placeholder=" " min="0" max="5" required>
-                                    <label for="contractual-StaffNurse-sanctioned"
-                                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
-                                        Sanctioned
-                                    </label>
-                                    <p id="error-contractual-StaffNurse-sanctioned" class="text-red-500 text-sm"></p>
-                                </div>
-                                <div class="relative w-full sm:w-1/2">
-                                    <input type="number" id="contractual-StaffNurse-available"
-                                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                        name="contractual-StaffNurse-available" min="0" placeholder=" " disabled>
-                                    <label for="contractual-StaffNurse-available"
-                                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
-                                        Available
-                                    </label>
-                                    <p id="error-contractual-StaffNurse-available" class="text-red-500 text-sm"></p>
+                                
+                        <!-- Staff Nurse -->
+                        <div id="section-staffNurse" class="bg-white p-4 rounded-lg shadow-md mb-6">
+                            <h3 class="text-2xl font-semibold text-blue-600 mb-4">Staff Nurse</h3>
+        
+                            <!-- Regular Section -->
+                            <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
+                                <label for="regular-StaffNurse-sanctioned"
+                                    class="block text-gray-700 text-lg font-semibold col-span-1">Regular</label>
+                                <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
+                                    <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
+                                        <input type="number" id="regular-StaffNurse-sanctioned"
+                                            class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            name="regular-StaffNurse-sanctioned" placeholder=" " min="0" max="5" required>
+                                        <label for="regular-StaffNurse-sanctioned"
+                                            class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                                            Sanctioned
+                                        </label>
+                                        <p id="error-regular-StaffNurse-sanctioned" class="text-red-500 text-sm"></p>
+                                    </div>
+                                    <div class="relative w-full sm:w-1/2">
+                                        <input type="number" id="regular-StaffNurse-available"
+                                            class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            name="regular-StaffNurse-available" min="0" placeholder=" " disabled>
+                                        <label for="regular-StaffNurse-available"
+                                            class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                                            Available
+                                        </label>
+                                        <p id="error-regular-StaffNurse-available" class="text-red-500 text-sm"></p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-    
-                       
-                    </div>
-
-                        <!-- ASHA -->
-                    <div id="section-asha" class="bg-white p-4 rounded-lg shadow-md mb-6">
-                        <h3 class="text-2xl font-semibold text-blue-600 mb-4">ASHA</h3>
-
-                        <!-- Regular Section -->
-                        <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
-                            <label for="regular-ASHA-sanctioned"
-                                class="block text-gray-700 text-lg font-semibold col-span-1">Regular</label>
-                            <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
-                                <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
-                                    <input type="number" id="regular-ASHA-sanctioned"
-                                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                        name="regular-ASHA-sanctioned" placeholder=" " min="0" max="10" required>
-                                    <label for="regular-ASHA-sanctioned"
-                                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
-                                        Sanctioned
-                                    </label>
-                                    <p id="error-regular-ASHA-sanctioned" class="text-red-500 text-sm"></p>
-                                </div>
-                                <div class="relative w-full sm:w-1/2">
-                                    <input type="number" id="regular-ASHA-available"
-                                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                        name="regular-ASHA-available" placeholder=" " min="0" disabled>
-                                    <label for="regular-ASHA-available"
-                                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
-                                        Available
-                                    </label>
-                                    <p id="error-regular-ASHA-available" class="text-red-500 text-sm"></p>
+        
+                            <!-- Contractual Section -->
+                            <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
+                                <label for="contractual-StaffNurse-sanctioned"
+                                    class="block text-gray-700 text-lg font-semibold col-span-1">Contractual</label>
+                                <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
+                                    <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
+                                        <input type="number" id="contractual-StaffNurse-sanctioned"
+                                            class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            name="contractual-StaffNurse-sanctioned" placeholder=" " min="0" max="5" required>
+                                        <label for="contractual-StaffNurse-sanctioned"
+                                            class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                                            Sanctioned
+                                        </label>
+                                        <p id="error-contractual-StaffNurse-sanctioned" class="text-red-500 text-sm"></p>
+                                    </div>
+                                    <div class="relative w-full sm:w-1/2">
+                                        <input type="number" id="contractual-StaffNurse-available"
+                                            class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            name="contractual-StaffNurse-available" min="0" placeholder=" " disabled>
+                                        <label for="contractual-StaffNurse-available"
+                                            class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                                            Available
+                                        </label>
+                                        <p id="error-contractual-StaffNurse-available" class="text-red-500 text-sm"></p>
+                                    </div>
                                 </div>
                             </div>
+        
+                        
                         </div>
 
-                        <!-- Contractual Section -->
-                        <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
-                            <label for="contractual-ASHA-sanctioned"
-                                class="block text-gray-700 text-lg font-semibold col-span-1">Contractual</label>
-                            <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
-                                <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
-                                    <input type="number" id="contractual-ASHA-sanctioned"
-                                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                        name="contractual-ASHA-sanctioned" placeholder=" " min="0" max="10" required>
-                                    <label for="contractual-ASHA-sanctioned"
-                                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
-                                        Sanctioned
-                                    </label>
-                                    <p id="error-contractual-ASHA-sanctioned" class="text-red-500 text-sm"></p>
+                            <!-- ASHA -->
+                        <div id="section-asha" class="bg-white p-4 rounded-lg shadow-md mb-6">
+                            <h3 class="text-2xl font-semibold text-blue-600 mb-4">ASHA</h3>
+
+                            <!-- Regular Section -->
+                            <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
+                                <label for="regular-ASHA-sanctioned"
+                                    class="block text-gray-700 text-lg font-semibold col-span-1">Regular</label>
+                                <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
+                                    <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
+                                        <input type="number" id="regular-ASHA-sanctioned"
+                                            class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            name="regular-ASHA-sanctioned" placeholder=" " min="0" max="10" required>
+                                        <label for="regular-ASHA-sanctioned"
+                                            class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                                            Sanctioned
+                                        </label>
+                                        <p id="error-regular-ASHA-sanctioned" class="text-red-500 text-sm"></p>
+                                    </div>
+                                    <div class="relative w-full sm:w-1/2">
+                                        <input type="number" id="regular-ASHA-available"
+                                            class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            name="regular-ASHA-available" placeholder=" " min="0" disabled>
+                                        <label for="regular-ASHA-available"
+                                            class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                                            Available
+                                        </label>
+                                        <p id="error-regular-ASHA-available" class="text-red-500 text-sm"></p>
+                                    </div>
                                 </div>
-                                <div class="relative w-full sm:w-1/2">
-                                    <input type="number" id="contractual-ASHA-available"
-                                        class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                        name="contractual-ASHA-available" placeholder=" " min="0" disabled>
-                                    <label for="contractual-ASHA-available"
-                                        class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
-                                        Available
-                                    </label>
-                                    <p id="error-contractual-ASHA-available" class="text-red-500 text-sm"></p>
+                            </div>
+
+                            <!-- Contractual Section -->
+                            <div class="mb-6 grid grid-cols-1 sm:grid-cols-5 gap-4">
+                                <label for="contractual-ASHA-sanctioned"
+                                    class="block text-gray-700 text-lg font-semibold col-span-1">Contractual</label>
+                                <div class="col-span-4 flex flex-col sm:flex-row sm:space-x-4">
+                                    <div class="relative w-full sm:w-1/2 mb-4 sm:mb-0">
+                                        <input type="number" id="contractual-ASHA-sanctioned"
+                                            class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            name="contractual-ASHA-sanctioned" placeholder=" " min="0" max="10" required>
+                                        <label for="contractual-ASHA-sanctioned"
+                                            class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                                            Sanctioned
+                                        </label>
+                                        <p id="error-contractual-ASHA-sanctioned" class="text-red-500 text-sm"></p>
+                                    </div>
+                                    <div class="relative w-full sm:w-1/2">
+                                        <input type="number" id="contractual-ASHA-available"
+                                            class="peer w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            name="contractual-ASHA-available" placeholder=" " min="0" disabled>
+                                        <label for="contractual-ASHA-available"
+                                            class="absolute left-3 -top-2 text-sm text-gray-600 bg-white px-1 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600">
+                                            Available
+                                        </label>
+                                        <p id="error-contractual-ASHA-available" class="text-red-500 text-sm"></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                     <!-- Save & Next Button -->
-            <!-- Save & Next Button -->
-            <div class="flex justify-end mt-6">
-                <button type="button"
-                    class="save-next bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
-                    onclick="validateAndNext(5)">
-                    Save & Next
-                </button>
+                        <!-- Save & Next Button -->
+                        <div class="flex justify-end mt-6">
+                            <button type="button"
+                                class="save-next bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
+                                onclick="validateAndNext(5)">
+                                Save & Next
+                            </button>
+                        </div>
             </div>
+                     
+            
     </form>
     </div>
 
