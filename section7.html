@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Quarterly Status</title>
+    <script src="https://cdn.jsdelivr.net/npm/uuid@9.0.0/dist/uuidv4.min.js"></script>
+    <title>Block Assesment CheckList</title>
     <style>
         /* Floating label effect */
         .input-container {
@@ -858,7 +859,16 @@
 
 </div>
 <script>
+    const formData = JSON.parse(localStorage.getItem('formData')) || {};
     document.addEventListener("DOMContentLoaded", () => {
+
+        const sectionData = formData.section6 || {};
+            Object.keys(sectionData).forEach(key => {
+                const inputElement = document.getElementById(key);
+                if (inputElement) {
+                    inputElement.value = sectionData[key];
+                }
+            });
         // Shared validation function
         function validateNumberInput(event) {
             const input = event.target;
@@ -887,8 +897,10 @@
 
         // Attach validation to all number inputs dynamically
         const inputs = document.querySelectorAll('input[type="number"]');
+       
         inputs.forEach((input) => {
             input.addEventListener("input", validateNumberInput);
+            
         });
 
         // Save button functionality
@@ -904,12 +916,47 @@
 
             // Check if all fields are valid
             if (allValid) {
-            alert("All inputs are valid. Moving to Section 8...");
-            // Redirect to Section 8 or show Section 8
-            window.location.href = "section8.html"; // Replace with the correct file path for Section 8
-        } else {
-            alert("Please correct errors in the form before proceeding.");
-        }
+                // Save Section 7 data to formData
+                formData.section7 = {};
+                inputs.forEach((input) => {
+                    formData.section7[input.id] = input.value;
+                });
+
+                // Update localStorage
+                localStorage.setItem("formData", JSON.stringify(formData));
+
+                // Simulate API call with console log
+                console.log("Section 7 data saved to localStorage:", formData.section7);
+
+                // Uncomment below for real API call
+                /*
+                fetch('https://your-api-endpoint.com/section7', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData.section7),
+                })
+                .then(response => {
+                    if (response.ok) {
+                        console.log("Section 7 data successfully sent to the API");
+
+                        // Redirect to Section 8
+                        window.location.href = "section8.html"; // Replace with the correct file path for Section 8
+                    } else {
+                        console.error("Failed to save Section 7 data. API response not OK.");
+                        alert("There was an issue saving your data. Please try again.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error while sending data to the API:", error);
+                    alert("There was an issue connecting to the server. Please try again.");
+                });
+                */
+
+                // Redirect to Section 8
+                window.location.href = "section8.html"; // Replace with the correct file path for Section 8
+            } else {
+                alert("Please correct errors in the form before proceeding.");
+            }
         });
     });
 </script>

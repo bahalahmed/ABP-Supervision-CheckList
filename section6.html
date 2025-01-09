@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uuid@9.0.0/dist/uuidv4.min.js"></script>
     <title>Block Assesment CheckList</title>
 </head>
 
@@ -239,7 +240,17 @@
 
     <script>
 
+        const formData = JSON.parse(localStorage.getItem('formData')) || {};
         document.addEventListener("DOMContentLoaded", () => {
+            const sectionData = formData.section6 || {};
+            Object.keys(sectionData).forEach(key => {
+                const inputElement = document.getElementById(key);
+                if (inputElement) {
+                    inputElement.value = sectionData[key];
+                }
+            });
+
+
             const saveNextButton = document.getElementById("saveNextButtonSection6");
             const selectBtns = document.querySelectorAll(".select-btn");
             const modal = document.getElementById("modal");
@@ -340,68 +351,101 @@
                     return;
                 }
 
-                // Check if this is Section 6, then redirect to the next HTML file
-                const currentSectionId = saveNextButton.closest(".section").id;
-                if (currentSectionId === "section6") {
-                    window.location.href = "section7.html"; // Change to the correct file path for Section 7
-                } else {
-                    alert("Form submitted successfully!");
-                }
+                const inputs = document.querySelectorAll('#section6 input, #section6 select, #section6 textarea');
+                formData.section6 = {};
+                inputs.forEach(input => {
+                    formData.section6[input.id] = input.value;
+                });
+
+                // Update localStorage
+                localStorage.setItem('formData', JSON.stringify(formData));
+                // console.log(`Section ${section} data saved:`, formData.section6);
+                
+
+                // // Hit API with Section 6 data
+                // fetch(formData.apiUrl, {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify(formData.section6),
+                // })
+                // .then(response => {
+                //     if (response.ok) {
+                //         console.log("Section 6 data successfully sent to the API");
+                //         // Redirect to Section 7
+                //         window.location.href = "section7.html"; // Update the file path as needed
+                //     } else {
+                //         console.error("Failed to save Section 6 data");
+                //         alert("Failed to save data. Please try again.");
+                //     }
+                // })
+                // .catch(error => {
+                //     console.error("Error while saving Section 6 data:", error);
+                //     alert("Network error occurred. Please check your connection.");
+                // });
+
+            
+
+                        // Simulate API call with console log
+                        console.log("Section 6 data saved to localStorage:", formData.section6);
+
+                        // Redirect to Section 7
+                        window.location.href = "section7.html"; // Update the file path as needed
             });
 
-            // Helper function to create checkboxes
-            function createCheckboxes(options, previouslySelected) {
-                const optionsList = options.split(",");
-                return optionsList.map(option => {
-                    const checked = previouslySelected.includes(option.trim()) ? "checked" : "";
-                    return `
-                <label class="flex items-center">
-                    <input type="checkbox" value="${option.trim()}" ${checked} class="mr-2">
-                    ${option.trim()}
-                </label>`;
-                }).join("");
-            }
-            // Reset Button in Modal
-            resetBtn.addEventListener("click", function () {
-                // Uncheck all checkboxes inside the modal
-                modalOptions.querySelectorAll("input[type='checkbox']").forEach(input => input.checked = false);
 
-                // Clear the selection in the state for the current section
-                if (modalTitle.textContent) {
-                    selectedItemsStore[modalTitle.textContent] = [];
-                }
+                        // Helper function to create checkboxes
+                        function createCheckboxes(options, previouslySelected) {
+                            const optionsList = options.split(",");
+                            return optionsList.map(option => {
+                                const checked = previouslySelected.includes(option.trim()) ? "checked" : "";
+                                return `
+                            <label class="flex items-center">
+                                <input type="checkbox" value="${option.trim()}" ${checked} class="mr-2">
+                                ${option.trim()}
+                            </label>`;
+                            }).join("");
+                        }
+                        // Reset Button in Modal
+                        resetBtn.addEventListener("click", function () {
+                            // Uncheck all checkboxes inside the modal
+                            modalOptions.querySelectorAll("input[type='checkbox']").forEach(input => input.checked = false);
 
-                // Clear the current selected items container
-                if (currentSelectedContainer) {
-                    currentSelectedContainer.innerHTML = "";
-                    currentHiddenInput.value = ""; // Reset hidden input value
-                }
-            });
+                            // Clear the selection in the state for the current section
+                            if (modalTitle.textContent) {
+                                selectedItemsStore[modalTitle.textContent] = [];
+                            }
+
+                            // Clear the current selected items container
+                            if (currentSelectedContainer) {
+                                currentSelectedContainer.innerHTML = "";
+                                currentHiddenInput.value = ""; // Reset hidden input value
+                            }
+                        });
 
 
-            // Remove Selected Item
-            window.removeItem = function (item) {
-                const span = item.parentElement;
-                const container = span.parentElement;
-                const sectionTitle = container.closest(".section").querySelector("button.select-btn").getAttribute("data-title");
-                const valueToRemove = span.textContent.trim().replace("×", "").trim();
+                        // Remove Selected Item
+                        window.removeItem = function (item) {
+                            const span = item.parentElement;
+                            const container = span.parentElement;
+                            const sectionTitle = container.closest(".section").querySelector("button.select-btn").getAttribute("data-title");
+                            const valueToRemove = span.textContent.trim().replace("×", "").trim();
 
-                if (selectedItemsStore[sectionTitle]) {
-                    selectedItemsStore[sectionTitle] = selectedItemsStore[sectionTitle].filter(value => value !== valueToRemove);
-                }
+                            if (selectedItemsStore[sectionTitle]) {
+                                selectedItemsStore[sectionTitle] = selectedItemsStore[sectionTitle].filter(value => value !== valueToRemove);
+                            }
 
-                const hiddenInput = container.querySelector("input[type='hidden']");
-                hiddenInput.value = selectedItemsStore[sectionTitle]?.join(",") || "";
+                            const hiddenInput = container.querySelector("input[type='hidden']");
+                            hiddenInput.value = selectedItemsStore[sectionTitle]?.join(",") || "";
 
-                const errorElement = container.parentElement.querySelector(`#error-${hiddenInput.id}`);
-                if (!hiddenInput.value.trim() && errorElement) {
-                    errorElement.textContent = "Please select at least one option.";
-                    container.classList.add("border", "border-red-500");
-                }
+                            const errorElement = container.parentElement.querySelector(`#error-${hiddenInput.id}`);
+                            if (!hiddenInput.value.trim() && errorElement) {
+                                errorElement.textContent = "Please select at least one option.";
+                                container.classList.add("border", "border-red-500");
+                            }
 
-                span.remove();
-            };
-        });
+                            span.remove();
+                        };
+                    });
 
 
 

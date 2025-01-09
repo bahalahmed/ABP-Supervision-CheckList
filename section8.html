@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Programs with Modal</title>
+    <script src="https://cdn.jsdelivr.net/npm/uuid@9.0.0/dist/uuidv4.min.js"></script>
+    <title>Block Assesment CheckList</title>
 </head>
 
 <body class="bg-gray-100 font-sans">
@@ -183,7 +184,8 @@
                 </div>
             </div>
         </form>
-        <div id="successMessage" class="hidden bg-green-100 border border-green-400 text-green-700 px-6 py-4 rounded-lg shadow-lg text-center">
+        <div id="successMessage"
+            class="hidden bg-green-100 border border-green-400 text-green-700 px-6 py-4 rounded-lg shadow-lg text-center">
             <h2 class="text-2xl font-bold mb-2">Form Submitted Successfully!</h2>
             <p class="mb-4">Your data has been submitted.</p>
             </a>
@@ -207,7 +209,24 @@
     </div>
 
     <script>
+
+        const formData = JSON.parse(localStorage.getItem("formData")) || {};
+
+        // Check if UID exists
+        if (!formData.id) {
+            alert("Session Expired");
+            window.location.href = "index.html"; // Redirect to the first page if UID is missing
+        } else {
+            console.log(`UID found: ${formData.id}`);
+        }
         document.addEventListener("DOMContentLoaded", () => {
+            const section8Data = formData.section8 || {};
+            Object.keys(section8Data).forEach(key => {
+                const inputElement = document.getElementById(key);
+                if (inputElement) {
+                    inputElement.value = section8Data[key];
+                }
+            });
             const saveNextButton = document.getElementById("saveNextButton");
             const selectBtns = document.querySelectorAll(".select-btn");
             const modal = document.getElementById("modal");
@@ -215,12 +234,12 @@
             const modalOptions = document.getElementById("modalOptions");
             const saveBtn = document.getElementById("saveBtn");
             const resetBtn = document.getElementById("resetBtn");
+            let currentHiddenInput = null;
             let currentSelectedContainer = null;
             const selectedItemsStore = {};
 
-            function generateId(title) {
-                return title.replace(/[^a-zA-Z0-9-_]/g, "-");
-            }
+                
+
 
             selectBtns.forEach(button => {
                 button.addEventListener("click", function () {
@@ -228,6 +247,7 @@
                     const options = this.getAttribute("data-options");
                     currentSelectedContainer = document.querySelector(`#${this.getAttribute("data-target")}`);
                     const previouslySelected = selectedItemsStore[title] || [];
+                    currentHiddenInput = currentSelectedContainer.querySelector("input[type='hidden']");
 
                     modalTitle.textContent = title;
                     modalOptions.innerHTML = createCheckboxes(options, previouslySelected);
@@ -250,6 +270,10 @@
                     return;
                 }
 
+                if (currentHiddenInput) {
+                    currentHiddenInput.value = selectedValues.join(",");
+                }
+
                 selectedItemsStore[modalTitle.textContent] = selectedValues;
 
                 currentSelectedContainer.innerHTML = selectedValues.map(item => `
@@ -257,66 +281,26 @@
                 ${item} <span class="cursor-pointer" onclick="removeItem(this)">×</span>
             </span>`).join("");
 
-                // Check if the hidden input exists; if not, create it
-                let inputField = currentSelectedContainer.querySelector("input[type='hidden']");
-                if (!inputField) {
-                    inputField = document.createElement("input");
-                    inputField.type = "hidden";
-                    inputField.name = modalTitle.textContent.replace(/\s+/g, "-") + "-Selections";
-                    currentSelectedContainer.appendChild(inputField);
-                }
+            currentSelectedContainer.appendChild(currentHiddenInput);
 
-                inputField.value = selectedValues.join(", ");
-                  // Remove the error message and error border dynamically
-        const errorElement = currentSelectedContainer.nextElementSibling;
-        if (errorElement) {
-            errorElement.textContent = "";
-        }
-        currentSelectedContainer.classList.remove("border", "border-red-500");
+// Clear the error dynamically
+const errorElement = currentSelectedContainer.parentElement.querySelector(`#error-${currentHiddenInput.id}`);
+if (errorElement) {
+    errorElement.textContent = "";
+    currentSelectedContainer.classList.remove("border", "border-red-500");
+}
 
-        modal.classList.add("hidden");
-
-                // Remove the error message dynamically
-                 const errorElement1 = currentSelectedContainer.nextElementSibling;
-                if (errorElement1) {
-                    errorElement.textContent = "";
-                }
-
-                modal.classList.add("hidden");
-            });
+modal.classList.add("hidden");
+});
 
             resetBtn.addEventListener("click", function () {
                 modalOptions.querySelectorAll("input").forEach(input => input.checked = false);
             });
 
-            // saveNextButton.addEventListener("click", function () {
-            //     const allSections = document.querySelectorAll(".selected-items");
-            //     let isValid = true;
 
-            //     allSections.forEach(section => {
-            //         const errorElement = section.nextElementSibling;
-            //         const inputField = section.querySelector("input[type='hidden']");
-
-            //         if (!inputField.value) {
-            //             isValid = false;
-            //             errorElement.textContent = "Please select at least one option.";
-            //             section.classList.add("border", "border-red-500");
-            //         } else {
-            //             errorElement.textContent = "";
-            //             section.classList.remove("border", "border-red-500");
-            //         }
-            //     });
-
-            //     if (!isValid) {
-            //         alert("Please complete all required fields before proceeding.");
-            //         return;
-            //     }
-
-            //     alert("Form submitted successfully!");
-            // });
 
             // Submit Button Action
-             submitButton.addEventListener("click", (event) => {
+            submitButton.addEventListener("click", (event) => {
                 event.preventDefault(); // Prevent default form submission
 
                 const allSections = document.querySelectorAll(".selected-items");
@@ -335,10 +319,44 @@
                         errorElement.textContent = "";
                     }
                 });
+                
 
                 if (isValid) {
-                    successMessage.classList.remove("hidden"); // Show success message
-                    document.getElementById("dataForm").classList.add("hidden"); // Hide the form
+                    // Save Section 8 Data to Local Storage
+                    saveSectionData(8);
+
+                    // Log UID and all sections' data stored in localStorage
+                    console.log("UID:", formData.id || "No UID Found");
+                    console.log("Form Data:", formData);
+
+                    // Uncomment below for API hit (if needed later)
+                    /*
+                    fetch('https://your-api-endpoint.com/submit', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(formData),
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            console.log("Data successfully sent to the API");
+                            alert("Form submitted successfully!");
+                        } else {
+                            console.error("Failed to submit data to the API");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error while submitting data:", error);
+                    });
+                    */
+
+                    // Clear localStorage after submission
+                    localStorage.removeItem("formData");
+                    localStorage.removeItem("currentSection");
+                    console.log("Local storage cleared after testing.");
+
+                    // Hide the form and show the success message
+                    document.getElementById("dataForm").classList.add("hidden");
+                    successMessage.classList.remove("hidden");
                 } else {
                     alert("Please complete all required fields before submitting.");
                 }
@@ -382,6 +400,38 @@
 
                 span.remove();
             };
+
+
+            // // Save Section 8 Data
+            // function saveSectionData(section) {
+            //     const inputs = document.querySelectorAll(`#section${section} input[type='hidden'], #section${section} select, #section${section} textarea`);
+            //     formData[`section${section}`] = {};
+            //     inputs.forEach((input) => {
+            //         console.log(`Saving input ID: ${input.id}, Value: ${input.value}`); // Debug log
+            //         formData[`section${section}`][input.id] = input.value.trim();
+            //     });
+            //     localStorage.setItem("formData", JSON.stringify(formData));
+            //     console.log(`Section ${section} data saved:`, formData[`section${section}`]);
+            // }
+
+            function saveSectionData(section) {
+            const inputs = document.querySelectorAll(`#section${section} input, #section${section} select, #section${section} textarea`);
+            formData[`section${section}`] = {};
+            console.log(`Saving data for Section ${section}:`);
+
+            inputs.forEach((input) => {
+                console.log(`Input found - ID: ${input.id}, Value: ${input.value}`);
+                if (input.id) {
+                    formData[`section${section}`][input.id] = input.value.trim();
+                } else {
+                    console.error("Input missing ID, skipping:", input);
+                }
+            });
+
+            localStorage.setItem("formData", JSON.stringify(formData));
+            console.log(`Section ${section} data saved:`, formData[`section${section}`]);
+        }
+
         });
 
 
